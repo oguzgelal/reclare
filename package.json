@@ -16,6 +16,7 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
+    "rand": "openssl rand -base64 16 | cut -c 1-14 | tr -d '\n' | pbcopy",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "node test/test.js",

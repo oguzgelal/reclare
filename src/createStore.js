@@ -1,16 +1,27 @@
-import React, { createContext } from 'react';
+import React from 'react';
 
-import { fail } from './utils/alert';
+import { verify } from './helpers/storeHelpers';
+import { processDeclarations } from './helpers/declarationHelpers';
+import { connectFactory, invokeFactory } from './factories'
 
 export default (store) => {
 
-  // condition check
-  if (!store) { fail('Invalid argument provided', 'uzHuCovKH1afIb') }
-  if (!store.declarations) { fail('`declarations` field required', 'iMcb7yfuyG1Tv8') }
-  if (!Array.isArray(store.declarations)) { fail('`declarations` should be an object array', 'wEfvjNdm3SCHuM') }
+  verify(store)
 
-  const { declarations } = store;
+  const { Provider, Consumer } = React.createContext();
 
-  
+  let ctx = {
+    state: {},
+    getState: () => ctx.state,
+    setState: state => ctx.state = state,
+    declarations: processDeclarations(store),
+  }
+
+  return {
+    Provider,
+    getState: ctx.getState,
+    connect: connectFactory({ ctx, Consumer }),
+    invoke: invokeFactory({ ctx, Consumer }),
+  }
 
 }
