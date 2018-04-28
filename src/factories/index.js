@@ -1,7 +1,7 @@
 import connectFactory from './connectFactory'
 import invokeFactory from './invokeFactory'
 
-export default {
+export {
   connectFactory,
-  invokeFactory
-}
+  invokeFactory,
+};

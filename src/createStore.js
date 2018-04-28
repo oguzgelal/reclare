@@ -2,7 +2,7 @@ import React from 'react';
 
 import { verify } from './helpers/storeHelpers';
 import { processDeclarations } from './helpers/declarationHelpers';
-import { connectFactory, invokeFactory } from './factories'
+import { connectFactory, invokeFactory } from './factories/index'
 
 export default (store) => {
 

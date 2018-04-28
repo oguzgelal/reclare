@@ -1,4 +1,4 @@
-import { fail } from './alert';
+import { fail } from '../utils/alert';
 
 export const processDeclarations = (store) => {
 
