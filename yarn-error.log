@@ -62,11 +62,11 @@ npm manifest:
     },
     "scripts": {
       "rand": "openssl rand -base64 16 | cut -c 1-14 | tr -d '\n' | pbcopy",
-      "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-      "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
-      "build:umd": "cross-env BABEL_ENV=rollup NODE_ENV=development rollup -c -o dist/react-redux.js",
-      "build:umd:min": "cross-env BABEL_ENV=rollup NODE_ENV=production rollup -c -o dist/react-redux.min.js",
-      "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+      "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir dist/cjs",
+      "build:es": "cross-env BABEL_ENV=es babel src --out-dir dist/es",
+      "build:umd": "cross-env BABEL_ENV=rollup NODE_ENV=development rollup -c -o dist/reclare.js",
+      "build:umd:min": "cross-env BABEL_ENV=rollup NODE_ENV=production rollup -c -o dist/reclare.min.js",
+      "build": "npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min && rimraf dist/es dist/cjs",
       "clean": "rimraf dist"
     },
     "files": [
@@ -1745,7 +1745,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min
+  Arguments: -c npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min && rimraf dist/es dist/cjs
   Directory: /Users/oguzgelal/Core/Oguz/web/2018/reclare
   Output:
   
