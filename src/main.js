@@ -5,9 +5,11 @@ import declaration from './declaration';
 import situation from './situation';
 import reaction from './reaction';
 
-export const createStore;
-export const connect;
-export const invoke;
-export const declaration;
-export const situation;
-export const reaction;
+export default {
+  createStore,
+  connect,
+  invoke,
+  declaration,
+  situation,
+  reaction,
+};

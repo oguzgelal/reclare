@@ -1,4 +1,2 @@
 
-export default (declarationKey, ) => {
-
-}
+export default () => { }
