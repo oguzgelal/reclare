@@ -6,14 +6,25 @@ import uglify from 'rollup-plugin-uglify'
 
 const env = process.env.NODE_ENV
 
+const ext = (env === 'production') ? 'min.js' : 'js';
+
 const config = {
   input: 'src/main.js',
   external: ['react'],
-  output: {
-    format: 'umd',
-    name: 'Reclare',
-    globals: { react: 'React' }
-  },
+  output: [
+    {
+      file: `dist/reclare.${ext}`,
+      format: 'umd',
+      name: 'Reclare',
+      globals: { react: 'React' }
+    },
+    {
+      file: `sandbox/node_modules/reclare/reclare.${ext}`,
+      format: 'umd',
+      name: 'Reclare',
+      globals: { react: 'React' }
+    }
+  ],
   plugins: [
     nodeResolve(),
     babel({ exclude: '**/node_modules/**' }),
