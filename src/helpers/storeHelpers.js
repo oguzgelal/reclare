@@ -1,5 +1,7 @@
 import { fail } from '../utils/alert';
 
-export const verify = (store) => {
-  fail('Invalid argument provided', 'uzHuCovKH1afIb')
+export const verifyStore = (store) => {
+  if (!store) {
+    fail('Invalid argument provided', 'uzHuCovKH1afIb')
+  }
 }

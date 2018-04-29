@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { verify } from './helpers/storeHelpers';
+import { verifyStore } from './helpers/storeHelpers';
 import { processDeclarations } from './helpers/processHelpers';
 import { connectFactory, invokeFactory } from './factories'
 
 export default (store) => {
 
-  verify(store)
+  verifyStore(store)
 
   const { Provider, Consumer } = React.createContext();
 
@@ -16,7 +16,7 @@ export default (store) => {
     setState: state => {
       ctx.state = state
     },
-    middlewares: processMiddlewares({ ctx, store }),
+    // middlewares: processMiddlewares({ ctx, store }),
     declarations: processDeclarations({ ctx, store }),
   }
 
