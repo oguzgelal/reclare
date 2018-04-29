@@ -1,4 +1,4 @@
 {
-  "preserve": "never",
+  "proseWrap": "preserve",
   "singleQuote": true
 }
