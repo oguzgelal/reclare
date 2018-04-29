@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default ({ ctx, Provider }) => {
-
   class Reclare extends React.Component {
     constructor(props, context) {
       super(props, context);
@@ -13,12 +12,10 @@ export default ({ ctx, Provider }) => {
 
     render() {
       return (
-        <Provider value={this.state.value}>
-          {this.props.children}
-        </Provider>
+        <Provider value={this.state.value}>{this.props.children}</Provider>
       );
     }
   }
 
   return Reclare;
-}
+};

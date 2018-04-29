@@ -2,13 +2,12 @@ import React from 'react';
 
 import { verifyStore } from './helpers/storeHelpers';
 import { processDeclarations } from './helpers/processHelpers';
-import connectFactory from './factories/connectFactory'
-import invokeFactory from './factories/invokeFactory'
-import providerFactory from './factories/providerFactory'
+import connectFactory from './factories/connectFactory';
+import invokeFactory from './factories/invokeFactory';
+import providerFactory from './factories/providerFactory';
 
-export default (store) => {
-
-  verifyStore(store)
+export default store => {
+  verifyStore(store);
 
   // TODO: implement lifecycles
 
@@ -21,17 +20,18 @@ export default (store) => {
   let ctx = {
     _state: store.initialState || {},
     getState: () => ctx._state,
-    setState: state => { ctx._state = state },
+    setState: state => {
+      ctx._state = state;
+    },
     // middlewares: processMiddlewares({ ctx, store }),
-    declarations: processDeclarations({ ctx, store }),
-  }
+    declarations: processDeclarations({ ctx, store })
+  };
 
   return {
     _ctx: ctx,
     getState: ctx.getState,
     Reclare: providerFactory({ ctx, Provider }),
     connect: connectFactory({ ctx, Consumer }),
-    invoke: invokeFactory({ ctx, Consumer }),
-  }
-
-}
+    invoke: invokeFactory({ ctx, Consumer })
+  };
+};

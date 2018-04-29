@@ -1,5 +1,1 @@
-
-export default ({ ctx, Consumer }) =>
-  (declarationKey, payload) => {
-
-  }
+export default ({ ctx, Consumer }) => (declarationKey, payload) => {};

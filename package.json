@@ -34,26 +34,27 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-display-name": "^6.4.0",
     "babel-plugin-transform-react-jsx": "^6.4.0",
+    "cross-env": "^5.1.4",
+    "prettier": "1.12.1",
     "react": "^16.3.2",
     "rimraf": "^2.6.2",
-    "cross-env": "^5.1.4",
     "rollup": "^0.58.0",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-commonjs": "^9.1.0",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-uglify": "^3.0.0",
-    "rollup-plugin-replace": "^2.0.0"
+    "rollup-plugin-replace": "^2.0.0",
+    "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
+    "precommit": "npm run prettier",
     "rand": "openssl rand -base64 16 | cut -c 1-14 | tr -d '\n' | pbcopy",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir dist/cjs",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir dist/es",
     "build:umd": "cross-env BABEL_ENV=rollup NODE_ENV=development rollup -c",
     "build:umd:min": "cross-env BABEL_ENV=rollup NODE_ENV=production rollup -c",
     "build": "npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min && rimraf dist/es dist/cjs",
+    "prettier": "./node_modules/.bin/prettier --config .prettierrc --write src/**/*.js",
     "clean": "rimraf dist"
   },
-  "files": [
-    "dist"
-  ]
+  "files": ["dist"]
 }
