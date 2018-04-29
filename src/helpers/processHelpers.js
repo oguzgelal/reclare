@@ -4,7 +4,7 @@ const processSituations = ({ situation, ...rest }) => {
   return situation;
 }
 
-const validateDeclarations = (declarations) => {
+const _validateDeclarations = (declarations) => {
   if (!declarations) {
     fail('`declarations` field required', 'iMcb7yfuyG1Tv8')
   }
@@ -13,7 +13,7 @@ const validateDeclarations = (declarations) => {
   }
 }
 
-const validateDeclaration = (declaration) => {
+const _validateDeclaration = (declaration) => {
   if (!declaration) {
     fail(`Expected declaration, got ${JSON.stringify(declaration)}`, 'msm9g06+/LCoo3')
   }
@@ -22,21 +22,24 @@ const validateDeclaration = (declaration) => {
   }
 }
 
-const processDeclaration = (acc, d) => {
-  const p = { ...d, situation: processSituations(d) }
-  if (d.key) { acc[d.key] = (acc[d.key] || []).push(p) }
-  if (d.keys) { d.keys.map(key => acc[key] = (acc[key] || []).push(p)) }
-  return acc;
+const _processDeclaration = ({ key, acc, processed }) => {
+  acc[key] = acc[key] || [];
+  acc[key].push(processed)
 }
 
 const processDeclarations = ({ ctx, store }) => {
   const { declarations } = store;
-  validateDeclarations(declarations)
+  _validateDeclarations(declarations)
 
-  return declarations.reduce((acc, d) => {
-    validateDeclaration(d)
-    return processDeclaration(acc, d)
+  const dec = declarations.reduce((acc, declaration) => {
+    _validateDeclaration(declaration)
+    const processed = { ...declaration, situation: processSituations(declaration) }
+    if (declaration.key) { _processDeclaration({ key: declaration.key, acc, processed }) }
+    if (declaration.keys) { declaration.keys.map(key => _processDeclaration({ key, acc, processed })) }
+    return acc;
   }, {})
+
+  return dec;
 
 }
 
