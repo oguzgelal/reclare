@@ -20,5 +20,7 @@ export default ({ situation, situations }) => {
     processed.push(situation);
   }
 
-  return [{ situations: processed }];
+  return {
+    situations: processed
+  };
 };

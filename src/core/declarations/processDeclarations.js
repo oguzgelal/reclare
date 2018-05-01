@@ -18,8 +18,8 @@ export default ({ ctx, store }) => {
     validateDeclaration(declaration);
 
     const processed = Object.assign(
-      ...processSituations(declaration),
-      ...processReactions(declaration)
+      processSituations(declaration),
+      processReactions(declaration)
     );
 
     if (declaration.key) {

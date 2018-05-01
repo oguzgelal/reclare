@@ -3,6 +3,21 @@ export default ({ reaction, reactions, reactionElse, reactionsElse }) => {
   let processedReactionsElse = [];
 
   if (reactions && Array.isArray(reactions)) {
-    processedReactions;
+    processedReactions = reactions;
   }
+  if (reaction) {
+    processedReactions.push(reaction);
+  }
+
+  if (reactionsElse && Array.isArray(reactionsElse)) {
+    processedReactionsElse = processedReactionsElse;
+  }
+  if (reactionElse) {
+    processedReactionsElse.push(reactionElse);
+  }
+
+  return {
+    reactions: processedReactions,
+    reactionsElse: processedReactionsElse
+  };
 };
