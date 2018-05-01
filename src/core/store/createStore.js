@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { verifyStore } from './helpers/storeHelpers';
-import { processDeclarations } from './helpers/processHelpers';
-import connectFactory from './factories/connectFactory';
-import invokeFactory from './factories/invokeFactory';
-import providerFactory from './factories/providerFactory';
+import { verifyStore } from './storeHelpers';
+import processDeclarations from '../declarations/processDeclarations';
+import connectFactory from '../connect/connectFactory';
+import invokeFactory from '../invocations/invokeFactory';
+import providerFactory from '../provider/providerFactory';
 
 export default store => {
   verifyStore(store);

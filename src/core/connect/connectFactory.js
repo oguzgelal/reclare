@@ -1,5 +1,5 @@
 import React from 'react';
-import { fail } from '../utils/alert';
+import { fail } from '../../utils/alert';
 
 const validateInputs = (mapStateToProps, Wrap) => {
   if (!mapStateToProps || typeof mapStateToProps !== 'function') {

@@ -36,8 +36,6 @@
     "babel-plugin-transform-react-display-name": "^6.4.0",
     "babel-plugin-transform-react-jsx": "^6.4.0",
     "cross-env": "^5.1.4",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.0.5",
     "prettier": "1.12.1",
     "react": "^16.3.2",
     "rimraf": "^2.6.2",
