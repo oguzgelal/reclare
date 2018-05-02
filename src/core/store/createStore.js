@@ -3,7 +3,7 @@ import React from 'react';
 import { verifyStore } from './storeHelpers';
 import processDeclarations from '../declarations/processDeclarations';
 import connectFactory from '../connect/connectFactory';
-import invokeFactory from '../invocations/invokeFactory';
+import registerFactory from '../registrations/registerFactory';
 import providerFactory from '../provider/providerFactory';
 
 export default store => {
@@ -32,6 +32,6 @@ export default store => {
     getState: ctx.getState,
     Reclare: providerFactory({ ctx, Provider }),
     connect: connectFactory({ ctx, Consumer }),
-    invoke: invokeFactory({ ctx, Consumer })
+    registerEvent: registerFactory({ ctx, Consumer })
   };
 };

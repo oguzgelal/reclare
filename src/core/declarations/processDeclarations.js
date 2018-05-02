@@ -1,20 +1,25 @@
 import { fail } from '../../utils/alert';
 
-import validateDeclarations from './validateDeclarations';
-import validateDeclaration from './validateDeclaration';
+import {
+  validateDeclarations,
+  validateDeclaration,
+  validateDeclarationTrigger
+} from './declarationHelpers';
+
 import processSituations from '../situations/processSituations';
 import processReactions from '../reactions/processReactions';
 
-const processDeclaration = ({ key, acc, processed }) => {
-  acc[key] = acc[key] || [];
-  acc[key].push(processed);
+const processDeclaration = ({ on, acc, processed }) => {
+  validateDeclarationTrigger(on);
+  acc[on] = acc[on] || [];
+  acc[on].push(processed);
 };
 
 export default ({ ctx, store }) => {
   const { declarations } = store;
   validateDeclarations(declarations);
 
-  const dec = declarations.reduce((acc, declaration) => {
+  return declarations.reduce((acc, declaration) => {
     validateDeclaration(declaration);
 
     const processed = Object.assign(
@@ -22,14 +27,11 @@ export default ({ ctx, store }) => {
       processReactions(declaration)
     );
 
-    if (declaration.key) {
-      processDeclaration({ key: declaration.key, acc, processed });
-    }
-    if (declaration.keys) {
-      declaration.keys.map(key => processDeclaration({ key, acc, processed }));
+    if (Array.isArray(declaration.on)) {
+      declaration.on.map(on => processDeclaration({ on, acc, processed }));
+    } else {
+      processDeclaration({ on: declaration.on, acc, processed });
     }
     return acc;
   }, {});
-
-  return dec;
 };
