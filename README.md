@@ -16,13 +16,13 @@ Declarations are simple objects like below. `on` field takes in the event key, a
 
 ```
 {
-	on: string or [string]
-	situation: func -> bool (sync) or [func -> bool (sync)]
-	reaction: func or [func]
-	reactionElse: func or [func]
+  on: string or [string]
+  situation: func -> bool (sync) or [func -> bool (sync)]
+  reaction: func or [func]
+  reactionElse: func or [func]
 
-	// TODO
-	onError: func or [func]
+  // TODO
+  onError: func or [func]
 }
 ```
 
@@ -34,23 +34,23 @@ Situation functions will have `state` and `event` in their arguments. You can ac
 
 ```
 {
-	// doesn't hold: falsy value
-	situation: null
+  // doesn't hold: falsy value
+  situation: null
 
-	// doesn't hold: falsy value
-	situation: ''
+  // doesn't hold: falsy value
+  situation: ''
 
-	// holds: truthy value
-	situation: 'a'
+  // holds: truthy value
+  situation: 'a'
 
-	// holds: true
-	situation: true
+  // holds: true
+  situation: true
 
-	// holds: returns true
-	situation: ({ state, event }) => true
+  // holds: returns true
+  situation: ({ state, event }) => true
 
-	// holds if x is 3
-	situation: ({ state, event }) => state.x === 3
+  // holds if x is 3
+  situation: ({ state, event }) => state.x === 3
 }
 ```
 
@@ -61,31 +61,31 @@ You can define multiple situations for a declaration. There are two ways of doin
 ```
 {
 
-	// below two examples are equivalent
-	situation: [fn1, fn2, fn3],
-	situation: () => fn1() && fn2() && fn3()
+  // below two examples are equivalent
+  situation: [fn1, fn2, fn3],
+  situation: () => fn1() && fn2() && fn3()
 
-	// below two examples are equivalent
-	situation: and(fn1, or(fn2, not(fn3)))
-	situation: () => fn1() && (fn2() || !fn3())
+  // below two examples are equivalent
+  situation: and(fn1, or(fn2, not(fn3)))
+  situation: () => fn1() && (fn2() || !fn3())
 
-	// example
-	situation: [
-		({ state }) => state.count >= 0,
-		({ event }) => !event.prevent
-	]
+  // example
+  situation: [
+    ({ state }) => state.count >= 0,
+    ({ event }) => !event.prevent
+  ]
 
-	// example
-	situation:
-		and(
-			({ event }) => event.isValid,
-			not(
-				or(
-					({ state }) => !state.user,
-					({ state }) => !state.user.isAdmin,
-				)
-			),
-		)
+  // example
+  situation:
+    and(
+      ({ event }) => event.isValid,
+      not(
+        or(
+          ({ state }) => !state.user,
+          ({ state }) => !state.user.isAdmin,
+        )
+      ),
+    )
 }
 ```
 
@@ -98,15 +98,15 @@ If you declare an asynchronous situation function, it will **not** be awaited du
 ```
 // THESE ARE WRONG
 {
-	// doesn't hold: returns undefined, evaluates to false
-	situation: () => {
-		fetch('/api').then(res => true)
-	}
+  // doesn't hold: returns undefined, evaluates to false
+  situation: () => {
+    fetch('/api').then(res => true)
+  }
 
-	// holds: returns a promise, evaluates to a true
-	situation: () => new Promise(resolve => {
-		setTimeout(() => resolve(false), 1000)
-	})
+  // holds: returns a promise, evaluates to a true
+  situation: () => new Promise(resolve => {
+    setTimeout(() => resolve(false), 1000)
+  })
 }
 ```
 
