@@ -1,7 +1,8 @@
 import runSituation from '../situations/runSituation';
+import { _ctx, Consumer } from '../../main';
 
-export default ({ ctx, Consumer }) => (eventKey, payload) => {
-  const declaration = ctx.declarations[eventKey] || null;
+export default () => (eventKey, payload) => {
+  const declaration = _ctx.declarations[eventKey] || null;
 
   if (declaration) {
     const { situations, reactions, reactionsElse } = declaration;

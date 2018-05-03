@@ -15,7 +15,7 @@ const processDeclaration = ({ on, acc, processed }) => {
   acc[on].push(processed);
 };
 
-export default ({ ctx, store }) => {
+export default ({ store }) => {
   const { declarations } = store;
   validateDeclarations(declarations);
 

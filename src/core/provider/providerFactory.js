@@ -1,21 +1,23 @@
 import React from 'react';
+import { _ctx, Provider } from '../../main';
 
-export default ({ ctx, Provider }) => {
-  class Reclare extends React.Component {
-    constructor(props, context) {
-      super(props, context);
+let provider = null;
 
-      this.state = {
-        value: ctx.getState()
-      };
-    }
+class Reclare extends React.Component {
+  constructor(props, context) {
+    super(props, context);
 
-    render() {
-      return (
-        <Provider value={this.state.value}>{this.props.children}</Provider>
-      );
-    }
+    provider = this;
+
+    this.state = {
+      value: _ctx.store.initialState || {}
+    };
   }
 
-  return Reclare;
-};
+  render() {
+    return <Provider value={this.state.value}>{this.props.children}</Provider>;
+  }
+}
+
+export { provider };
+export default Reclare;

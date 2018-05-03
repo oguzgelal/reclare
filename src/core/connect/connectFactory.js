@@ -1,14 +1,18 @@
 import React from 'react';
 import { fail } from '../../utils/alert';
 
+import { Consumer } from '../../main';
+
 import validateInputs from './validateInputs';
 import validateExposedProps from './validateExposedProps';
+import evaluateExposedProps from './evaluateExposedProps';
 
-export default ({ ctx, Consumer }) => mapStateToProps => Wrap => props => (
+export default () => mapStateToProps => Wrap => props => (
   <Consumer>
     {state => {
       validateInputs(mapStateToProps, Wrap);
-      const exposedProps = mapStateToProps(state);
+      const exposedPropsObject = mapStateToProps(state);
+      const exposedProps = evaluateExposedProps(exposedPropsObject);
       validateExposedProps(exposedProps);
       return <Wrap {...props} {...exposedProps} />;
     }}
