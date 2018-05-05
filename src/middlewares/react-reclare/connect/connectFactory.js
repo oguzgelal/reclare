@@ -1,13 +1,13 @@
 import React from 'react';
-import { fail } from '../../utils/alert';
+import { fail } from '../utils/alert';
 
-import { Consumer } from '../../main';
+import { Consumer } from '../context';
 
 import validateInputs from './validateInputs';
 import validateExposedProps from './validateExposedProps';
 import evaluateExposedProps from './evaluateExposedProps';
 
-export default () => mapStateToProps => Wrap => props => (
+export default mapStateToProps => Wrap => props => (
   <Consumer>
     {state => {
       validateInputs(mapStateToProps, Wrap);

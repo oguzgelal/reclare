@@ -1,4 +1,4 @@
-import toArray from '../../utils/toArray';
+import toArray from '../utils/toArray';
 
 export default ({ reaction, reactionElse }) => ({
   reactions: toArray(reaction),

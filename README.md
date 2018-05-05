@@ -112,7 +112,7 @@ If you declare an asynchronous situation function, it will **not** be awaited du
 
 ### Reaction // todo
 
-## Events // todo
+## Broadcasting Events // todo
 
 ## Subscription // todo
 
@@ -120,4 +120,4 @@ If you declare an asynchronous situation function, it will **not** be awaited du
 
 Event keys should **define the event** _(ie. what happened)_, not **how to react** to what happened. For example, when a login button is clicked, the invocation key should be something like _login_button_clicked_, not _initiate_login_. Naming has no effect on how Reclare works, but this will force you to think declaratively.
 
-Asynchronousy should be handled within followup declarations. For example, a declaration that makes a request shouldn’t handle how to react to the response. Instead it should register _request_success_ or _request_fail_ events. Other declarations should be created to handle these cases.
+Asynchronousy should be handled within followup declarations. For example, a declaration that makes a request shouldn’t handle how to react to the response. Instead it should broadcast _request_success_ or _request_fail_ events. Other declarations should be created to handle these cases.

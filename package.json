@@ -1,7 +1,7 @@
 {
   "name": "reclare",
   "description":
-    "Declarative state management library for React built on top of the Context Api",
+    "Declarative state and event management library for React built on top of the Context Api",
   "author": "Oguz Gelal <o.gelal77@gmail.com> (https://oguzgelal.com/)",
   "license": "MIT",
   "version": "0.0.1",

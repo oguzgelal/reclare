@@ -1,4 +1,4 @@
-import { fail } from '../../utils/alert';
+import { fail } from '../utils/alert';
 
 export const validateDeclarations = declarations => {
   if (!declarations) {

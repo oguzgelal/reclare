@@ -1,7 +1,21 @@
-import and from './operators/and';
-import or from './operators/or';
-import not from './operators/not';
+import {
+  or,
+  not,
+  and,
+  broadcast,
+  startReclare,
+  registerMiddleware
+} from './core';
 
-import { connect, registerEvent, createStore } from './main';
+import { Reclare, connect } from './middlewares/react-reclare';
 
-export { and, or, not, connect, registerEvent, createStore };
+export {
+  or,
+  not,
+  and,
+  broadcast,
+  startReclare,
+  registerMiddleware,
+  Reclare,
+  connect
+};
