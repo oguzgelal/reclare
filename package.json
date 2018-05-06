@@ -3,7 +3,7 @@
   "description": "Declarative state and event management for modern Javascript applications",
   "author": "Oguz Gelal <o.gelal77@gmail.com> (https://oguzgelal.com/)",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/reclare.min.js",
   "dependencies": {},
   "devDependencies": {
