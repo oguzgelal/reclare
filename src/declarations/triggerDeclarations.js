@@ -4,7 +4,7 @@ import evaluateSituations from '../situations/evaluateSituations';
 import runReactions from '../reactions/runReactions';
 
 import executeHooks from '../middlewares/executeHooks';
-import { ON_DECLARATION_TRIGGERED, ON_SITUATION_TRUE, ON_SITUATION_FALSE } from '../middlewares/hookTypes';
+import { ON_DECLARATION_TRIGGERED } from '../middlewares/hookTypes';
 
 export default ({ declaration, eventKey, payload }) => {
   if (declaration) {
@@ -16,15 +16,16 @@ export default ({ declaration, eventKey, payload }) => {
       reactionsElse,
     } = declaration;
 
-    let situationHolds = evaluateSituations({ situations, eventKey, payload });
+    let situationHolds = evaluateSituations({
+      situations,
+      eventKey,
+      payload,
+    });
 
     if (situationHolds) {
-      executeHooks({ id: ON_SITUATION_TRUE }, eventKey, payload);
       runReaction({ reactions })
     } else {
-      executeHooks({ id: ON_SITUATION_FALSE }, eventKey, payload);
       runReactions({ reactions: reactionsElse })
     }
-
   }
 }

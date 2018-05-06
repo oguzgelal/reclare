@@ -5,7 +5,7 @@ export default ({ id, out }, ...args) => {
     ctx.hooks[id].map(h => {
       /**
        * if output of the hook functions matters - `out` function
-       * receives whatever it is that hook runction returned
+       * receives what hook function returned as an argument
        */
       const res = h(...args);
       if (out && typeof out === 'function') {
