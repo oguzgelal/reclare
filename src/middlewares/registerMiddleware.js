@@ -9,20 +9,25 @@ export default config => {
     onBeforeStart,
     onBeforeState,
     onAfterStart,
+    verbose,
     onBeforeBroadcast,
     onAfterBroadcast,
     onGetState,
     onBeforeSetState,
     onAfterSetState,
-    onDeclarationTriggered,
+    onDeclarationHit,
+    onDeclarationMiss,
     onSituationTrue,
     onSituationFalse,
+    onBeforeReaction,
+    onAfterReaction,
   } = config;
 
   // reclare lifecycle
   registerHooks(hookTypes.BEFORE_START, onBeforeStart);
   registerHooks(hookTypes.BEFORE_STATE, onBeforeState);
   registerHooks(hookTypes.AFTER_START, onAfterStart);
+  registerHooks(hookTypes.VERBOSE, verbose);
 
   // state
   registerHooks(hookTypes.GET_STATE, onGetState);
@@ -34,7 +39,10 @@ export default config => {
   registerHooks(hookTypes.AFTER_BROADCAST, onAfterBroadcast);
 
   // declaration lifecycle
-  registerHooks(hookTypes.ON_DECLARATION_TRIGGERED, onDeclarationTriggered);
-  registerHooks(hookTypes.ON_SITUATION_TRUE, onSituationTrue);
-  registerHooks(hookTypes.ON_SITUATION_FALSE, onSituationFalse);
+  registerHooks(hookTypes.DECLARATION_HIT, onDeclarationHit);
+  registerHooks(hookTypes.DECLARATION_MISS, onDeclarationMiss);
+  registerHooks(hookTypes.SITUATION_TRUE, onSituationTrue);
+  registerHooks(hookTypes.SITUATION_FALSE, onSituationFalse);
+  registerHooks(hookTypes.BEFORE_REACTION, onBeforeReaction);
+  registerHooks(hookTypes.AFTER_REACTION, onAfterReaction);
 };

@@ -19,6 +19,17 @@ export const BEFORE_STATE = 'beforeState';
 export const AFTER_START = 'afterStart';
 
 /**
+ * DEVELOPMENT ONLY - NOT FOR PRODUCTION
+ * Executes on EVERY hook, receives all arguments
+ * that the relevant hook receives.
+ * 
+ * hook functions receive: ({ id, [args] })
+ * id - id of the executed hook
+ * args - array of arguments that relevant hook receives
+ */
+export const VERBOSE = 'verbose';
+
+/**
  * Runs every time before setState is called
  *
  * hook functions receive: (state, nextState)
@@ -63,13 +74,24 @@ export const AFTER_BROADCAST = 'afterBroadcast';
 export const GET_STATE = 'getState';
 
 /**
- * Runs every time a broadcasted event triggers a declaration
+ * Runs every time a broadcasted event matches a declaration
+ * and it gets triggered
  * 
  * hook functions receive: (eventKey, payload)
  * eventKey - the event that was broadcasted
  * payload - payload of the broadcast
  */
-export const ON_DECLARATION_TRIGGERED = 'declarationTriggered';
+export const DECLARATION_HIT = 'declarationHit';
+
+/**
+ * Runs every time a broadcasted event fails to match a declaration
+ * (ie. nothing declared for that event)
+ * 
+ * hook functions receive: (eventKey, payload)
+ * eventKey - the event that was broadcasted
+ * payload - payload of the broadcast
+ */
+export const DECLARATION_MISS = 'declarationMiss';
 
 /**
  * Runs every time after situation (or situations)
@@ -79,7 +101,7 @@ export const ON_DECLARATION_TRIGGERED = 'declarationTriggered';
  * eventKey - the event that was broadcasted
  * payload - payload of the broadcast
  */
-export const ON_SITUATION_TRUE = 'situationTrue';
+export const SITUATION_TRUE = 'situationTrue';
 
 /**
  * Runs every time after situation (or situations)
@@ -89,4 +111,24 @@ export const ON_SITUATION_TRUE = 'situationTrue';
  * eventKey - the event that was broadcasted
  * payload - payload of the broadcast
  */
-export const ON_SITUATION_FALSE = 'situationFalse';
+export const SITUATION_FALSE = 'situationFalse';
+
+/**
+ * Runs every time before before a reaction
+ * gets executed (including reactionElse)
+ * 
+ * hook functions receive: (eventKey, payload)
+ * eventKey - the event that was broadcasted
+ * payload - payload of the broadcast
+ */
+export const BEFORE_REACTION = 'beforeReaction';
+
+/**
+ * Runs every time after before a reaction
+ * gets executed (including reactionElse)
+ * 
+ * hook functions receive: (eventKey, payload)
+ * eventKey - the event that was broadcasted
+ * payload - payload of the broadcast
+ */
+export const AFTER_REACTION = 'afterReaction'

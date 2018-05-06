@@ -1,16 +1,15 @@
 import ctx from '../ctx';
 
+import executeHook from './executeHook';
+import { VERBOSE } from '../middlewares/hookTypes';
+
 export default ({ id, out }, ...args) => {
-  if (ctx.hooks && ctx.hooks[id]) {
-    ctx.hooks[id].map(h => {
-      /**
-       * if output of the hook functions matters - `out` function
-       * receives what hook function returned as an argument
-       */
-      const res = h(...args);
-      if (out && typeof out === 'function') {
-        out(res);
-      }
-    });
+  if (ctx.hooks) {
+
+    // Execute registered hooks
+    executeHook({ id, out, fns: ctx.hooks[id] }, ...args);
+
+    // Execute the Verbose hook
+    executeHook({ id, out, fns: ctx.hooks[VERBOSE], verbose: true }, ...args);
   }
 };

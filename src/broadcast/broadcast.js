@@ -2,14 +2,14 @@ import ctx from '../ctx';
 
 import executeHooks from '../middlewares/executeHooks';
 import { BEFORE_BROADCAST, AFTER_BROADCAST } from '../middlewares/hookTypes';
-import triggerDeclarations from '../declarations/triggerDeclarations';
+import executeDeclaration from '../declarations/executeDeclaration';
 
-export default () => (eventKey, payload) => {
+export default (eventKey, payload) => {
 
   executeHooks({ id: BEFORE_BROADCAST }, eventKey, payload);
 
-  triggerDeclarations({
-    declaration: (ctx.declarations || {})[eventKey] || null,
+  executeDeclaration({
+    declarationTriggers: (ctx.declarations || {})[eventKey] || null,
     eventKey,
     payload,
   })

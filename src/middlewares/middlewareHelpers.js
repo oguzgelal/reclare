@@ -11,9 +11,9 @@ export const validateHooks = hooks => {
   if (hooks === undefined || hooks === null) {
     return;
   }
-  if (!Array.isArray(hooks) && !typeof hooks !== 'function') {
+  if (!Array.isArray(hooks) && typeof hooks !== 'function') {
     fail(
-      `Invalid hook provided. Expected a function or an array of functions, instead received ${typeof hooks}.`,
+      `Invalid hook provided. Expected a function or an array of functions, got "${typeof hooks}"`,
       'enYIL0dpH5PYWS'
     );
   }

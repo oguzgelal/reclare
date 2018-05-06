@@ -1,7 +1,7 @@
 import ctx from '../ctx';
 import { operatorShapeValid } from '../utils/operators';
 
-export default ({ situation, eventKey, payload }) => {
+export default ({ situation, payload }) => {
   if (typeof situation === 'function') {
     return situation({
       state: ctx.state,
