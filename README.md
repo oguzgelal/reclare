@@ -2,7 +2,7 @@ _This library is under development_
 
 # Reclare
 
-Declarative state management library for React built on top of the Context Api
+Declarative state and event management for modern Javascript applications
 
 ## Simple example
 

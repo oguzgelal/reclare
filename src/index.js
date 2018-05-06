@@ -1,21 +1,6 @@
-import {
-  or,
-  not,
-  and,
-  broadcast,
-  startReclare,
-  registerMiddleware
-} from './core';
+import { and, or, not } from './utils/operators';
+import startReclare from './ctx/startReclare';
+import broadcast from './broadcast/broadcastFactory';
+import registerMiddleware from './middlewares/registerMiddleware';
 
-import { Reclare, connect } from './middlewares/react-reclare';
-
-export {
-  or,
-  not,
-  and,
-  broadcast,
-  startReclare,
-  registerMiddleware,
-  Reclare,
-  connect
-};
+export { or, not, and, startReclare, broadcast, registerMiddleware };
