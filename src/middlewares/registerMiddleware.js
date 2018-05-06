@@ -13,62 +13,28 @@ export default config => {
     onAfterBroadcast,
     onGetState,
     onBeforeSetState,
-    onAfterSetState
+    onAfterSetState,
+    onDeclarationTriggered,
+    onSituationTrue,
+    onSituationFalse,
   } = config;
 
-  /**
-   * Runs before the library is initialized.
-   */
+  // reclare lifecycle
   registerHooks(hookTypes.BEFORE_START, onBeforeStart);
-
-  /**
-   * Runs before initial state is set. Hook functions takes in the
-   * initial state, and is supposed to return the next initial state.
-   * If the intention is not prepopulating the state, use `onBeforeStart`
-   *
-   * hook functions receive: (initialState)
-   * hook functions returns: nextInitialState
-   */
   registerHooks(hookTypes.BEFORE_STATE, onBeforeState);
-
-  /**
-   * Runs after the library is initialized
-   */
   registerHooks(hookTypes.AFTER_START, onAfterStart);
 
-  /**
-   * Runs every time before broadcast reaches the declarations
-   */
-  registerHooks(hookTypes.BEFORE_BROADCAST, onBeforeBroadcast);
+  // state
+  registerHooks(hookTypes.GET_STATE, onGetState);
+  registerHooks(hookTypes.BEFORE_SET_STATE, onBeforeSetState);
+  registerHooks(hookTypes.AFTER_SET_STATE, onAfterSetState);
 
-  /**
-   * Runs every time after broadcast lifecycle completes
-   */
+  // broadcast
+  registerHooks(hookTypes.BEFORE_BROADCAST, onBeforeBroadcast);
   registerHooks(hookTypes.AFTER_BROADCAST, onAfterBroadcast);
 
-  /**
-   * Runs when getState is called
-   *
-   * hook functions receive: (state)
-   * state - current state
-   */
-  registerHooks(hookTypes.GET_STATE, onGetState);
-
-  /**
-   * Runs every time setState is called
-   *
-   * hook functions receive: (state, nextState)
-   * state - current state
-   * nextState - state after setState execution is completed
-   */
-  registerHooks(hookTypes.BEFORE_SET_STATE, onBeforeSetState);
-
-  /**
-   * Runs every time setState is called
-   *
-   * hook functions receive: (prevState, state)
-   * prevState - previous state
-   * state - current state with setState execution complete
-   */
-  registerHooks(hookTypes.AFTER_SET_STATE, onAfterSetState);
+  // declaration lifecycle
+  registerHooks(hookTypes.ON_DECLARATION_TRIGGERED, onDeclarationTriggered);
+  registerHooks(hookTypes.ON_SITUATION_TRUE, onSituationTrue);
+  registerHooks(hookTypes.ON_SITUATION_FALSE, onSituationFalse);
 };

@@ -6,6 +6,5 @@ import executeHooks from '../middlewares/executeHooks';
 
 export default () => {
   executeHooks({ id: GET_STATE }, ctx.state);
-
   return ctx.state;
 };

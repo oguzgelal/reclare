@@ -1,16 +1,18 @@
-import runSituation from '../situations/runSituation';
 import ctx from '../ctx';
 
+import executeHooks from '../middlewares/executeHooks';
+import { BEFORE_BROADCAST, AFTER_BROADCAST } from '../middlewares/hookTypes';
+import triggerDeclaration from '../declarations/triggerDeclaration';
+
 export default () => (eventKey, payload) => {
-  const declaration = ctx.declarations[eventKey] || null;
 
-  if (declaration) {
-    const { situations, reactions, reactionsElse } = declaration;
+  executeHooks({ id: BEFORE_BROADCAST }, eventKey, payload);
 
-    let situationHolds = true;
-    situationHolds = (situations || []).reduce(
-      (acc, s) => runSituation,
-      situationHolds
-    );
-  }
+  triggerDeclaration({
+    declaration: (ctx.declarations || {})[eventKey] || null,
+    eventKey,
+    payload,
+  })
+
+  executeHooks({ id: AFTER_BROADCAST }, eventKey, payload);
 };
