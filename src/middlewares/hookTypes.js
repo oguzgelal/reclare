@@ -75,7 +75,6 @@ export const GET_STATE = 'getState';
 
 /**
  * Runs every time a broadcasted event matches a declaration
- * and it gets triggered
  * 
  * hook functions receive: (eventKey, payload)
  * eventKey - the event that was broadcasted
@@ -92,6 +91,18 @@ export const DECLARATION_HIT = 'declarationHit';
  * payload - payload of the broadcast
  */
 export const DECLARATION_MISS = 'declarationMiss';
+
+/**
+ * Runs every time a declaration gets triggered. This trigger gets handy
+ * when you want to add functionality by extending the declaration definition,
+ * because it receives the declaration object as it is defined.
+ * 
+ * hook functions receive: (eventKey, payload, declaration)
+ * eventKey - the event that was broadcasted
+ * payload - payload of the broadcast
+ * declaration - declaration object
+ */
+export const DECLARATION_TRIGGER = 'declarationTrigger';
 
 /**
  * Runs every time after situation (or situations)

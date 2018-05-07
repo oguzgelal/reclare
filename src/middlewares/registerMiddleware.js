@@ -6,10 +6,10 @@ export default config => {
   validateMiddleware(config);
 
   const {
+    verbose,
     onBeforeStart,
     onBeforeState,
     onAfterStart,
-    verbose,
     onBeforeBroadcast,
     onAfterBroadcast,
     onGetState,
@@ -17,6 +17,7 @@ export default config => {
     onAfterSetState,
     onDeclarationHit,
     onDeclarationMiss,
+    onDeclarationTrigger,
     onSituationTrue,
     onSituationFalse,
     onBeforeReaction,
@@ -24,10 +25,10 @@ export default config => {
   } = config;
 
   // reclare lifecycle
+  registerHooks(hookTypes.VERBOSE, verbose);
   registerHooks(hookTypes.BEFORE_START, onBeforeStart);
   registerHooks(hookTypes.BEFORE_STATE, onBeforeState);
   registerHooks(hookTypes.AFTER_START, onAfterStart);
-  registerHooks(hookTypes.VERBOSE, verbose);
 
   // state
   registerHooks(hookTypes.GET_STATE, onGetState);
@@ -41,6 +42,7 @@ export default config => {
   // declaration lifecycle
   registerHooks(hookTypes.DECLARATION_HIT, onDeclarationHit);
   registerHooks(hookTypes.DECLARATION_MISS, onDeclarationMiss);
+  registerHooks(hookTypes.DECLARATION_TRIGGER, onDeclarationTrigger);
   registerHooks(hookTypes.SITUATION_TRUE, onSituationTrue);
   registerHooks(hookTypes.SITUATION_FALSE, onSituationFalse);
   registerHooks(hookTypes.BEFORE_REACTION, onBeforeReaction);

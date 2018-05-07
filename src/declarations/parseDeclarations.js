@@ -23,6 +23,7 @@ export default ({ config }) => {
     validateDeclaration(declaration);
 
     const parsed = Object.assign(
+      { unparsed: declaration },
       parseSituations(declaration),
       parseReactions(declaration)
     );
