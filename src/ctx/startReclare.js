@@ -10,7 +10,9 @@ import {
   AFTER_START
 } from '../middlewares/hookTypes';
 
-export default (config, options = {}) => {
+export default (config) => {
+  verifyConfiguration(config);
+
   /**
    * Since middlewares are given the option the option to receive
    * the configuration and initialize core Reclare library,
@@ -19,9 +21,7 @@ export default (config, options = {}) => {
    */
 
   if (!ctx.started) {
-    executeHooks({
-      id: BEFORE_START
-    });
+    executeHooks({ id: BEFORE_START });
 
     executeHooks(
       {
@@ -35,12 +35,10 @@ export default (config, options = {}) => {
       config.initialState
     );
 
-    verifyConfiguration(config);
-
     ctx.started = true;
 
     // Initialise the settings
-    ctx.settings = Object.assign({}, defaultSettings, options)
+    ctx.settings = Object.assign({}, defaultSettings, config.options || {})
 
     // Initialise the state
     ctx.state = config.initialState || {};
@@ -48,8 +46,6 @@ export default (config, options = {}) => {
     // Set declarations
     ctx.declarations = parseDeclarations({ config });
 
-    executeHooks({
-      id: AFTER_START
-    });
+    executeHooks({ id: AFTER_START });
   }
 };
