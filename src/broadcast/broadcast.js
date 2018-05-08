@@ -25,8 +25,8 @@ const broadcast = (eventKey, payload, options = {}) => {
 
 export default (eventKey, payload, options = {}) => {
   if (options.deferExecution || ctx.settings.deferExecution) {
-    setTimeout(() => broadcast(eventKey, payload))
+    setTimeout(() => broadcast(eventKey, payload, options))
   } else {
-    broadcast(eventKey, payload)
+    broadcast(eventKey, payload, options)
   }
 };
