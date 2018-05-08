@@ -29,11 +29,13 @@ export default ({ reactions, eventKey, payload }) => {
       payload,
     });
   } else if (Array.isArray(reactions)) {
-    reactions.map(r => executeReaction({
-      reaction: r,
-      eventKey,
-      payload,
-    }));
+    reactions.map(r =>
+      executeReaction({
+        reaction: r,
+        eventKey,
+        payload,
+      })
+    );
   }
 
   executeHooks({

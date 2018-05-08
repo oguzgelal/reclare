@@ -30,12 +30,14 @@ export default ({ reducers, eventKey, payload }) => {
       eventKey,
       payload,
     })
-  } else {
-    reducers.map(r => executeReducer({
-      reducer: r,
-      eventKey,
-      payload,
-    }));
+  } else if (Array.isArray(reducers)) {
+    reducers.map(r =>
+      executeReducer({
+        reducer: r,
+        eventKey,
+        payload,
+      })
+    );
   }
 
   executeHooks({
