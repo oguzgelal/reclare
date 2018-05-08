@@ -1,6 +1,7 @@
 import { verifyConfiguration } from './ctxHelpers';
 
 import ctx from './';
+import defaultSettings from './defaultSettings';
 import parseDeclarations from '../declarations/parseDeclarations';
 import executeHooks from '../middlewares/executeHooks';
 import {
@@ -9,7 +10,7 @@ import {
   AFTER_START
 } from '../middlewares/hookTypes';
 
-export default config => {
+export default (config, options = {}) => {
   /**
    * Since middlewares are given the option the option to receive
    * the configuration and initialize core Reclare library,
@@ -37,6 +38,9 @@ export default config => {
     verifyConfiguration(config);
 
     ctx.started = true;
+
+    // Initialise the settings
+    ctx.settings = Object.assign({}, defaultSettings, options)
 
     // Initialise the state
     ctx.state = config.initialState || {};

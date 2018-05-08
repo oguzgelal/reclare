@@ -17,9 +17,11 @@ export default config => {
     onAfterSetState,
     onDeclarationHit,
     onDeclarationMiss,
-    onDeclarationTrigger,
+    onDeclarationTriggered,
     onSituationTrue,
     onSituationFalse,
+    onBeforeReducer,
+    onAfterReducer,
     onBeforeReaction,
     onAfterReaction,
   } = config;
@@ -42,9 +44,11 @@ export default config => {
   // declaration lifecycle
   registerHooks(hookTypes.DECLARATION_HIT, onDeclarationHit);
   registerHooks(hookTypes.DECLARATION_MISS, onDeclarationMiss);
-  registerHooks(hookTypes.DECLARATION_TRIGGER, onDeclarationTrigger);
+  registerHooks(hookTypes.DECLARATION_TRIGGERED, onDeclarationTriggered);
   registerHooks(hookTypes.SITUATION_TRUE, onSituationTrue);
   registerHooks(hookTypes.SITUATION_FALSE, onSituationFalse);
+  registerHooks(hookTypes.BEFORE_REDUCER, onBeforeReducer);
+  registerHooks(hookTypes.AFTER_REDUCER, onAfterReducer);
   registerHooks(hookTypes.BEFORE_REACTION, onBeforeReaction);
   registerHooks(hookTypes.AFTER_REACTION, onAfterReaction);
 };

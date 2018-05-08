@@ -27,7 +27,7 @@ export const validateDeclaration = declaration => {
   }
 };
 
-export const validateDeclarationTrigger = on => {
+export const validateDeclarationOnKey = on => {
   if (typeof on !== 'string') {
     fail(
       `Declaration trigger must be of type string, instead got ${JSON.stringify(

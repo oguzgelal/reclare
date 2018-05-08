@@ -3,14 +3,15 @@ import { fail } from '../utils/alert';
 import {
   validateDeclarations,
   validateDeclaration,
-  validateDeclarationTrigger
+  validateDeclarationOnKey,
 } from './declarationHelpers';
 
 import parseSituations from '../situations/parseSituations';
 import parseReactions from '../reactions/parseReactions';
+import parseReducers from '../reducers/parseReducers';
 
-const parseDeclaration = ({ on, acc, parsed }) => {
-  validateDeclarationTrigger(on);
+const insertDeclaration = ({ on, acc, parsed }) => {
+  validateDeclarationOnKey(on);
   acc[on] = acc[on] || [];
   acc[on].push(parsed);
 };
@@ -25,13 +26,14 @@ export default ({ config }) => {
     const parsed = Object.assign(
       { unparsed: declaration },
       parseSituations(declaration),
-      parseReactions(declaration)
+      parseReactions(declaration),
+      parseReducers(declaration),
     );
 
     if (Array.isArray(declaration.on)) {
-      declaration.on.map(on => parseDeclaration({ on, acc, parsed }));
+      declaration.on.map(on => insertDeclaration({ on, acc, parsed }));
     } else {
-      parseDeclaration({ on: declaration.on, acc, parsed });
+      insertDeclaration({ on: declaration.on, acc, parsed });
     }
 
     return acc;
