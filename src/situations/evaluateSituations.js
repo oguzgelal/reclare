@@ -1,6 +1,5 @@
 import ctx from '../ctx'
 import { warning } from '../utils/alert';
-import { operatorShapeValid } from '../utils/operators';
 import executeHooks from '../middlewares/executeHooks';
 import { SITUATION_TRUE, SITUATION_FALSE } from '../middlewares/hookTypes';
 
@@ -10,17 +9,6 @@ const evaluateSituation = ({ situation, payload }) => {
       state: ctx.state,
       event: payload,
     });
-  } else if (typeof situation === 'object') {
-    if (!operatorShapeValid) {
-      warning(
-        'Invalid operator object shape provided, interpreting as a regular object.',
-        'xFhXz861H2w51g'
-      );
-      return !!situation;
-    } else {
-      // TODO: implement recursive function
-      // to evaluate operators objects
-    }
   } else {
     return !!situation;
   }
