@@ -1,15 +1,9 @@
-/**
- * options:
- * 
- * deferExecution - If true, broadcast will take effect after the current event
- * loop tick (basically be wrapped with setSimeout(..., 0)). Default is false
- */
-
 import ctx from '../ctx';
 
 import executeHooks from '../middlewares/executeHooks';
 import triggerDeclaration from '../declarations/triggerDeclaration';
 import { BEFORE_BROADCAST, AFTER_BROADCAST } from '../middlewares/hookTypes';
+import defaultOptions from './defaultOptions';
 
 const broadcast = (eventKey, payload, options = {}) => {
   executeHooks({ id: BEFORE_BROADCAST }, eventKey, payload);
@@ -24,9 +18,11 @@ const broadcast = (eventKey, payload, options = {}) => {
 }
 
 export default (eventKey, payload, options = {}) => {
-  if (options.deferExecution || ctx.settings.deferExecution) {
-    setTimeout(() => broadcast(eventKey, payload, options))
+  const opts = Object.assign(defaultOptions, options)
+
+  if (opts.defer) {
+    setTimeout(() => broadcast(eventKey, payload, opts))
   } else {
-    broadcast(eventKey, payload, options)
+    broadcast(eventKey, payload, opts)
   }
 };

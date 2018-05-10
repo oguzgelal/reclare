@@ -38,7 +38,7 @@ export default (config) => {
     ctx.started = true;
 
     // Initialise the settings
-    ctx.settings = Object.assign({}, defaultSettings, config.options || {})
+    ctx.settings = Object.assign(defaultSettings, config.options || {})
 
     // Initialise the state
     ctx.state = config.initialState || {};
