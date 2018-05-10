@@ -125,7 +125,7 @@ export const SITUATION_TRUE = 'situationTrue';
 export const SITUATION_FALSE = 'situationFalse';
 
 /**
- * Runs every time before before a reducer
+ * Runs every time before a reducer
  * gets executed (including reducerElse)
  * 
  * hook functions receive: (eventKey, payload)
@@ -135,7 +135,17 @@ export const SITUATION_FALSE = 'situationFalse';
 export const BEFORE_REDUCER = 'beforeReducer';
 
 /**
- * Runs every time after before a reducer
+ * Runs every time before reducers for a
+ * declaration gets executed (including reducerElse)
+ * 
+ * hook functions receive: (eventKey, payload)
+ * eventKey - the event that was broadcasted
+ * payload - payload of the broadcast
+ */
+export const BEFORE_REDUCERS = 'beforeReducers';
+
+/**
+ * Runs every time after a reducer
  * gets executed (including reducerElse)
  * 
  * hook functions receive: (eventKey, payload)
@@ -145,7 +155,17 @@ export const BEFORE_REDUCER = 'beforeReducer';
 export const AFTER_REDUCER = 'afterReducer'
 
 /**
- * Runs every time before before a reaction
+ * Runs every time after reducers for a
+ * declaration gets executed (including reducerElse)
+ * 
+ * hook functions receive: (eventKey, payload)
+ * eventKey - the event that was broadcasted
+ * payload - payload of the broadcast
+ */
+export const AFTER_REDUCERS = 'afterReducers'
+
+/**
+ * Runs every time before a reaction
  * gets executed (including reactionElse)
  * 
  * hook functions receive: (eventKey, payload)
@@ -155,12 +175,32 @@ export const AFTER_REDUCER = 'afterReducer'
 export const BEFORE_REACTION = 'beforeReaction';
 
 /**
- * Runs every time after before a reaction
+ * Runs every time before reactions for a
+ * declaration gets executed (including reactionElse)
+ * 
+ * hook functions receive: (eventKey, payload)
+ * eventKey - the event that was broadcasted
+ * payload - payload of the broadcast
+ */
+export const BEFORE_REACTIONS = 'beforeReactions';
+
+/**
+ * Runs every time after a reaction
  * gets executed (including reactionElse)
  * 
  * hook functions receive: (eventKey, payload)
  * eventKey - the event that was broadcasted
  * payload - payload of the broadcast
  */
-export const AFTER_REACTION = 'afterReaction'
+export const AFTER_REACTION = 'afterReaction';
+
+/**
+ * Runs every time after reactions for a
+ * declaration gets executed (including reactionElse)
+ * 
+ * hook functions receive: (eventKey, payload)
+ * eventKey - the event that was broadcasted
+ * payload - payload of the broadcast
+ */
+export const AFTER_REACTIONS = 'afterReactions';
 

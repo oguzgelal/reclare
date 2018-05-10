@@ -3,6 +3,7 @@
  * declarationObject - { situations, reactions, reactionsElse }
  */
 
+import ctx from '../ctx';
 import evaluateSituations from '../situations/evaluateSituations';
 import executeReactions from '../reactions/executeReactions';
 import executeReducers from '../reducers/executeReducers';
@@ -24,25 +25,25 @@ const triggerDeclarationObject = ({ declarationObject, eventKey, payload }) => {
     reactionsElse,
   } = declarationObject;
 
-  executeHooks({ id: DECLARATION_TRIGGERED }, eventKey, payload, unparsed)
+  executeHooks({
+    id: DECLARATION_TRIGGERED,
+  }, eventKey, payload, unparsed)
 
-  let situationHolds = evaluateSituations({
+  const situationHolds = evaluateSituations({
     situations,
     eventKey,
     payload,
   });
 
-  // TODO: lazy execution
-  if (situationHolds) {
-    executeReducers({ reducers, eventKey, payload })
-    executeReactions({ reactions, eventKey, payload })
-  } else {
-    executeReducers({ reducers: reducersElse, eventKey, payload })
-    executeReactions({ reactions: reactionsElse, eventKey, payload })
+  return {
+    reducers: situationHolds ? reducers : reducersElse,
+    reactions: situationHolds ? reactions : reactionsElse,
   }
 }
 
 export default ({ declaration, eventKey, payload }) => {
+  let reducerQueue = [];
+  let reactionQueue = [];
 
   if (declaration && declaration.length > 0) {
     executeHooks({ id: DECLARATION_HIT }, eventKey, payload);
@@ -50,9 +51,23 @@ export default ({ declaration, eventKey, payload }) => {
     executeHooks({ id: DECLARATION_MISS }, eventKey, payload);
   }
 
+  // run through the declarations on an event
   (declaration || []).map(
-    declarationObject => triggerDeclarationObject({
-      declarationObject, eventKey, payload,
-    })
+    declarationObject => {
+      const { reducers, reactions } = triggerDeclarationObject({
+        declarationObject, eventKey, payload,
+      })
+      reducerQueue = reducerQueue.concat(reducers || []);
+      reactionQueue = reactionQueue.concat(reactions || []);
+    }
   )
+
+  // keep the old state 
+  const prevState = ctx.state;
+
+  // execute reducers in the queue
+  executeReducers({ reducers: reducerQueue, eventKey, payload })
+
+  // execute reactions in the queue, pass also the old state
+  executeReactions({ reactions: reactionQueue, eventKey, payload, prevState })
 }

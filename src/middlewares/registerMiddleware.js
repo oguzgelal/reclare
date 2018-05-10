@@ -21,9 +21,13 @@ export default config => {
     onSituationTrue,
     onSituationFalse,
     onBeforeReducer,
+    onBeforeReducers,
     onAfterReducer,
+    onAfterReducers,
     onBeforeReaction,
+    onBeforeReactions,
     onAfterReaction,
+    onAfterReactions,
   } = config;
 
   // reclare lifecycle
@@ -48,7 +52,11 @@ export default config => {
   registerHooks(hookTypes.SITUATION_TRUE, onSituationTrue);
   registerHooks(hookTypes.SITUATION_FALSE, onSituationFalse);
   registerHooks(hookTypes.BEFORE_REDUCER, onBeforeReducer);
+  registerHooks(hookTypes.BEFORE_REDUCERS, onBeforeReducers);
   registerHooks(hookTypes.AFTER_REDUCER, onAfterReducer);
+  registerHooks(hookTypes.AFTER_REDUCERS, onAfterReducers);
   registerHooks(hookTypes.BEFORE_REACTION, onBeforeReaction);
+  registerHooks(hookTypes.BEFORE_REACTIONS, onBeforeReactions);
   registerHooks(hookTypes.AFTER_REACTION, onAfterReaction);
+  registerHooks(hookTypes.AFTER_REACTIONS, onAfterReactions);
 };

@@ -3,42 +3,51 @@ import ctx from '../ctx'
 import { warning } from '../utils/alert';
 import executeHooks from '../middlewares/executeHooks';
 import setState from '../state/setState';
-import { BEFORE_REACTION, AFTER_REACTION } from '../middlewares/hookTypes';
+import {
+  BEFORE_REACTION,
+  BEFORE_REACTIONS,
+  AFTER_REACTION,
+  AFTER_REACTIONS,
+} from '../middlewares/hookTypes';
 
-const executeReaction = ({ reaction, eventKey, payload }) => {
+const executeReaction = ({ reaction, eventKey, payload, prevState }) => {
   if (typeof reaction !== 'function') {
     warning(`Invalid reaction: expected function, got "${typeof reaction}". Ignoring.`, 'eyHBy++dTXjvzi')
   } else {
+    executeHooks({
+      id: BEFORE_REACTION,
+    }, eventKey, payload);
+
     reaction({
       state: ctx.state,
+      prevState,
       event: payload,
       eventKey,
     });
+
+    executeHooks({
+      id: AFTER_REACTION,
+    }, eventKey, payload);
   }
 }
 
-export default ({ reactions, eventKey, payload }) => {
+export default ({ reactions, eventKey, payload, prevState }) => {
   executeHooks({
-    id: BEFORE_REACTION,
+    id: BEFORE_REACTIONS,
   }, eventKey, payload);
 
-  if (typeof reactions === 'function') {
-    executeReaction({
-      reaction: reactions,
-      eventKey,
-      payload,
-    });
-  } else if (Array.isArray(reactions)) {
+  if (Array.isArray(reactions)) {
     reactions.map(r =>
       executeReaction({
         reaction: r,
         eventKey,
         payload,
+        prevState,
       })
     );
   }
 
   executeHooks({
-    id: AFTER_REACTION,
+    id: AFTER_REACTIONS,
   }, eventKey, payload);
 }
