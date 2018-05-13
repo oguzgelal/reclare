@@ -3,30 +3,30 @@
  */
 const Benchmark = require('./');
 
-Benchmark.setup(() => {
-  const obj = {
+Benchmark.setup(() => ({
+  obj: {
     a: 'lorem',
     b: 'ipsum',
     c: 'dolor',
     d: 'sit',
     e: 'amet',
-  };
-})
+  }
+}))
 
-Benchmark.add('has own property', () => {
+Benchmark.add('has own property', ({ obj }) => {
   if (obj.hasOwnProperty('test')) {
     return true;
   }
 })
 
-Benchmark.add('in', () => {
+Benchmark.add('in', ({ obj }) => {
   if ('test' in obj) {
     return true;
   }
 });
 
 // winner
-Benchmark.add('undefined check', () => {
+Benchmark.add('undefined check', ({ obj }) => {
   if (obj.test !== undefined) {
     return true;
   }

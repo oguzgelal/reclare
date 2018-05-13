@@ -54,7 +54,7 @@
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir dist/es",
     "build:umd": "cross-env BABEL_ENV=rollup NODE_ENV=development rollup -c",
     "build:umd:min": "cross-env BABEL_ENV=rollup NODE_ENV=production rollup -c",
-    "build": "npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min && rimraf dist/es dist/cjs",
+    "build": "npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
     "prettier": "./node_modules/.bin/prettier --config .prettierrc --write src/**/*.js",
     "clean": "rimraf dist"
   },
