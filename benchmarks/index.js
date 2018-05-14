@@ -10,7 +10,8 @@
  *    returned from the setup function is accessible. 
  * 5. Call Benchmark.run to start testing
  * 6. To disable a test, prefix the name with an underscore 
- * 7. To test a method from the codebase, first build with `npm run build`,
+ * 7. For a single run, call `.run()` with the test name
+ * 8. To test a method from the codebase, first build with `npm run build`,
  *    then `require` the method from `dist/cjs` directory.
  *    Assign it to the Benchmark object.
  */
@@ -56,11 +57,18 @@ class Bench {
       })
     )
   }
-  run() {
+  run(name) {
     console.log('');
-    for (var i = 0; i < this.benchmarks.length; i++) {
-      if (this.benchmarks[i].name[0] !== '_') {
-        this.benchmarks[i].run();
+    if (name) {
+      const nameIndex = this.benchmarks.map(i => i.name).indexOf(name);
+      if (this.benchmarks[nameIndex]) {
+        this.benchmarks[nameIndex].run();
+      }
+    } else {
+      for (var i = 0; i < this.benchmarks.length; i++) {
+        if (this.benchmarks[i].name[0] !== '_') {
+          this.benchmarks[i].run();
+        }
       }
     }
   }

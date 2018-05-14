@@ -1,7 +1,7 @@
 import { fail } from '../utils/alert';
 
 export const validatePath = (path) => {
-  if (path === undefined || path === null){
+  if (path === undefined || path === null) {
     fail(
       `Path not provided`,
       'tQ0YGwnQbwlgrh'
@@ -14,3 +14,6 @@ export const validatePath = (path) => {
     );
   }
 }
+
+export const makeArray = (path) =>
+  Array.isArray(path) ? path : path.split('.')

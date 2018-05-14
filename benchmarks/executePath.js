@@ -1,5 +1,4 @@
 const Benchmark = require('./');
-
 Benchmark.executePath = require('../dist/cjs/path/executePath').default;
 
 Benchmark.setup(() => {
@@ -12,8 +11,8 @@ Benchmark.add('string input', ({ executePath, lorem }) => {
   executePath(lorem, () => true, {})
 })
 
-Benchmark.add('string input - rootFirst', ({ executePath, lorem }) => {
-  executePath(lorem, () => true, { rootFirst: true })
+Benchmark.add('string input - fromRoot', ({ executePath, lorem }) => {
+  executePath(lorem, () => true, { fromRoot: true })
 })
 
 Benchmark.add('string input - fullPath', ({ executePath, lorem }) => {
@@ -24,8 +23,8 @@ Benchmark.add('array input', ({ executePath, arr }) => {
   executePath(arr, () => true, {})
 })
 
-Benchmark.add('array input - rootFirst', ({ executePath, arr }) => {
-  executePath(arr, () => true, { rootFirst: true })
+Benchmark.add('array input - fromRoot', ({ executePath, arr }) => {
+  executePath(arr, () => true, { fromRoot: true })
 })
 
 Benchmark.add('array input - fullPath', ({ executePath, arr }) => {
