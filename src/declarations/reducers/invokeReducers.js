@@ -1,5 +1,8 @@
+import ctx from '../../ctx'
+
 import executeHooks from '../../middlewares/executeHooks';
 import setState from '../../state/setState';
+
 import {
   BEFORE_REDUCER,
   BEFORE_REDUCERS,
@@ -8,7 +11,6 @@ import {
 } from '../middlewares/hookTypes';
 
 const executeReducer = ({
-  currentState,
   reducer,
   eventKey,
   payload,
@@ -29,7 +31,6 @@ const executeReducer = ({
   executeHooks({
     id: AFTER_REDUCER,
   }, eventKey, payload);
-
 }
 
 export default ({ reducers, eventKey, payload }) => {
@@ -37,13 +38,13 @@ export default ({ reducers, eventKey, payload }) => {
     id: BEFORE_REDUCERS,
   }, eventKey, payload);
 
-  reducers.map(r =>
+  reducers.map(reducer => {
     executeReducer({
-      reducer: r,
+      reducer,
       eventKey,
       payload,
     })
-  );
+  });
 
   executeHooks({
     id: AFTER_REDUCERS,

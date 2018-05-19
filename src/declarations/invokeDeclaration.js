@@ -2,11 +2,12 @@
  * declaration - [{ situations, reactions, reactionsElse, ...etc }]
  * declarationObject - { situations, reactions, reactionsElse, ...etc }
  */
-
+import ctx from '../ctx';
 import evaluateSituations from '../situations/evaluateSituations';
 import invokeReactions from '../reactions/invokeReactions';
 import invokeReducers from '../reducers/invokeReducers';
 import executeHooks from '../middlewares/executeHooks';
+import getState from '../../state/getState';
 
 import {
   DECLARATION_HIT,
@@ -40,7 +41,6 @@ const invokeDeclarationObject = ({ declarationObject, eventKey, payload }) => {
 }
 
 export default ({
-  currentState,
   declaration,
   eventKey,
   payload,
@@ -67,18 +67,17 @@ export default ({
   )
 
   // keep the old state 
-  const prevState = currentState;
+  const prevState = ctx.state;
 
   // execute reducers in the queue
-  executeReducers({
-    currentState,
+  invokeReducers({
     reducers: reducerQueue,
     eventKey,
     payload,
   })
 
   // execute reactions in the queue, pass also the old state
-  executeReactions({
+  invokeReactions({
     reactions: reactionQueue,
     prevState,
     eventKey,
