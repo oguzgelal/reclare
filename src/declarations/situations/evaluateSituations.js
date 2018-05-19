@@ -1,7 +1,6 @@
-import ctx from '../ctx'
-import { warning } from '../utils/alert';
-import executeHooks from '../middlewares/executeHooks';
-import { SITUATION_TRUE, SITUATION_FALSE } from '../middlewares/hookTypes';
+import ctx from '../../ctx'
+import executeHooks from '../../middlewares/executeHooks';
+import { SITUATION_TRUE, SITUATION_FALSE } from '../../middlewares/hookTypes';
 
 const evaluateSituation = ({ situation, payload }) => {
   if (typeof situation === 'function') {

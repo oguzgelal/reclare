@@ -1,39 +1,74 @@
 import { fail } from '../utils/alert';
 
-import {
-  validateDeclarations,
-  validateDeclaration,
-  validateDeclarationOnKey,
-} from './declarationHelpers';
+import { validateDeclarations, validateDeclaration } from './declarationHelpers';
+import parseSituations from './situations/parseSituations';
+import parseReactions from './reactions/parseReactions';
+import parseReducers from './reducers/parseReducers';
+import { validateSituation } from './situations/situationHelpers';
+import { validateReducer } from './reducers/reducerHelpers';
+import { validateReaction } from './reactions/reactionHelpers';
 
-import parseSituations from '../situations/parseSituations';
-import parseReactions from '../reactions/parseReactions';
-import parseReducers from '../reducers/parseReducers';
-
-const insertDeclaration = ({ on, acc, parsed }) => {
-  validateDeclarationOnKey(on);
-  acc[on] = acc[on] || [];
-  acc[on].push(parsed);
-};
-
-export default ({ config }) => {
-  const { declarations } = config;
-  validateDeclarations(declarations);
+export default ({
+  type,
+  declarations,
+  customValidateDeclaration,
+  customValidateSituation,
+  customValidateReducer,
+  customValidateReaction,
+}) => {
+  validateDeclarations({ type, declarations });
 
   return declarations.reduce((acc, declaration) => {
-    validateDeclaration(declaration);
+
+    validateDeclaration({
+      type,
+      declaration,
+      customValidate: customValidateDeclaration,
+    });
 
     const parsed = Object.assign(
-      { unparsed: declaration },
-      parseSituations(declaration),
-      parseReactions(declaration),
-      parseReducers(declaration),
+      {
+        type,
+        unparsed: declaration,
+      },
+      parseSituations({
+        declaration,
+        validator: situation => {
+          validateSituation({
+            customValidate: customValidateSituation,
+            situation,
+          })
+        }
+      }),
+      parseReducers({
+        declaration,
+        validator: reducer => {
+          validateReducer({
+            customValidate: customValidateReducer,
+            reducer,
+          })
+        },
+      }),
+      parseReactions({
+        declaration,
+        validator: reaction => {
+          validateReaction({
+            customValidate: customValidateReaction,
+            reaction,
+          })
+        }
+      }),
     );
 
+    // merge declarations by "on"
     if (Array.isArray(declaration.on)) {
-      declaration.on.map(on => insertDeclaration({ on, acc, parsed }));
+      declaration.on.map(on => {
+        acc[on] = acc[on] || [];
+        acc[on].push(parsed);
+      });
     } else {
-      insertDeclaration({ on: declaration.on, acc, parsed });
+      acc[on] = acc[on] || [];
+      acc[on].push(parsed);
     }
 
     return acc;

@@ -1,15 +1,16 @@
 import ctx from '../ctx';
 
+import defaultOptions from '../config/broadcastDefaults';
 import executeHooks from '../middlewares/executeHooks';
-import triggerDeclaration from '../declarations/triggerDeclaration';
+import invokeDeclaration from '../declarations/invokeDeclaration';
 import { BEFORE_BROADCAST, AFTER_BROADCAST } from '../middlewares/hookTypes';
-import defaultOptions from './defaultOptions';
 
 const broadcast = (eventKey, payload, options = {}) => {
   executeHooks({ id: BEFORE_BROADCAST }, eventKey, payload);
 
-  triggerDeclaration({
-    declaration: (ctx.declarations || {})[eventKey] || null,
+  invokeDeclaration({
+    declaration: (ctx.onEvent || {})[eventKey] || null,
+    currentState: ctx.state,
     eventKey,
     payload,
   })
