@@ -10,11 +10,11 @@ Benchmark.setup(() => {
   return { arr, path, obj };
 });
 
-Benchmark.add('_lodash set immutable', ({ fp, path, obj }) => {
+Benchmark.add('lodash set immutable', ({ fp, path, obj }) => {
   fp.set(path, 'hey2', obj)
 })
 
-Benchmark.add('lodash set mutable', ({ _, path, obj }) => {
+Benchmark.add('_lodash set mutable', ({ _, path, obj }) => {
   _.set(obj, path, 'hey2')
 })
 

@@ -1,6 +1,6 @@
 const Benchmark = require('./');
 Benchmark._ = require('lodash');
-Benchmark.executePath = require('../dist/cjs/path/executePath').default;
+Benchmark.walkPath = require('../dist/cjs/path/walkPath').default;
 Benchmark.resolvePath = require('../dist/cjs/path/resolvePath').default;
 
 Benchmark.setup(() => {
@@ -15,9 +15,9 @@ Benchmark.add('_eval', ({ obj, path }) => {
   catch (e) { }
 })
 
-Benchmark.add('executePath', ({ obj, path, executePath }) => {
+Benchmark.add('walkPath', ({ obj, path, walkPath }) => {
   let acc = obj;
-  executePath(path, (node) => {
+  walkPath(path, (node) => {
     if (acc[node] === undefined) {
       return false;
     } else {

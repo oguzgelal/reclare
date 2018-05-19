@@ -36,6 +36,7 @@
     "babel-plugin-transform-react-jsx": "^6.4.0",
     "benchmark": "^2.1.4",
     "cross-env": "^5.1.4",
+    "immutadot": "^1.0.0",
     "jsdoc": "^3.5.5",
     "lodash": "^4.17.10",
     "prettier": "1.12.1",
