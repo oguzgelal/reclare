@@ -53,7 +53,6 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
-    "prepare": "npm run jest && npm run prettier && npm run lint",
     "jest": "./node_modules/.bin/jest",
     "prettier": "./node_modules/.bin/prettier --config .prettierrc --write {src,test}/**/*.js",
     "lint": "./node_modules/.bin/eslint --fix {src,test}/**/*",
@@ -62,11 +61,13 @@
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir dist/es",
     "build:umd": "cross-env BABEL_ENV=rollup NODE_ENV=development rollup -c",
     "build:umd:min": "cross-env BABEL_ENV=rollup NODE_ENV=production rollup -c",
-    "build": "npm run prepare && npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "build": "npm run jest && npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
     "clean": "rimraf dist"
   },
   "pre-commit": [
-    "prepare",
+    "jest",
+    "prettier",
+    "lint",
     "add"
   ],
   "files": [
