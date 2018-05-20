@@ -20,7 +20,6 @@ import {
 import broadcast from '../broadcasts/broadcast';
 
 export default class ReclareContext {
-
   constructor(config) {
     validateConfiguration(config);
     this.init(config);
@@ -50,7 +49,8 @@ export default class ReclareContext {
       this.state = config.initialState || {};
 
       // Set on broadcasts
-      this.onEvent = config.onEvent &&
+      this.onEvent =
+        config.onEvent &&
         parseDeclarations({
           type: DECLARATION_BROADCAST,
           declarations: config.onEvent,
@@ -61,7 +61,8 @@ export default class ReclareContext {
         });
 
       // Run right after reducers changes the state (before reactions)
-      this.onImmediateStateChange = config.onImmediateStateChange &&
+      this.onImmediateStateChange =
+        config.onImmediateStateChange &&
         parseDeclarations({
           type: DECLARATION_SUB_IMMEDIATE,
           declarations: config.onStateChange,
@@ -72,7 +73,8 @@ export default class ReclareContext {
         });
 
       // Run when state changed and the declaration finishes its execution (after reactions)
-      this.onStateChange = config.onStateChange &&
+      this.onStateChange =
+        config.onStateChange &&
         parseDeclarations({
           type: DECLARATION_SUB,
           declarations: config.onStateChange,

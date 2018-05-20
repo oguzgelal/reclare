@@ -53,6 +53,7 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
+    "add": "git add --all",
     "jest": "./node_modules/.bin/jest",
     "lint": "./node_modules/.bin/eslint --fix {src,test}/**/*",
     "prettier": "./node_modules/.bin/prettier --config .prettierrc --write {src,test}/**/*.js",
@@ -66,7 +67,8 @@
   "pre-commit": [
     "jest",
     "prettier",
-    "lint"
+    "lint",
+    "add"
   ],
   "files": [
     "dist"

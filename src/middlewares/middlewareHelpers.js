@@ -2,7 +2,10 @@ import { fail, MISSING_MIDDLEWARE_CONFIG, INVALID_HOOK } from '../utils/alert';
 
 export const validateMiddleware = config => {
   if (!config) {
-    fail('No configuration provided for the middleware', MISSING_MIDDLEWARE_CONFIG);
+    fail(
+      'No configuration provided for the middleware',
+      MISSING_MIDDLEWARE_CONFIG
+    );
   }
 };
 

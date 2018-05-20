@@ -1,2 +1,1 @@
-export const validateSubscriptionDeclaration = () => {
-}
+export const validateSubscriptionDeclaration = () => {};

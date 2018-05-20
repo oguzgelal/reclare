@@ -2,7 +2,6 @@ import { setContext } from './';
 import ReclareContext from './ctx';
 
 export default (config, options = {}) => {
-
   // initiate reclare context
   const ctx = new ReclareContext(config);
 
