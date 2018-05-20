@@ -1,6 +1,6 @@
 import { set } from 'immutadot';
 import { clone } from 'lodash';
-import { validatePath, makeArray } from './pathHelpers';
+import { validatePath } from './pathHelpers';
 
 export default (state, path, value) => {
   validatePath(path);

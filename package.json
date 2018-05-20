@@ -50,7 +50,8 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
-    "precommit": "npm run prepare",
+    "lint": "./node_modules/.bin/eslint {src,test}/**/*",
+    "lint:fix": "./node_modules/.bin/eslint --fix {src,test}/**/*",
     "prettier": "./node_modules/.bin/prettier --config .prettierrc --write {src,test}/**/*.js",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir dist/cjs",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir dist/es",
@@ -61,7 +62,8 @@
     "rand": "openssl rand -base64 16 | cut -c 1-14 | tr -d '\n' | pbcopy"
   },
   "pre-commit": [
-    "prettier"
+    "prettier",
+    "lint"
   ],
   "files": [
     "dist"

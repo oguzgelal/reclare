@@ -6,6 +6,7 @@ import { SITUATION_TRUE, SITUATION_FALSE } from '../../middlewares/hookTypes';
 const evaluateSituation = ({ prevState, situation, payload }) => {
   if (typeof situation === 'function') {
     return situation({
+      prevState,
       state: ctx.state,
       event: payload,
     });

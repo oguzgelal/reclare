@@ -1,5 +1,3 @@
-import { fail } from '../utils/alert';
-
 import {
   validateDeclarations,
   validateDeclaration
@@ -68,9 +66,9 @@ export default ({
         acc[on] = acc[on] || [];
         acc[on].push(parsed);
       });
-    } else {
-      acc[on] = acc[on] || [];
-      acc[on].push(parsed);
+    } else if (typeof declaration.on === 'string') {
+      acc[declaration.on] = acc[declaration.on] || [];
+      acc[declaration.on].push(parsed);
     }
 
     return acc;

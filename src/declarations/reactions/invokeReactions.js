@@ -1,9 +1,6 @@
 import ctx from '../../ctx'
 
-import { warning } from '../../utils/alert';
 import executeHooks from '../../middlewares/executeHooks';
-import setState from '../../state/setState';
-
 import {
   BEFORE_REACTION,
   BEFORE_REACTIONS,

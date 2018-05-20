@@ -5,7 +5,7 @@ import executeHooks from '../middlewares/executeHooks';
 import invokeDeclaration from '../declarations/invokeDeclaration';
 import { BEFORE_BROADCAST, AFTER_BROADCAST } from '../middlewares/hookTypes';
 
-const broadcast = (eventKey, payload, options = {}) => {
+const broadcast = (eventKey, payload) => {
   executeHooks({ id: BEFORE_BROADCAST }, eventKey, payload);
 
   invokeDeclaration({

@@ -1,5 +1,4 @@
 import toArray from '../../utils/toArray';
-import { validateReaction } from './reactionHelpers';
 
 export default ({ reaction, reactionElse, validator }) => {
   const reactions = toArray(reaction, validator);
