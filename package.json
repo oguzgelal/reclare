@@ -49,7 +49,7 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
-    "pre-commit": "npm run prepare",
+    "precommit": "npm run prepare",
     "prepare": "npm run prettier",
     "prettier": "./node_modules/.bin/prettier --config .prettierrc --write {src,test}/**/*.js",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir dist/cjs",
