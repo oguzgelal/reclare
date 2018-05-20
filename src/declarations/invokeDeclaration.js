@@ -10,7 +10,6 @@ import { DECLARATION_HIT, DECLARATION_MISS } from '../middlewares/hookTypes';
 // `eventKey` and `payload` gets populated when declaration is invoked from a broadcast
 // `prevState` gets populated when declaration is invoked from a subscription
 export default ({ declaration, eventKey, payload, prevState }) => {
-
   let reducerQueue = [];
   let reactionQueue = [];
 
