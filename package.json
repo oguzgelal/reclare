@@ -58,7 +58,7 @@
     "build:umd:min": "cross-env BABEL_ENV=rollup NODE_ENV=production rollup -c",
     "build": "npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
     "clean": "rimraf dist",
-    "rand": "openssl rand -base64 16 | cut -c 1-14 | tr -d '\n' | pbcopy",
+    "rand": "openssl rand -base64 16 | cut -c 1-14 | tr -d '\n' | pbcopy"
   },
   "files": [
     "dist"

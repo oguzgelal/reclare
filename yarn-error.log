@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn remove lint-staged --save
+  /usr/local/bin/node /usr/local/bin/yarn run prettier
 
 PATH: 
   /Users/oguzgelal/.rvm/gems/ruby-2.1.1/bin:/Users/oguzgelal/.rvm/gems/ruby-2.1.1@global/bin:/Users/oguzgelal/.rvm/rubies/ruby-2.1.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/oguzgelal/Documents/AndroidSDK/adt-bundle-mac-x86_64-20140702/sdk/platform-tools:/usr/local/opt/go/libexec/bin:/usr/local/share/npm/bin:/usr/local/bin/activator-minimal/bin:/opt/X11/bin:/usr/texbin:/Users/oguzgelal/.rvm/bin
@@ -65,21 +65,16 @@ npm manifest:
       "rollup-plugin-uglify": "^3.0.0"
     },
     "scripts": {
-      "precommit": "lint-staged",
-      "rand": "openssl rand -base64 16 | cut -c 1-14 | tr -d '\n' | pbcopy",
+      "pre-commit": "npm run prepare",
+      "prepare": "npm run prettier",
+      "prettier": "./node_modules/.bin/prettier --config .prettierrc --write {src,test}/**/*.js",
       "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir dist/cjs",
       "build:es": "cross-env BABEL_ENV=es babel src --out-dir dist/es",
       "build:umd": "cross-env BABEL_ENV=rollup NODE_ENV=development rollup -c",
       "build:umd:min": "cross-env BABEL_ENV=rollup NODE_ENV=production rollup -c",
       "build": "npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
-      "clean": "rimraf dist"
-    },
-    "lint-staged": {
-      "{src,test}/**/*.js": [
-        "echo \"precommit hook running...\"",
-        "./node_modules/.bin/prettier --config .prettierrc --write {src,test}/**/*.js",
-        "git add"
-      ]
+      "clean": "rimraf dist",
+      "rand": "openssl rand -base64 16 | cut -c 1-14 | tr -d '\n' | pbcopy",
     },
     "files": [
       "dist"
@@ -2183,9 +2178,9 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
 
 Trace: 
-  Error: This module isn't specified in a manifest.
-      at new MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
-      at Object.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:60445:15)
+  SyntaxError: /Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/package.json: Unexpected token } in JSON at position 2954
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1036:59
       at Generator.next (<anonymous>)
       at step (/usr/local/lib/node_modules/yarn/lib/cli.js:98:30)
       at /usr/local/lib/node_modules/yarn/lib/cli.js:109:13
