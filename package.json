@@ -61,6 +61,7 @@
   },
   "lint-staged": {
     "{src,test}/**/*.js": [
+      "echo \"precommit hook running...\"",
       "./node_modules/.bin/prettier --config .prettierrc --write {src,test}/**/*.js",
       "git add"
     ]
