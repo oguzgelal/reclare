@@ -2,7 +2,10 @@ import { fail } from '../utils/alert';
 
 export const validateBroadcastDeclaration = ({ declaration }) => {
   if (!declaration.on) {
-    fail('Broadcast channel declarations should have at least one trigger', 'f2+fpC38gEa8+V');
+    fail(
+      'Broadcast channel declarations should have at least one trigger',
+      'f2+fpC38gEa8+V'
+    );
   }
   if (typeof declaration.on !== 'string' && !Array.isArray(declaration.on)) {
     fail(

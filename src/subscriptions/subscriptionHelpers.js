@@ -1,4 +1,3 @@
 import { fail } from '../utils/alert';
 
-export const validateSubscriptionDeclaration = ({ declaration }) => {
-};
+export const validateSubscriptionDeclaration = ({ declaration }) => {};

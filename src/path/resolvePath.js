@@ -11,6 +11,6 @@ export default (state = {}, path) => {
   // benchmarks/resolvingPath.js
 
   return pathArr.reduce((acc, current) => {
-    return acc ? acc[current] : null
-  }, state)
+    return acc ? acc[current] : null;
+  }, state);
 };

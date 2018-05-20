@@ -6,10 +6,19 @@ import { validateConfiguration } from './ctxHelpers';
 import { validateBroadcastDeclaration } from '../broadcasts/broadcastHelpers';
 import { validateSubscriptionDeclaration } from '../subscriptions/subscriptionHelpers';
 
-import { BEFORE_START, BEFORE_STATE, AFTER_START } from '../middlewares/hookTypes';
-import { DECLARATION_BROADCAST, DECLARATION_SUBSCRIPTION } from '../config/constants'
+import {
+  BEFORE_START,
+  BEFORE_STATE,
+  AFTER_START
+} from '../middlewares/hookTypes';
 
-export default (config) => {
+import {
+  DECLARATION_BROADCAST,
+  DECLARATION_SUB,
+  DECLARATION_SUB_IMMEDIATE
+} from '../config/constants';
+
+export default config => {
   validateConfiguration(config);
 
   /**
@@ -37,29 +46,39 @@ export default (config) => {
     ctx.started = true;
 
     // Initialise the settings
-    ctx.settings = Object.assign(reclareDefaults, config.options || {})
+    ctx.settings = Object.assign(reclareDefaults, config.options || {});
 
     // Initialise the state
     ctx.state = config.initialState || {};
 
-    // Set broadcast channel declarations
+    // Set on broadcasts
     ctx.onEvent = parseDeclarations({
       type: DECLARATION_BROADCAST,
       declarations: config.onEvent,
       customValidateDeclaration: validateBroadcastDeclaration,
       customValidateSituation: null,
       customValidateReducer: null,
-      customValidateReaction: null,
+      customValidateReaction: null
     });
 
-    // Set state change declarations
-    ctx.onStateChange = parseDeclarations({
-      type: DECLARATION_SUBSCRIPTION,
+    // Run right after reducers changes the state (before reactions)
+    ctx.onImmediateStateChange = parseDeclarations({
+      type: DECLARATION_SUB_IMMEDIATE,
       declarations: config.onStateChange,
       customValidateDeclaration: validateSubscriptionDeclaration,
       customValidateSituation: null,
       customValidateReducer: null,
-      customValidateReaction: null,
+      customValidateReaction: null
+    });
+
+    // Run when state changed and the declaration finishes its execution (after reactions)
+    ctx.onStateChange = parseDeclarations({
+      type: DECLARATION_SUB,
+      declarations: config.onStateChange,
+      customValidateDeclaration: validateSubscriptionDeclaration,
+      customValidateSituation: null,
+      customValidateReducer: null,
+      customValidateReaction: null
     });
 
     executeHooks({ id: AFTER_START });

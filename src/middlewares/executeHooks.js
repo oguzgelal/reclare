@@ -15,11 +15,10 @@ const executeHook = ({ id, out, fns, verbose }, ...args) => {
       }
     });
   }
-}
+};
 
 export default ({ id, out }, ...args) => {
   if (ctx.hooks) {
-
     // Execute registered hooks
     executeHook({ id, out, fns: ctx.hooks[id] }, ...args);
 

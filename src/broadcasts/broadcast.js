@@ -8,21 +8,21 @@ import { BEFORE_BROADCAST, AFTER_BROADCAST } from '../middlewares/hookTypes';
 const broadcast = (eventKey, payload, options = {}) => {
   executeHooks({ id: BEFORE_BROADCAST }, eventKey, payload);
 
-  const newState = invokeDeclaration({
+  invokeDeclaration({
     declaration: (ctx.onEvent || {})[eventKey] || null,
     eventKey,
-    payload,
-  })
+    payload
+  });
 
   executeHooks({ id: AFTER_BROADCAST }, eventKey, payload);
-}
+};
 
 export default (eventKey, payload, options = {}) => {
-  const opts = Object.assign(defaultOptions, options)
+  const opts = Object.assign(defaultOptions, options);
 
   if (opts.defer) {
-    setTimeout(() => broadcast(eventKey, payload, opts))
+    setTimeout(() => broadcast(eventKey, payload, opts));
   } else {
-    broadcast(eventKey, payload, opts)
+    broadcast(eventKey, payload, opts);
   }
 };

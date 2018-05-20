@@ -1,6 +1,9 @@
 import { fail } from '../utils/alert';
 
-import { validateDeclarations, validateDeclaration } from './declarationHelpers';
+import {
+  validateDeclarations,
+  validateDeclaration
+} from './declarationHelpers';
 import parseSituations from './situations/parseSituations';
 import parseReactions from './reactions/parseReactions';
 import parseReducers from './reducers/parseReducers';
@@ -14,30 +17,29 @@ export default ({
   customValidateDeclaration,
   customValidateSituation,
   customValidateReducer,
-  customValidateReaction,
+  customValidateReaction
 }) => {
   validateDeclarations({ type, declarations });
 
   return declarations.reduce((acc, declaration) => {
-
     validateDeclaration({
       type,
       declaration,
-      customValidate: customValidateDeclaration,
+      customValidate: customValidateDeclaration
     });
 
     const parsed = Object.assign(
       {
         type,
-        unparsed: declaration,
+        unparsed: declaration
       },
       parseSituations({
         declaration,
         validator: situation => {
           validateSituation({
             customValidate: customValidateSituation,
-            situation,
-          })
+            situation
+          });
         }
       }),
       parseReducers({
@@ -45,19 +47,19 @@ export default ({
         validator: reducer => {
           validateReducer({
             customValidate: customValidateReducer,
-            reducer,
-          })
-        },
+            reducer
+          });
+        }
       }),
       parseReactions({
         declaration,
         validator: reaction => {
           validateReaction({
             customValidate: customValidateReaction,
-            reaction,
-          })
+            reaction
+          });
         }
-      }),
+      })
     );
 
     // merge declarations by "on"

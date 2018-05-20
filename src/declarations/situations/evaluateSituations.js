@@ -3,7 +3,7 @@ import ctx from '../../ctx'
 import executeHooks from '../../middlewares/executeHooks';
 import { SITUATION_TRUE, SITUATION_FALSE } from '../../middlewares/hookTypes';
 
-const evaluateSituation = ({ situation, payload }) => {
+const evaluateSituation = ({ prevState, situation, payload }) => {
   if (typeof situation === 'function') {
     return situation({
       state: ctx.state,
@@ -14,10 +14,14 @@ const evaluateSituation = ({ situation, payload }) => {
   }
 }
 
-export default ({ situations, eventKey, payload }) => {
+export default ({ prevState, situations, eventKey, payload }) => {
 
   let situationHolds = situations.every(
-    s => evaluateSituation({ situation: s, payload })
+    s => evaluateSituation({
+      situation: s,
+      prevState,
+      payload,
+    })
   );
 
   if (situationHolds) {

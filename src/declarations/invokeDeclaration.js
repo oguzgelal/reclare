@@ -1,51 +1,15 @@
-/**
- * declaration - [{ situations, reactions, reactionsElse, ...etc }]
- * declarationObject - { situations, reactions, reactionsElse, ...etc }
- */
 import ctx from '../ctx';
-import evaluateSituations from '../situations/evaluateSituations';
+
 import invokeReactions from '../reactions/invokeReactions';
 import invokeReducers from '../reducers/invokeReducers';
 import executeHooks from '../middlewares/executeHooks';
-import getState from '../../state/getState';
+import invokeDeclarationObject from './invokeDeclarationObject';
 
-import {
-  DECLARATION_HIT,
-  DECLARATION_MISS,
-  DECLARATION_TRIGGERED,
-} from '../middlewares/hookTypes';
+import { DECLARATION_HIT, DECLARATION_MISS } from '../middlewares/hookTypes';
 
-const invokeDeclarationObject = ({ declarationObject, eventKey, payload }) => {
-
-  const {
-    unparsed,
-    situations,
-    reducers,
-    reducersElse,
-    reactions,
-    reactionsElse,
-  } = declarationObject;
-
-  executeHooks({ id: DECLARATION_TRIGGERED }, eventKey, payload, unparsed)
-
-  const situationHolds = evaluateSituations({
-    situations,
-    eventKey,
-    payload,
-  });
-
-  return {
-    reducers: situationHolds ? reducers : reducersElse,
-    reactions: situationHolds ? reactions : reactionsElse,
-  }
-}
-
-export default ({
-  declaration,
-  eventKey,
-  payload,
-}) => {
-
+// `eventKey` and `payload` gets populated when declaration is invoked from a broadcast
+// `prevState` gets populated when declaration is invoked from a subscription
+export default ({ declaration, eventKey, payload, prevState }) => {
   let reducerQueue = [];
   let reactionQueue = [];
 
@@ -56,31 +20,41 @@ export default ({
   }
 
   // run through the declarations on an event
-  (declaration || []).map(
-    declarationObject => {
-      const { reducers, reactions } = invokeDeclarationObject({
-        declarationObject, eventKey, payload,
-      })
-      reducerQueue = reducerQueue.concat(reducers || []);
-      reactionQueue = reactionQueue.concat(reactions || []);
-    }
-  )
+  (declaration || []).map(declarationObject => {
+    // run a declaration - evaluate situations,
+    // get reactions / reducers if it holds
+    const { reducers, reactions } = invokeDeclarationObject({
+      declarationObject,
+      prevState,
+      eventKey,
+      payload
+    });
 
-  // keep the old state 
-  const prevState = ctx.state;
+    // queue reducers / reactions to run after all
+    // situations are evaluated
+    reducerQueue = reducerQueue.concat(reducers || []);
+    reactionQueue = reactionQueue.concat(reactions || []);
+  });
+
+  // keep the old state
+  const stateBeforeReducers = ctx.state;
 
   // execute reducers in the queue
   invokeReducers({
     reducers: reducerQueue,
     eventKey,
-    payload,
-  })
+    payload
+  });
+
+  // TODO: immediate subscriptions
 
   // execute reactions in the queue, pass also the old state
   invokeReactions({
     reactions: reactionQueue,
-    prevState,
+    prevState: stateBeforeReducers,
     eventKey,
-    payload,
-  })
-}
+    payload
+  });
+
+  // TODO: subscriptions
+};

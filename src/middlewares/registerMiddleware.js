@@ -27,7 +27,7 @@ export default config => {
     onBeforeReaction,
     onBeforeReactions,
     onAfterReaction,
-    onAfterReactions,
+    onAfterReactions
   } = config;
 
   // reclare lifecycle
