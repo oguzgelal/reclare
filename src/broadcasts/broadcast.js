@@ -1,28 +1,39 @@
-import ctx from '../ctx';
+import activeCtx from '../ctx';
 
 import defaultOptions from '../config/broadcastDefaults';
 import executeHooks from '../middlewares/executeHooks';
 import invokeDeclaration from '../declarations/invokeDeclaration';
 import { BEFORE_BROADCAST, AFTER_BROADCAST } from '../middlewares/hookTypes';
 
-const broadcast = (eventKey, payload) => {
-  executeHooks({ id: BEFORE_BROADCAST }, eventKey, payload);
-
+const broadcast = ({ ctx, eventKey, payload }) => {
+  executeHooks({ ctx, id: BEFORE_BROADCAST }, eventKey, payload);
   invokeDeclaration({
     declaration: (ctx.onEvent || {})[eventKey] || null,
     eventKey,
-    payload
+    payload,
+    ctx
   });
-
-  executeHooks({ id: AFTER_BROADCAST }, eventKey, payload);
+  executeHooks({ ctx, id: AFTER_BROADCAST }, eventKey, payload);
 };
 
-export default (eventKey, payload, options = {}) => {
+export default (eventKey, payload, options = {}, ctx) => {
   const opts = Object.assign(defaultOptions, options);
 
   if (opts.defer) {
-    setTimeout(() => broadcast(eventKey, payload, opts));
+    setTimeout(() =>
+      broadcast({
+        ctx: ctx || activeCtx,
+        options: opts,
+        eventKey,
+        payload
+      })
+    );
   } else {
-    broadcast(eventKey, payload, opts);
+    broadcast({
+      ctx: ctx || activeCtx,
+      options: opts,
+      eventKey,
+      payload
+    });
   }
 };

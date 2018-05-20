@@ -1,5 +1,3 @@
-import ctx from '../ctx';
-
 import invokeReactions from './reactions/invokeReactions';
 import invokeReducers from './reducers/invokeReducers';
 import executeHooks from '../middlewares/executeHooks';
@@ -7,16 +5,22 @@ import invokeDeclarationObject from './invokeDeclarationObject';
 
 import { DECLARATION_HIT, DECLARATION_MISS } from '../middlewares/hookTypes';
 
-// `eventKey` and `payload` gets populated when declaration is invoked from a broadcast
-// `prevState` gets populated when declaration is invoked from a subscription
-export default ({ declaration, eventKey, payload, prevState }) => {
+export default ({
+  ctx,
+  declaration,
+  // populated when invoked from a broadcast
+  payload,
+  eventKey,
+  // populated when invoked from a subscription
+  prevState
+}) => {
   let reducerQueue = [];
   let reactionQueue = [];
 
   if (declaration && declaration.length > 0) {
-    executeHooks({ id: DECLARATION_HIT }, eventKey, payload);
+    executeHooks({ ctx, id: DECLARATION_HIT }, eventKey, payload);
   } else {
-    executeHooks({ id: DECLARATION_MISS }, eventKey, payload);
+    executeHooks({ ctx, id: DECLARATION_MISS }, eventKey, payload);
   }
 
   // run through the declarations on an event
@@ -27,7 +31,8 @@ export default ({ declaration, eventKey, payload, prevState }) => {
       declarationObject,
       prevState,
       eventKey,
-      payload
+      payload,
+      ctx
     });
 
     // queue reducers / reactions to run after all
@@ -43,7 +48,8 @@ export default ({ declaration, eventKey, payload, prevState }) => {
   invokeReducers({
     reducers: reducerQueue,
     eventKey,
-    payload
+    payload,
+    ctx
   });
 
   // TODO: immediate subscriptions
@@ -53,7 +59,8 @@ export default ({ declaration, eventKey, payload, prevState }) => {
     reactions: reactionQueue,
     prevState: stateBeforeReducers,
     eventKey,
-    payload
+    payload,
+    ctx
   });
 
   // TODO: subscriptions

@@ -1,5 +1,3 @@
-import ctx from '../../ctx'
-
 import executeHooks from '../../middlewares/executeHooks';
 import {
   BEFORE_REACTION,
@@ -13,11 +11,14 @@ const executeReaction = ({
   eventKey,
   payload,
   prevState,
+  ctx,
 }) => {
 
-  executeHooks({
-    id: BEFORE_REACTION,
-  }, eventKey, payload);
+  executeHooks(
+    { ctx, id: BEFORE_REACTION },
+    eventKey,
+    payload,
+  );
 
   reaction({
     state: ctx.state,
@@ -26,16 +27,26 @@ const executeReaction = ({
     eventKey,
   });
 
-  executeHooks({
-    id: AFTER_REACTION,
-  }, eventKey, payload);
-
+  executeHooks(
+    { ctx, id: AFTER_REACTION },
+    eventKey,
+    payload,
+  );
 }
 
-export default ({ reactions, eventKey, payload, prevState }) => {
-  executeHooks({
-    id: BEFORE_REACTIONS,
-  }, eventKey, payload);
+export default ({
+  reactions,
+  eventKey,
+  payload,
+  prevState,
+  ctx,
+}) => {
+
+  executeHooks(
+    { ctx, id: BEFORE_REACTIONS },
+    eventKey,
+    payload,
+  );
 
   reactions.map(r =>
     executeReaction({
@@ -43,10 +54,13 @@ export default ({ reactions, eventKey, payload, prevState }) => {
       eventKey,
       payload,
       prevState,
+      ctx,
     })
   );
 
-  executeHooks({
-    id: AFTER_REACTIONS,
-  }, eventKey, payload);
+  executeHooks(
+    { ctx, id: AFTER_REACTIONS },
+    eventKey,
+    payload,
+  );
 }

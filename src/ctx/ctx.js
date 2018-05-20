@@ -5,31 +5,45 @@ import { validateConfiguration } from './ctxHelpers';
 import { validateBroadcastDeclaration } from '../broadcasts/broadcastHelpers';
 import { validateSubscriptionDeclaration } from '../subscriptions/subscriptionHelpers';
 
+import broadcast from '../broadcasts/broadcast';
+import getState from '../state/getState';
+import registerMiddleware from '../middlewares/registerMiddleware';
+
 import {
   BEFORE_START,
   BEFORE_STATE,
   AFTER_START
 } from '../middlewares/hookTypes';
 
-import {
-  DECLARATION_BROADCAST,
-  DECLARATION_SUB,
-  DECLARATION_SUB_IMMEDIATE
-} from '../config/constants';
-
-import broadcast from '../broadcasts/broadcast';
+import { DECLARATION_BROADCAST, DECLARATION_SUB } from '../config/constants';
 
 export default class ReclareContext {
   constructor(config) {
     validateConfiguration(config);
-    this.init(config);
+    this._init(config);
   }
 
-  init(config) {
+  broadcast(...args) {
+    broadcast(...args, this);
+  }
+
+  getState() {
+    return getState(this);
+  }
+
+  registerMiddleware(...args) {
+    registerMiddleware(...args, this);
+  }
+
+  _init(config) {
     if (!this.started) {
-      executeHooks({ id: BEFORE_START });
+      executeHooks({
+        ctx: this,
+        id: BEFORE_START
+      });
       executeHooks(
         {
+          ctx: this,
           id: BEFORE_STATE,
           out: nextInitialState => {
             // if a falsy value is returned from the hook, set initialState to its
@@ -64,7 +78,7 @@ export default class ReclareContext {
       this.onImmediateStateChange =
         config.onImmediateStateChange &&
         parseDeclarations({
-          type: DECLARATION_SUB_IMMEDIATE,
+          type: DECLARATION_SUB,
           declarations: config.onStateChange,
           customValidateDeclaration: validateSubscriptionDeclaration,
           customValidateSituation: null,
@@ -84,11 +98,10 @@ export default class ReclareContext {
           customValidateReaction: null
         });
 
-      executeHooks({ id: AFTER_START });
+      executeHooks({
+        ctx: this,
+        id: AFTER_START
+      });
     }
-  }
-
-  broadcast(...args) {
-    broadcast(args);
   }
 }
