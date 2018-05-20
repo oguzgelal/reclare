@@ -1,7 +1,7 @@
 import ctx from '../ctx';
 
-import invokeReactions from '../reactions/invokeReactions';
-import invokeReducers from '../reducers/invokeReducers';
+import invokeReactions from './reactions/invokeReactions';
+import invokeReducers from './reducers/invokeReducers';
 import executeHooks from '../middlewares/executeHooks';
 import invokeDeclarationObject from './invokeDeclarationObject';
 

@@ -8,7 +8,7 @@ import {
   BEFORE_REDUCERS,
   AFTER_REDUCER,
   AFTER_REDUCERS,
-} from '../middlewares/hookTypes';
+} from '../../middlewares/hookTypes';
 
 const executeReducer = ({
   reducer,

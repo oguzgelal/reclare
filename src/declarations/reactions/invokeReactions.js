@@ -6,7 +6,7 @@ import {
   BEFORE_REACTIONS,
   AFTER_REACTION,
   AFTER_REACTIONS,
-} from '../middlewares/hookTypes';
+} from '../../middlewares/hookTypes';
 
 const executeReaction = ({
   reaction,

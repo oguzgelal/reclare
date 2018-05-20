@@ -10,7 +10,9 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.4",
     "babel-plugin-check-es2015-constants": "^6.3.13",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-syntax-jsx": "^6.3.13",
     "babel-plugin-transform-decorators-legacy": "^1.2.0",
@@ -23,7 +25,7 @@
     "babel-plugin-transform-es2015-for-of": "^6.3.13",
     "babel-plugin-transform-es2015-function-name": "^6.3.13",
     "babel-plugin-transform-es2015-literals": "^6.3.13",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-es2015-object-super": "^6.3.13",
     "babel-plugin-transform-es2015-parameters": "^6.3.13",
     "babel-plugin-transform-es2015-shorthand-properties": "^6.3.13",
@@ -38,6 +40,7 @@
     "cross-env": "^5.1.4",
     "eslint": "^4.19.1",
     "immutadot": "^1.0.0",
+    "jest": "^22.4.4",
     "lodash": "^4.17.10",
     "pre-commit": "^1.2.2",
     "prettier": "1.12.1",
@@ -50,22 +53,25 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
-    "lint": "./node_modules/.bin/eslint {src,test}/**/*",
-    "lint:fix": "./node_modules/.bin/eslint --fix {src,test}/**/*",
+    "jest": "./node_modules/.bin/jest",
+    "lint": "./node_modules/.bin/eslint --fix {src,test}/**/*",
     "prettier": "./node_modules/.bin/prettier --config .prettierrc --write {src,test}/**/*.js",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir dist/cjs",
     "build:es": "cross-env BABEL_ENV=es babel src --out-dir dist/es",
     "build:umd": "cross-env BABEL_ENV=rollup NODE_ENV=development rollup -c",
     "build:umd:min": "cross-env BABEL_ENV=rollup NODE_ENV=production rollup -c",
     "build": "npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
-    "clean": "rimraf dist",
-    "rand": "openssl rand -base64 16 | cut -c 1-14 | tr -d '\n' | pbcopy"
+    "clean": "rimraf dist"
   },
   "pre-commit": [
+    "jest",
     "prettier",
     "lint"
   ],
   "files": [
     "dist"
-  ]
+  ],
+  "jest": {
+    "testRegex": "(/test/.*\\.spec.js)$"
+  }
 }

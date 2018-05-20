@@ -1,7 +1,7 @@
 // declaration - [{ situations, reactions, reactionsElse, ...etc }]
 // declarationObject - { situations, reactions, reactionsElse, ...etc }
 
-import evaluateSituations from '../situations/evaluateSituations';
+import evaluateSituations from './situations/evaluateSituations';
 import executeHooks from '../middlewares/executeHooks';
 import { DECLARATION_TRIGGERED } from '../middlewares/hookTypes';
 

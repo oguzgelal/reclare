@@ -1,8 +1,8 @@
-import { fail } from '../utils/alert';
+import { fail, MISSING_MIDDLEWARE_CONFIG, INVALID_HOOK } from '../utils/alert';
 
 export const validateMiddleware = config => {
   if (!config) {
-    fail('No configuration provided for the middleware', 'V+YzuqU1Vgy/oy');
+    fail('No configuration provided for the middleware', MISSING_MIDDLEWARE_CONFIG);
   }
 };
 
@@ -14,7 +14,7 @@ export const validateHooks = hooks => {
   if (!Array.isArray(hooks) && typeof hooks !== 'function') {
     fail(
       `Invalid hook provided. Expected a function or an array of functions, got "${typeof hooks}"`,
-      'enYIL0dpH5PYWS'
+      INVALID_HOOK
     );
   }
 };

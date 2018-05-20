@@ -1,5 +1,8 @@
-/**
- * internal store of this library
- */
-const ctx = {};
+// active context
+let ctx = {};
+
+export const setContext = _ctx => {
+  ctx = _ctx;
+};
+
 export default ctx;
