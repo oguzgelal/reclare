@@ -13,6 +13,7 @@ import {
 const executeReducer = ({
   reducer,
   eventKey,
+
   payload,
 }) => {
 
