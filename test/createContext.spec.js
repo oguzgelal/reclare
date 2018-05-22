@@ -11,5 +11,11 @@ describe('createContext', () => {
     expect(() => createContext({ onEvent: 'not an object array' })).toThrow(
       INVALID_DECLARATION_ARGUMENT
     );
+    expect(() => createContext({ onImmediateStateChange: 'not an object array' })).toThrow(
+      INVALID_DECLARATION_ARGUMENT
+    );
+    expect(() => createContext({ onStateChange: 'not an object array' })).toThrow(
+      INVALID_DECLARATION_ARGUMENT
+    );
   });
 });
