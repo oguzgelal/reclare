@@ -6,7 +6,7 @@ node_js:
   - '6'
 
 install:
-  - npm run bootstrap
+  - npm install
 
 script:
   - npm run check
