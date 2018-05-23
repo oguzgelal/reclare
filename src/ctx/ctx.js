@@ -5,9 +5,10 @@ import { validateConfiguration } from './ctxHelpers';
 import { validateBroadcastDeclaration } from '../broadcasts/broadcastHelpers';
 import { validateSubscriptionDeclaration } from '../subscriptions/subscriptionHelpers';
 
-import broadcast from '../broadcasts/broadcast';
-import getState from '../state/getState';
-import registerMiddleware from '../middlewares/registerMiddleware';
+import { _broadcast } from '../broadcasts/broadcast';
+import { _getState } from '../state/getState';
+import { _registerMiddleware } from '../middlewares/registerMiddleware';
+import { _registerHooks } from '../middlewares/registerHooks';
 
 import {
   BEFORE_START,
@@ -24,15 +25,19 @@ export default class ReclareContext {
   }
 
   broadcast(...args) {
-    broadcast(...args, this);
+    return _broadcast(this)(...args);
   }
 
-  getState() {
-    return getState(this);
+  getState(...args) {
+    return _getState(this)(...args);
   }
 
   registerMiddleware(...args) {
-    registerMiddleware(...args, this);
+    return _registerMiddleware(this)(...args);
+  }
+
+  registerHooks(...args) {
+    return _registerHooks(this)(...args);
   }
 
   _init(config) {

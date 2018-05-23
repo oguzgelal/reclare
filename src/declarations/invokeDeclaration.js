@@ -14,14 +14,14 @@ export default ({
   // populated when invoked from a subscription
   prevState
 }) => {
-  let reducerQueue = [];
-  let reactionQueue = [];
-
   if (declaration && declaration.length > 0) {
     executeHooks({ ctx, id: DECLARATION_HIT }, eventKey, payload);
   } else {
     executeHooks({ ctx, id: DECLARATION_MISS }, eventKey, payload);
   }
+
+  let reducerQueue = [];
+  let reactionQueue = [];
 
   // run through the declarations on an event
   (declaration || []).map(declarationObject => {

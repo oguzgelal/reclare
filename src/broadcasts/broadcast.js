@@ -1,4 +1,4 @@
-import activeCtx from '../ctx';
+import global from '../ctx';
 
 import defaultOptions from '../config/broadcastDefaults';
 import executeHooks from '../middlewares/executeHooks';
@@ -16,13 +16,13 @@ const broadcast = ({ ctx, eventKey, payload }) => {
   executeHooks({ ctx, id: AFTER_BROADCAST }, eventKey, payload);
 };
 
-export default (eventKey, payload, options = {}, ctx) => {
+export const _broadcast = ctx => (eventKey, payload, options = {}) => {
   const opts = Object.assign(defaultOptions, options);
 
   if (opts.defer) {
     setTimeout(() =>
       broadcast({
-        ctx: ctx || activeCtx,
+        ctx: ctx || global.ctx,
         options: opts,
         eventKey,
         payload
@@ -30,10 +30,12 @@ export default (eventKey, payload, options = {}, ctx) => {
     );
   } else {
     broadcast({
-      ctx: ctx || activeCtx,
+      ctx: ctx || global.ctx,
       options: opts,
       eventKey,
       payload
     });
   }
 };
+
+export default _broadcast(null);

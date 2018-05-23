@@ -1,8 +1,4 @@
 // active context
-let activeCtx = {};
+let global = {};
 
-export const setContext = ctx => {
-  activeCtx = ctx;
-};
-
-export default activeCtx;
+export default global;

@@ -1,9 +1,9 @@
-import activeCtx from '../ctx';
+import global from '../ctx';
 import { validateHooks } from './middlewareHelpers';
 
-export default (hookId, hooks, ctx) => {
+export const _registerHooks = ctx => (hookId, hooks) => {
   validateHooks(hooks);
-  const useCtx = ctx || activeCtx;
+  const useCtx = ctx || global.ctx;
 
   useCtx.hooks = useCtx.hooks || {};
   useCtx.hooks[hookId] = useCtx.hooks[hookId] || [];
@@ -16,3 +16,5 @@ export default (hookId, hooks, ctx) => {
     useCtx.hooks[hookId].push(hooks);
   }
 };
+
+export default _registerHooks(null);
