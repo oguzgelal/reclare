@@ -3,9 +3,7 @@
 // import { INVALID_HOOK } from '../src/utils/alert'
 
 describe('registerMiddleware', () => {
-
-  it('should fail when invalid hooks added', () => {
-    expect(true).toBe(true)
-  })
-
+  it('should fail on invalid input', () => {
+    expect(true).toBe(true);
+  });
 });
