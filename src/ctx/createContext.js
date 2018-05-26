@@ -1,12 +1,12 @@
 import global from './';
 import ReclareContext from './ctx';
 
-export default (config, options = {}) => {
+export default config => {
   // initiate reclare context
   const ctx = new ReclareContext(config);
 
   // if successfully initialised, set it as the active context
-  if (ctx && ctx.started && !options.createOnly) {
+  if (ctx && ctx.started && !config.createOnly) {
     global.ctx = ctx;
   }
 

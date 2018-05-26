@@ -6,6 +6,7 @@ import { _broadcast } from '../broadcasts/broadcast';
 import { _getState } from '../state/getState';
 import { _registerMiddleware } from '../middlewares/registerMiddleware';
 import { _registerHooks } from '../middlewares/registerHooks';
+import randomString from '../utils/randomString';
 
 import { validateBroadcastDeclaration } from '../broadcasts/broadcastHelpers';
 import { validateSubscriptionDeclaration } from '../subscriptions/subscriptionHelpers';
@@ -59,6 +60,9 @@ export default class ReclareContext {
       );
 
       this.started = true;
+
+      // Assign a unique id to be able to compare context
+      this.id = randomString(30);
 
       // Initialise the settings
       this.settings = Object.assign(reclareDefaults, config.options || {});

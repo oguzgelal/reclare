@@ -1,21 +1,25 @@
+import global from '../../src/ctx';
 import createContext from '../../src/ctx/createContext';
-import { INVALID_DECLARATION_ARGUMENT } from '../../src/utils/alert';
+import { INVALID_CONFIG } from '../../src/utils/alert';
 
 describe('createContext', () => {
+  it('should fail when invalid config provided', () => {
+    expect(() => createContext(null)).toThrow(INVALID_CONFIG);
+    expect(() => createContext('not an object')).toThrow(INVALID_CONFIG);
+  });
+
   it('should start the library', () => {
     const ctx = createContext({});
     expect(ctx.started).toBe(true);
   });
 
-  it('should fail when invalid declaration provided', () => {
-    expect(() => createContext({ onEvent: 'not an object array' })).toThrow(
-      INVALID_DECLARATION_ARGUMENT
-    );
-    expect(() =>
-      createContext({ onImmediateStateChange: 'not an object array' })
-    ).toThrow(INVALID_DECLARATION_ARGUMENT);
-    expect(() =>
-      createContext({ onStateChange: 'not an object array' })
-    ).toThrow(INVALID_DECLARATION_ARGUMENT);
+  it('should not register as active context when createOnly option provided', () => {
+    const ctx = createContext({ createOnly: true });
+    expect((global.ctx || {}).id).not.toBe(ctx.id);
+  });
+
+  it('should register as active context when createOnly option not provided', () => {
+    const ctx = createContext({});
+    expect(global.ctx.id).toBe(ctx.id);
   });
 });

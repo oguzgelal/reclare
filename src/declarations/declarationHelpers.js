@@ -2,7 +2,9 @@ import {
   fail,
   INVALID_DECLARATION_ARGUMENT,
   INVALID_DECLARATION,
-  INVALID_TRIGGER
+  INVALID_TRIGGER,
+  INVALID_REACTION,
+  INVALID_REDUCER
 } from '../utils/alert';
 
 export const validateDeclarations = ({ declarations }) => {
@@ -21,6 +23,7 @@ export const validateDeclaration = ({ declaration, customValidate }) => {
       INVALID_DECLARATION
     );
   }
+  // fail if `on` exists and is invalid
   if (
     declaration.on &&
     typeof declaration.on !== 'string' &&
@@ -31,6 +34,29 @@ export const validateDeclaration = ({ declaration, customValidate }) => {
       INVALID_TRIGGER
     );
   }
+  // fail if reaction exists and is invalid
+  if (
+    declaration.reaction &&
+    typeof declaration.reaction !== 'function' &&
+    !Array.isArray(declaration.reaction)
+  ) {
+    fail(
+      '`reaction` should either be function or array of functions',
+      INVALID_REACTION
+    );
+  }
+  // fail if reducer exists and is invalid
+  if (
+    declaration.reducer &&
+    typeof declaration.reducer !== 'function' &&
+    !Array.isArray(declaration.reducer)
+  ) {
+    fail(
+      '`reducer` should either be function or array of functions',
+      INVALID_REDUCER
+    );
+  }
+
   // custom validator for declarations
   if (customValidate) {
     customValidate({ declaration });
