@@ -1,7 +1,8 @@
 import {
   fail,
   INVALID_DECLARATION_ARGUMENT,
-  INVALID_DECLARATION
+  INVALID_DECLARATION,
+  INVALID_TRIGGER
 } from '../utils/alert';
 
 export const validateDeclarations = ({ declarations }) => {
@@ -14,12 +15,23 @@ export const validateDeclarations = ({ declarations }) => {
 };
 
 export const validateDeclaration = ({ declaration, customValidate }) => {
-  if (!declaration) {
+  if (!declaration || typeof declaration !== 'object') {
     fail(
-      `Expected declaration, got ${JSON.stringify(declaration)}`,
+      `Expected declaration object, got ${JSON.stringify(declaration)}`,
       INVALID_DECLARATION
     );
   }
+  if (
+    declaration.on &&
+    typeof declaration.on !== 'string' &&
+    !Array.isArray(declaration.on)
+  ) {
+    fail(
+      'Declarations `on` trigger should either be a string or a string array',
+      INVALID_TRIGGER
+    );
+  }
+  // custom validator for declarations
   if (customValidate) {
     customValidate({ declaration });
   }

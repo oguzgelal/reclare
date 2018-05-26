@@ -1,29 +1,20 @@
+import parseSituations from './situations/parseSituations';
+import parseReactions from './reactions/parseReactions';
+import parseReducers from './reducers/parseReducers';
+
 import {
   validateDeclarations,
   validateDeclaration
 } from './declarationHelpers';
-import parseSituations from './situations/parseSituations';
-import parseReactions from './reactions/parseReactions';
-import parseReducers from './reducers/parseReducers';
-import { validateSituation } from './situations/situationHelpers';
-import { validateReducer } from './reducers/reducerHelpers';
-import { validateReaction } from './reactions/reactionHelpers';
 
-export default ({
-  type,
-  declarations,
-  customValidateDeclaration,
-  customValidateSituation,
-  customValidateReducer,
-  customValidateReaction
-}) => {
+export default ({ type, declarations, customValidate }) => {
   validateDeclarations({ type, declarations });
 
   return declarations.reduce((acc, declaration) => {
     validateDeclaration({
       type,
       declaration,
-      customValidate: customValidateDeclaration
+      customValidate
     });
 
     const parsed = Object.assign(
@@ -31,33 +22,9 @@ export default ({
         type,
         unparsed: declaration
       },
-      parseSituations({
-        declaration,
-        validator: situation => {
-          validateSituation({
-            customValidate: customValidateSituation,
-            situation
-          });
-        }
-      }),
-      parseReducers({
-        declaration,
-        validator: reducer => {
-          validateReducer({
-            customValidate: customValidateReducer,
-            reducer
-          });
-        }
-      }),
-      parseReactions({
-        declaration,
-        validator: reaction => {
-          validateReaction({
-            customValidate: customValidateReaction,
-            reaction
-          });
-        }
-      })
+      parseSituations(declaration),
+      parseReducers(declaration),
+      parseReactions(declaration)
     );
 
     // merge declarations by "on"

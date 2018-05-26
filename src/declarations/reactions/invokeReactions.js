@@ -1,4 +1,5 @@
 import executeHooks from '../../middlewares/executeHooks';
+import { validateReaction } from './reactionHelpers';
 import {
   BEFORE_REACTION,
   BEFORE_REACTIONS,
@@ -19,6 +20,8 @@ const executeReaction = ({
     eventKey,
     payload,
   );
+
+  validateReaction({ reaction });
 
   reaction({
     state: ctx.state,

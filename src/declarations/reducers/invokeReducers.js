@@ -1,5 +1,6 @@
 import executeHooks from '../../middlewares/executeHooks';
 import setState from '../../state/setState';
+import { validateReducer } from './reducerHelpers';
 
 import {
   BEFORE_REDUCER,
@@ -20,6 +21,8 @@ const executeReducer = ({
     eventKey,
     payload,
   );
+
+  validateReducer({ reducer });
 
   setState({
     ctx,

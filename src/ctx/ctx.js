@@ -2,21 +2,20 @@ import reclareDefaults from '../config/reclareDefaults';
 import parseDeclarations from '../declarations/parseDeclarations';
 import executeHooks from '../middlewares/executeHooks';
 import { validateConfiguration } from './ctxHelpers';
-import { validateBroadcastDeclaration } from '../broadcasts/broadcastHelpers';
-import { validateSubscriptionDeclaration } from '../subscriptions/subscriptionHelpers';
-
 import { _broadcast } from '../broadcasts/broadcast';
 import { _getState } from '../state/getState';
 import { _registerMiddleware } from '../middlewares/registerMiddleware';
 import { _registerHooks } from '../middlewares/registerHooks';
+
+import { validateBroadcastDeclaration } from '../broadcasts/broadcastHelpers';
+import { validateSubscriptionDeclaration } from '../subscriptions/subscriptionHelpers';
+import { DECLARATION_BROADCAST, DECLARATION_SUB } from '../config/constants';
 
 import {
   BEFORE_START,
   BEFORE_STATE,
   AFTER_START
 } from '../middlewares/hookTypes';
-
-import { DECLARATION_BROADCAST, DECLARATION_SUB } from '../config/constants';
 
 export default class ReclareContext {
   constructor(config) {
@@ -67,40 +66,33 @@ export default class ReclareContext {
       // Initialise the state
       this.state = config.initialState || {};
 
-      // Set on broadcasts
+      // Runs on broadcasts
       this.onEvent =
         config.onEvent &&
         parseDeclarations({
           type: DECLARATION_BROADCAST,
           declarations: config.onEvent,
-          customValidateDeclaration: validateBroadcastDeclaration,
-          customValidateSituation: null,
-          customValidateReducer: null,
-          customValidateReaction: null
+          customValidate: config.mockValidate || validateBroadcastDeclaration
         });
 
-      // Run right after reducers changes the state (before reactions)
+      // Run right after reducers changes
+      // the state (before reactions)
       this.onImmediateStateChange =
         config.onImmediateStateChange &&
         parseDeclarations({
           type: DECLARATION_SUB,
           declarations: config.onStateChange,
-          customValidateDeclaration: validateSubscriptionDeclaration,
-          customValidateSituation: null,
-          customValidateReducer: null,
-          customValidateReaction: null
+          customValidate: config.mockValidate || validateSubscriptionDeclaration
         });
 
-      // Run when state changed and the declaration finishes its execution (after reactions)
+      // Run when state changed and the declaration
+      // finishes its execution (after reactions)
       this.onStateChange =
         config.onStateChange &&
         parseDeclarations({
           type: DECLARATION_SUB,
           declarations: config.onStateChange,
-          customValidateDeclaration: validateSubscriptionDeclaration,
-          customValidateSituation: null,
-          customValidateReducer: null,
-          customValidateReaction: null
+          customValidate: config.mockValidate || validateSubscriptionDeclaration
         });
 
       executeHooks({
