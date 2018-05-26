@@ -55,6 +55,7 @@
   "scripts": {
     "check": "npm run jest && npm run lint",
     "jest": "./node_modules/.bin/jest",
+    "jest:coverage": "./node_modules/.bin/jest --coverage",
     "lint": "./node_modules/.bin/eslint --fix {src,test}/**/*",
     "prettier": "./node_modules/.bin/prettier --config .prettierrc --write {src,test}/**/*.js",
     "add": "git add --all",
@@ -66,7 +67,7 @@
     "clean": "rimraf dist"
   },
   "pre-commit": [
-    "jest",
+    "jest:coverage",
     "prettier",
     "lint",
     "add"

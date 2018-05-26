@@ -95,4 +95,22 @@ describe('parseDeclarations', () => {
     expect(declaration.reducers.length).toBe(1);
     expect(declaration.reducersElse.length).toBe(1);
   });
+
+  it('should merge declarations by `on` key', () => {
+    const ctx = createContext({
+      onEvent: [
+        { on: ['a', 'b', 'c'] },
+        { on: ['b', 'c', 'd'] },
+        { on: 'a' },
+        { on: 'c' },
+        { on: 'c' },
+        { on: ['a', 'd'] }
+      ]
+    });
+
+    expect(ctx.onEvent.a.length).toBe(3);
+    expect(ctx.onEvent.b.length).toBe(2);
+    expect(ctx.onEvent.c.length).toBe(4);
+    expect(ctx.onEvent.d.length).toBe(2);
+  });
 });
