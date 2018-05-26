@@ -54,9 +54,9 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
-    "check": "npm run jest && npm run lint",
-    "jest": "./node_modules/.bin/jest",
-    "jest:coverage": "./node_modules/.bin/jest --coverage",
+    "check": "npm run jest:coveralls && npm run lint",
+    "jest": "./node_modules/.bin/jest --coverage",
+    "jest:coveralls": "./node_modules/.bin/jest --coverage --coverageReporters=text-lcov | ./node_modules/.bin/coveralls",
     "lint": "./node_modules/.bin/eslint --fix {src,test}/**/*",
     "prettier": "./node_modules/.bin/prettier --config .prettierrc --write {src,test}/**/*.js",
     "add": "git add --all",
@@ -68,7 +68,7 @@
     "clean": "rimraf dist"
   },
   "pre-commit": [
-    "jest:coverage",
+    "jest",
     "prettier",
     "lint",
     "add"
