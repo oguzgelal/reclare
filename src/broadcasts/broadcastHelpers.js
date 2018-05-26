@@ -8,7 +8,3 @@ export const validateBroadcastDeclaration = ({ declaration }) => {
     );
   }
 };
-
-export const validateBroadcastSituation = () => {};
-export const validateBroadcastReducer = () => {};
-export const validateBroadcastReaction = () => {};

@@ -21,7 +21,8 @@ export default ({ declarationObject, prevState, eventKey, payload, ctx }) => {
     situations,
     prevState,
     eventKey,
-    payload
+    payload,
+    ctx
   });
 
   return {

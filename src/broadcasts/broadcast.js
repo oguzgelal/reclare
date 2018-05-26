@@ -8,7 +8,7 @@ import { BEFORE_BROADCAST, AFTER_BROADCAST } from '../middlewares/hookTypes';
 const broadcast = ({ ctx, eventKey, payload }) => {
   executeHooks({ ctx, id: BEFORE_BROADCAST }, eventKey, payload);
   invokeDeclaration({
-    declaration: (ctx.onEvent || {})[eventKey] || null,
+    declaration: ctx.onEvent[eventKey],
     eventKey,
     payload,
     ctx
@@ -18,7 +18,6 @@ const broadcast = ({ ctx, eventKey, payload }) => {
 
 export const _broadcast = ctx => (eventKey, payload, options = {}) => {
   const opts = Object.assign(defaultOptions, options);
-
   if (opts.defer) {
     setTimeout(() =>
       broadcast({

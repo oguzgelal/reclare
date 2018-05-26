@@ -1,6 +1,7 @@
 import parseSituations from './situations/parseSituations';
 import parseReactions from './reactions/parseReactions';
 import parseReducers from './reducers/parseReducers';
+import toArray from '../utils/toArray';
 
 import {
   validateDeclarations,
@@ -28,15 +29,10 @@ export default ({ type, declarations, customValidate }) => {
     );
 
     // merge declarations by "on"
-    if (Array.isArray(declaration.on)) {
-      declaration.on.map(on => {
-        acc[on] = acc[on] || [];
-        acc[on].push(parsed);
-      });
-    } else if (typeof declaration.on === 'string') {
-      acc[declaration.on] = acc[declaration.on] || [];
-      acc[declaration.on].push(parsed);
-    }
+    toArray(declaration.on).map(on => {
+      acc[on] = acc[on] || [];
+      acc[on].push(parsed);
+    });
 
     return acc;
   }, {});

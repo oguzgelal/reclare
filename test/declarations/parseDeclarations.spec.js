@@ -1,8 +1,12 @@
 import createContext from '../../src/ctx/createContext';
-import { INVALID_DECLARATION_ARGUMENT } from '../../src/utils/alert';
+import {
+  INVALID_DECLARATION_ARGUMENT,
+  INVALID_DECLARATION,
+  INVALID_TRIGGER
+} from '../../src/utils/alert';
 
 describe('parseDeclarations', () => {
-  it('should throw error on invalid declarations', () => {
+  it('should throw error on invalid declaration array', () => {
     expect(() =>
       createContext({
         onEvent: 'not an object array'
@@ -33,6 +37,23 @@ describe('parseDeclarations', () => {
         onImmediateStateChange: {}
       })
     ).toThrow(INVALID_DECLARATION_ARGUMENT);
+  });
+
+  it('should fail on invalid declaration', () => {
+    expect(() =>
+      createContext({
+        onEvent: ['not an object']
+      })
+    ).toThrow(INVALID_DECLARATION);
+    expect(() =>
+      createContext({
+        onEvent: [
+          {
+            on: () => alert('this is wrong')
+          }
+        ]
+      })
+    ).toThrow(INVALID_TRIGGER);
   });
 
   // Custom validator functions checks a declaration object is valid

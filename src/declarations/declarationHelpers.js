@@ -57,8 +57,6 @@ export const validateDeclaration = ({ declaration, customValidate }) => {
     );
   }
 
-  // custom validator for declarations
-  if (customValidate) {
-    customValidate({ declaration });
-  }
+  // execute the custom validator for the declarations type
+  customValidate({ declaration });
 };
