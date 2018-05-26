@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1527346464466" clover="3.2.0">
+  <project timestamp="1527346464466" name="All files">
+    <metrics statements="219" coveredstatements="188" conditionals="135" coveredconditionals="105" methods="62" coveredmethods="50" elements="416" coveredelements="343" complexity="0" loc="219" ncloc="219" packages="11" files="33" classes="33">
+      <package name="broadcasts">
+        <metrics statements="13" coveredstatements="13" conditionals="9" coveredconditionals="9" methods="5" coveredmethods="5"/>
+        <file name="broadcast.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/broadcasts/broadcast.js">
+          <metrics statements="10" coveredstatements="10" conditionals="7" coveredconditionals="7" methods="4" coveredmethods="4"/>
+          <line num="8" count="7" type="stmt"/>
+          <line num="9" count="3" type="stmt"/>
+          <line num="10" count="3" type="stmt"/>
+          <line num="16" count="3" type="stmt"/>
+          <line num="19" count="10" type="cond" truecount="1" falsecount="0"/>
+          <line num="20" count="5" type="stmt"/>
+          <line num="21" count="5" type="cond" truecount="2" falsecount="0"/>
+          <line num="22" count="3" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="31" count="2" type="stmt"/>
+        </file>
+        <file name="broadcastHelpers.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/broadcasts/broadcastHelpers.js">
+          <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="3" count="7" type="stmt"/>
+          <line num="4" count="13" type="cond" truecount="2" falsecount="0"/>
+          <line num="5" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="config">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="broadcastDefaults.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/config/broadcastDefaults.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="constants.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/config/constants.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="2" count="7" type="stmt"/>
+          <line num="3" count="7" type="stmt"/>
+        </file>
+        <file name="reclareDefaults.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/config/reclareDefaults.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
+      <package name="ctx">
+        <metrics statements="28" coveredstatements="26" conditionals="29" coveredconditionals="26" methods="9" coveredmethods="7"/>
+        <file name="createContext.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/ctx/createContext.js">
+          <metrics statements="4" coveredstatements="4" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
+          <line num="6" count="30" type="stmt"/>
+          <line num="9" count="17" type="cond" truecount="5" falsecount="0"/>
+          <line num="10" count="16" type="stmt"/>
+          <line num="14" count="17" type="stmt"/>
+        </file>
+        <file name="ctx.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/ctx/ctx.js">
+          <metrics statements="18" coveredstatements="16" conditionals="20" coveredconditionals="17" methods="7" coveredmethods="5"/>
+          <line num="23" count="30" type="stmt"/>
+          <line num="24" count="28" type="stmt"/>
+          <line num="28" count="3" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="36" count="3" type="stmt"/>
+          <line num="40" count="66" type="stmt"/>
+          <line num="44" count="28" type="cond" truecount="1" falsecount="1"/>
+          <line num="45" count="28" type="stmt"/>
+          <line num="49" count="28" type="stmt"/>
+          <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="62" count="28" type="stmt"/>
+          <line num="65" count="28" type="stmt"/>
+          <line num="68" count="28" type="cond" truecount="2" falsecount="0"/>
+          <line num="71" count="28" type="cond" truecount="2" falsecount="0"/>
+          <line num="74" count="28" type="stmt"/>
+          <line num="84" count="21" type="stmt"/>
+          <line num="94" count="19" type="stmt"/>
+          <line num="102" count="17" type="stmt"/>
+        </file>
+        <file name="ctxHelpers.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/ctx/ctxHelpers.js">
+          <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+          <line num="3" count="7" type="stmt"/>
+          <line num="4" count="30" type="cond" truecount="2" falsecount="0"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="7" count="29" type="cond" truecount="2" falsecount="0"/>
+          <line num="8" count="1" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/ctx/index.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="2" count="7" type="stmt"/>
+        </file>
+      </package>
+      <package name="declarations">
+        <metrics statements="37" coveredstatements="36" conditionals="37" coveredconditionals="31" methods="8" coveredmethods="8"/>
+        <file name="declarationHelpers.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/declarationHelpers.js">
+          <metrics statements="13" coveredstatements="13" conditionals="21" coveredconditionals="21" methods="2" coveredmethods="2"/>
+          <line num="10" count="7" type="stmt"/>
+          <line num="11" count="20" type="cond" truecount="2" falsecount="0"/>
+          <line num="12" count="6" type="stmt"/>
+          <line num="19" count="7" type="stmt"/>
+          <line num="20" count="18" type="cond" truecount="4" falsecount="0"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="27" count="17" type="cond" truecount="2" falsecount="0"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="38" count="16" type="cond" truecount="2" falsecount="0"/>
+          <line num="43" count="1" type="stmt"/>
+          <line num="49" count="15" type="cond" truecount="2" falsecount="0"/>
+          <line num="54" count="1" type="stmt"/>
+          <line num="61" count="14" type="stmt"/>
+        </file>
+        <file name="invokeDeclaration.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/invokeDeclaration.js">
+          <metrics statements="12" coveredstatements="11" conditionals="10" coveredconditionals="6" methods="2" coveredmethods="2"/>
+          <line num="17" count="3" type="cond" truecount="3" falsecount="1"/>
+          <line num="18" count="3" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="23" count="3" type="stmt"/>
+          <line num="24" count="3" type="stmt"/>
+          <line num="27" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="30" count="3" type="stmt"/>
+          <line num="40" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="41" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="45" count="3" type="stmt"/>
+          <line num="48" count="3" type="stmt"/>
+          <line num="58" count="3" type="stmt"/>
+        </file>
+        <file name="invokeDeclarationObject.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/invokeDeclarationObject.js">
+          <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="16" count="3" type="stmt"/>
+          <line num="18" count="3" type="stmt"/>
+          <line num="20" count="3" type="stmt"/>
+          <line num="28" count="3" type="stmt"/>
+        </file>
+        <file name="parseDeclarations.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/parseDeclarations.js">
+          <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+          <line num="12" count="20" type="stmt"/>
+          <line num="14" count="14" type="stmt"/>
+          <line num="15" count="18" type="stmt"/>
+          <line num="21" count="13" type="stmt"/>
+          <line num="32" count="13" type="stmt"/>
+          <line num="33" count="18" type="cond" truecount="2" falsecount="0"/>
+          <line num="34" count="18" type="stmt"/>
+          <line num="37" count="13" type="stmt"/>
+        </file>
+      </package>
+      <package name="declarations.reactions">
+        <metrics statements="13" coveredstatements="12" conditionals="2" coveredconditionals="1" methods="5" coveredmethods="5"/>
+        <file name="invokeReactions.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/reactions/invokeReactions.js">
+          <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+          <line num="10" count="7" type="stmt"/>
+          <line num="18" count="3" type="stmt"/>
+          <line num="24" count="3" type="stmt"/>
+          <line num="26" count="3" type="stmt"/>
+          <line num="33" count="3" type="stmt"/>
+          <line num="48" count="3" type="stmt"/>
+          <line num="54" count="3" type="stmt"/>
+          <line num="55" count="3" type="stmt"/>
+          <line num="64" count="3" type="stmt"/>
+        </file>
+        <file name="parseReactions.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/reactions/parseReactions.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="3" count="13" type="stmt"/>
+        </file>
+        <file name="reactionHelpers.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/reactions/reactionHelpers.js">
+          <metrics statements="3" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+          <line num="3" count="7" type="stmt"/>
+          <line num="4" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="5" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="declarations.reducers">
+        <metrics statements="13" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="2"/>
+        <file name="invokeReducers.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/reducers/invokeReducers.js">
+          <metrics statements="9" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+          <line num="12" count="7" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="50" count="3" type="stmt"/>
+          <line num="56" count="3" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="65" count="3" type="stmt"/>
+        </file>
+        <file name="parseReducers.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/reducers/parseReducers.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="3" count="13" type="stmt"/>
+        </file>
+        <file name="reducerHelpers.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/reducers/reducerHelpers.js">
+          <metrics statements="3" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="3" count="7" type="stmt"/>
+          <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="5" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="declarations.situations">
+        <metrics statements="11" coveredstatements="6" conditionals="4" coveredconditionals="1" methods="4" coveredmethods="2"/>
+        <file name="evaluateSituations.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/situations/evaluateSituations.js">
+          <metrics statements="10" coveredstatements="5" conditionals="4" coveredconditionals="1" methods="3" coveredmethods="1"/>
+          <line num="4" count="7" type="stmt"/>
+          <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="18" count="0" type="stmt"/>
+          <line num="30" count="3" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="39" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="40" count="3" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="53" count="3" type="stmt"/>
+        </file>
+        <file name="parseSituations.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/declarations/situations/parseSituations.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="3" count="13" type="stmt"/>
+        </file>
+      </package>
+      <package name="middlewares">
+        <metrics statements="54" coveredstatements="46" conditionals="32" coveredconditionals="21" methods="10" coveredmethods="8"/>
+        <file name="executeHooks.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/middlewares/executeHooks.js">
+          <metrics statements="9" coveredstatements="2" conditionals="10" coveredconditionals="1" methods="3" coveredmethods="1"/>
+          <line num="3" count="7" type="stmt"/>
+          <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="9" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="17" count="106" type="cond" truecount="1" falsecount="1"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+        </file>
+        <file name="hookTypes.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/middlewares/hookTypes.js">
+          <metrics statements="22" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="10" count="7" type="stmt"/>
+          <line num="15" count="7" type="stmt"/>
+          <line num="25" count="7" type="stmt"/>
+          <line num="30" count="7" type="stmt"/>
+          <line num="38" count="7" type="stmt"/>
+          <line num="47" count="7" type="stmt"/>
+          <line num="56" count="7" type="stmt"/>
+          <line num="65" count="7" type="stmt"/>
+          <line num="74" count="7" type="stmt"/>
+          <line num="83" count="7" type="stmt"/>
+          <line num="93" count="7" type="stmt"/>
+          <line num="105" count="7" type="stmt"/>
+          <line num="115" count="7" type="stmt"/>
+          <line num="125" count="7" type="stmt"/>
+          <line num="135" count="7" type="stmt"/>
+          <line num="145" count="7" type="stmt"/>
+          <line num="155" count="7" type="stmt"/>
+          <line num="165" count="7" type="stmt"/>
+          <line num="175" count="7" type="stmt"/>
+          <line num="185" count="7" type="stmt"/>
+          <line num="195" count="7" type="stmt"/>
+          <line num="205" count="7" type="stmt"/>
+        </file>
+        <file name="middlewareHelpers.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/middlewares/middlewareHelpers.js">
+          <metrics statements="8" coveredstatements="7" conditionals="10" coveredconditionals="9" methods="2" coveredmethods="2"/>
+          <line num="3" count="7" type="stmt"/>
+          <line num="4" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="12" count="7" type="stmt"/>
+          <line num="14" count="66" type="cond" truecount="4" falsecount="0"/>
+          <line num="15" count="63" type="stmt"/>
+          <line num="17" count="3" type="cond" truecount="3" falsecount="1"/>
+          <line num="18" count="0" type="stmt"/>
+        </file>
+        <file name="registerHooks.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/middlewares/registerHooks.js">
+          <metrics statements="9" coveredstatements="9" conditionals="10" coveredconditionals="9" methods="2" coveredmethods="2"/>
+          <line num="4" count="73" type="stmt"/>
+          <line num="5" count="66" type="stmt"/>
+          <line num="6" count="66" type="cond" truecount="1" falsecount="1"/>
+          <line num="8" count="66" type="cond" truecount="2" falsecount="0"/>
+          <line num="9" count="66" type="cond" truecount="2" falsecount="0"/>
+          <line num="11" count="66" type="cond" truecount="2" falsecount="0"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="15" count="66" type="cond" truecount="2" falsecount="0"/>
+          <line num="16" count="2" type="stmt"/>
+        </file>
+        <file name="registerMiddleware.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/middlewares/registerMiddleware.js">
+          <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+          <line num="5" count="10" type="stmt"/>
+          <line num="6" count="4" type="stmt"/>
+          <line num="7" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="9" count="3" type="stmt"/>
+          <line num="10" count="3" type="stmt"/>
+          <line num="11" count="66" type="stmt"/>
+        </file>
+      </package>
+      <package name="state">
+        <metrics statements="8" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <file name="getState.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/state/getState.js">
+          <metrics statements="3" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+          <line num="6" count="7" type="stmt"/>
+          <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="8" count="0" type="stmt"/>
+        </file>
+        <file name="setState.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/state/setState.js">
+          <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="subscriptions">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <file name="subscriptionHelpers.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/subscriptions/subscriptionHelpers.js">
+          <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="1" count="7" type="stmt"/>
+        </file>
+      </package>
+      <package name="utils">
+        <metrics statements="39" coveredstatements="39" conditionals="16" coveredconditionals="16" methods="12" coveredmethods="12"/>
+        <file name="alert.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/utils/alert.js">
+          <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="1" count="7" type="stmt"/>
+          <line num="2" count="7" type="stmt"/>
+          <line num="3" count="7" type="stmt"/>
+          <line num="4" count="7" type="stmt"/>
+          <line num="5" count="7" type="stmt"/>
+          <line num="6" count="7" type="stmt"/>
+          <line num="7" count="7" type="stmt"/>
+          <line num="8" count="7" type="stmt"/>
+          <line num="9" count="7" type="stmt"/>
+          <line num="10" count="7" type="stmt"/>
+          <line num="11" count="7" type="stmt"/>
+          <line num="13" count="7" type="stmt"/>
+          <line num="14" count="14" type="stmt"/>
+        </file>
+        <file name="operators.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/utils/operators.js">
+          <metrics statements="20" coveredstatements="20" conditionals="12" coveredconditionals="12" methods="9" coveredmethods="9"/>
+          <line num="17" count="30" type="stmt"/>
+          <line num="18" count="27" type="stmt"/>
+          <line num="19" count="43" type="cond" truecount="2" falsecount="0"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="22" count="42" type="cond" truecount="2" falsecount="0"/>
+          <line num="23" count="13" type="stmt"/>
+          <line num="25" count="29" type="stmt"/>
+          <line num="47" count="29" type="stmt"/>
+          <line num="48" count="26" type="stmt"/>
+          <line num="49" count="31" type="cond" truecount="2" falsecount="0"/>
+          <line num="50" count="1" type="stmt"/>
+          <line num="52" count="30" type="cond" truecount="2" falsecount="0"/>
+          <line num="53" count="9" type="stmt"/>
+          <line num="55" count="21" type="stmt"/>
+          <line num="96" count="20" type="stmt"/>
+          <line num="97" count="17" type="cond" truecount="2" falsecount="0"/>
+          <line num="98" count="9" type="stmt"/>
+          <line num="100" count="14" type="cond" truecount="2" falsecount="0"/>
+          <line num="101" count="3" type="stmt"/>
+          <line num="103" count="11" type="stmt"/>
+        </file>
+        <file name="randomString.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/utils/randomString.js">
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+          <line num="2" count="28" type="stmt"/>
+          <line num="4" count="28" type="stmt"/>
+          <line num="5" count="28" type="stmt"/>
+          <line num="6" count="840" type="stmt"/>
+          <line num="8" count="28" type="stmt"/>
+        </file>
+        <file name="toArray.js" path="/Users/oguzgelal/Core/Oguz/web/2018/reclare/reclare/src/utils/toArray.js">
+          <metrics statements="1" coveredstatements="1" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+          <line num="1" count="78" type="cond" truecount="4" falsecount="0"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>
