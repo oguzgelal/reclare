@@ -2,6 +2,10 @@
 
 _This library is under development_
 
+[![Coverage Status](https://coveralls.io/repos/github/reclarejs/reclare/badge.svg?branch=master)](https://coveralls.io/github/reclarejs/reclare?branch=master)
+
+[![Build Status](https://travis-ci.org/reclarejs/reclare.svg?branch=master)](https://travis-ci.org/reclarejs/reclare)
+
 ## Reclare
 
 Declarative state and event management for modern Javascript applications
