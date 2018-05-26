@@ -1,4 +1,4 @@
-export default (n = 10) => {
+export default n => {
   let text = '';
   const chars =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

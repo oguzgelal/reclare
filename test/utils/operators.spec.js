@@ -16,6 +16,7 @@ describe('operators', () => {
     expect(and(true, true)()).toBe(true);
     expect(and(true, 'hey')()).toBe(true);
     expect(and(true, false)()).toBe(false);
+    expect(and([true, false], [true, true], true)()).toBe(false);
 
     // when one or many function arguments are
     // received, it should evaluate their values
@@ -47,6 +48,7 @@ describe('operators', () => {
     expect(or(true, 'hey')()).toBe(true);
     expect(or(true, false)()).toBe(true);
     expect(or(false, false)()).toBe(false);
+    expect(or([true, false], [true, true], true)()).toBe(true);
 
     // when one or many function arguments are
     // received, it should evaluate their values
