@@ -41,68 +41,66 @@ export default class ReclareContext {
   }
 
   _init(config) {
-    if (!this.started) {
-      executeHooks({
+    executeHooks({
+      ctx: this,
+      id: BEFORE_START
+    });
+    executeHooks(
+      {
         ctx: this,
-        id: BEFORE_START
+        id: BEFORE_STATE,
+        out: nextInitialState => {
+          // if a falsy value is returned from the hook, set initialState to its
+          // previous value so middlewares can't accidentally break initial state
+          config.initialState = nextInitialState || config.initialState;
+        }
+      },
+      config.initialState
+    );
+
+    this.started = true;
+
+    // Assign a unique id to be able to compare context
+    this.id = randomString(30);
+
+    // Initialise the settings
+    this.settings = Object.assign(reclareDefaults, config.options || {});
+
+    // Initialise the state
+    this.state = config.initialState || {};
+
+    // Runs on broadcasts
+    this.onEvent =
+      config.onEvent &&
+      parseDeclarations({
+        type: DECLARATION_BROADCAST,
+        declarations: config.onEvent,
+        customValidate: config.mockValidate || validateBroadcastDeclaration
       });
-      executeHooks(
-        {
-          ctx: this,
-          id: BEFORE_STATE,
-          out: nextInitialState => {
-            // if a falsy value is returned from the hook, set initialState to its
-            // previous value so middlewares can't accidentally break initial state
-            config.initialState = nextInitialState || config.initialState;
-          }
-        },
-        config.initialState
-      );
 
-      this.started = true;
-
-      // Assign a unique id to be able to compare context
-      this.id = randomString(30);
-
-      // Initialise the settings
-      this.settings = Object.assign(reclareDefaults, config.options || {});
-
-      // Initialise the state
-      this.state = config.initialState || {};
-
-      // Runs on broadcasts
-      this.onEvent =
-        config.onEvent &&
-        parseDeclarations({
-          type: DECLARATION_BROADCAST,
-          declarations: config.onEvent,
-          customValidate: config.mockValidate || validateBroadcastDeclaration
-        });
-
-      // Run right after reducers changes
-      // the state (before reactions)
-      this.onImmediateStateChange =
-        config.onImmediateStateChange &&
-        parseDeclarations({
-          type: DECLARATION_SUB,
-          declarations: config.onStateChange,
-          customValidate: config.mockValidate || validateSubscriptionDeclaration
-        });
-
-      // Run when state changed and the declaration
-      // finishes its execution (after reactions)
-      this.onStateChange =
-        config.onStateChange &&
-        parseDeclarations({
-          type: DECLARATION_SUB,
-          declarations: config.onStateChange,
-          customValidate: config.mockValidate || validateSubscriptionDeclaration
-        });
-
-      executeHooks({
-        ctx: this,
-        id: AFTER_START
+    // Run right after reducers changes
+    // the state (before reactions)
+    this.onImmediateStateChange =
+      config.onImmediateStateChange &&
+      parseDeclarations({
+        type: DECLARATION_SUB,
+        declarations: config.onStateChange,
+        customValidate: config.mockValidate || validateSubscriptionDeclaration
       });
-    }
+
+    // Run when state changed and the declaration
+    // finishes its execution (after reactions)
+    this.onStateChange =
+      config.onStateChange &&
+      parseDeclarations({
+        type: DECLARATION_SUB,
+        declarations: config.onStateChange,
+        customValidate: config.mockValidate || validateSubscriptionDeclaration
+      });
+
+    executeHooks({
+      ctx: this,
+      id: AFTER_START
+    });
   }
 }
