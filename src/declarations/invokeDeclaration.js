@@ -7,14 +7,14 @@ import { DECLARATION_HIT, DECLARATION_MISS } from '../middlewares/hookTypes';
 
 export default ({
   ctx,
-  declaration,
+  declarations,
   // populated when invoked from a broadcast
   payload,
   eventKey,
   // populated when invoked from a subscription
   prevState
 }) => {
-  if (declaration && declaration.length > 0) {
+  if (declarations && declarations.length > 0) {
     executeHooks({ ctx, id: DECLARATION_HIT }, eventKey, payload);
   } else {
     executeHooks({ ctx, id: DECLARATION_MISS }, eventKey, payload);
@@ -24,7 +24,7 @@ export default ({
   let reactionQueue = [];
 
   // run through the declarations on an event
-  (declaration || []).map(declarationObject => {
+  (declarations || []).map(declarationObject => {
     // run a declaration - evaluate situations,
     // get reactions / reducers if it holds
     const { reducers, reactions } = invokeDeclarationObject({

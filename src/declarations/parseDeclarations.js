@@ -19,13 +19,23 @@ export default ({ type, declarations, customValidate }) => {
     });
 
     const parsed = Object.assign(
-      {
-        type,
-        unparsed: declaration
-      },
-      parseSituations(declaration),
-      parseReducers(declaration),
-      parseReactions(declaration)
+      { type, unparsed: declaration },
+      parseSituations({
+        situation: declaration.situation,
+        situationDeclared: declaration.hasOwnProperty('situation')
+      }),
+      parseReducers({
+        reducer: declaration.reducer,
+        reducerDeclared: declaration.hasOwnProperty('reducer'),
+        reducerElse: declaration.reducerElse,
+        reducerElseDeclared: declaration.hasOwnProperty('reducerElse')
+      }),
+      parseReactions({
+        reaction: declaration.reaction,
+        reactionDeclared: declaration.hasOwnProperty('reaction'),
+        reactionElse: declaration.reactionElse,
+        reactionElseDeclared: declaration.hasOwnProperty('reactionElse')
+      })
     );
 
     // merge declarations by "on"

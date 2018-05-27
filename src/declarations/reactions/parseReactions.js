@@ -1,6 +1,11 @@
 import toArray from '../../utils/toArray';
 
-export default ({ reaction, reactionElse }) => ({
-  reactions: toArray(reaction),
-  reactionsElse: toArray(reactionElse),
+export default ({
+  reaction,
+  reactionDeclared,
+  reactionElse,
+  reactionElseDeclared,
+}) => ({
+  reactions: reactionDeclared ? toArray(reaction) : [],
+  reactionsElse: reactionElseDeclared ? toArray(reactionElse) : [],
 });

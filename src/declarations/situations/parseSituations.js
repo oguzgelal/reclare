@@ -1,5 +1,8 @@
 import toArray from '../../utils/toArray';
 
-export default ({ situation }) => ({
-  situations: toArray(situation)
+export default ({
+  situation,
+  situationDeclared,
+}) => ({
+  situations: situationDeclared ? toArray(situation) : []
 });

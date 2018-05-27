@@ -22,4 +22,10 @@ describe('createContext', () => {
     const ctx = createContext({});
     expect(global.ctx.id).toBe(ctx.id);
   });
+
+  it('should initialise state based on `initialState` option', () => {
+    const ctx = createContext({ initialState: { bar: 'foo' } });
+    const state = ctx.getState();
+    expect(state.bar).toBe('foo');
+  });
 });
