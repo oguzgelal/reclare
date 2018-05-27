@@ -2,7 +2,7 @@ import global from '../ctx';
 import { validateMiddleware } from './middlewareHelpers';
 import * as hookTypes from './hookTypes';
 
-export const _registerMiddleware = ctx => config => {
+export const _registerMiddlewares = ctx => config => {
   validateMiddleware(config);
   const useCtx = ctx || global.ctx;
   // eslint-disable-next-line no-unused-vars
@@ -12,4 +12,4 @@ export const _registerMiddleware = ctx => config => {
   });
 };
 
-export default _registerMiddleware(null);
+export default _registerMiddlewares(null);

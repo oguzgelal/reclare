@@ -4,7 +4,7 @@ import executeHooks from '../middlewares/executeHooks';
 import { validateConfiguration } from './ctxHelpers';
 import { _broadcast } from '../broadcasts/broadcast';
 import { _getState } from '../state/getState';
-import { _registerMiddleware } from '../middlewares/registerMiddleware';
+import { _registerMiddlewares } from '../middlewares/registerMiddlewares';
 import { _registerHooks } from '../middlewares/registerHooks';
 import randomString from '../utils/randomString';
 
@@ -21,6 +21,7 @@ import {
 export default class ReclareContext {
   constructor(config) {
     validateConfiguration(config);
+    this._preInit(config);
     this._init(config);
   }
 
@@ -32,19 +33,20 @@ export default class ReclareContext {
     return _getState(this)(...args);
   }
 
-  registerMiddleware(...args) {
-    return _registerMiddleware(this)(...args);
+  registerMiddlewares(...args) {
+    return _registerMiddlewares(this)(...args);
   }
 
   registerHooks(...args) {
     return _registerHooks(this)(...args);
   }
 
+  _preInit(config) {
+    config.middlewares && this.registerMiddlewares(config.middlewares);
+  }
+
   _init(config) {
-    executeHooks({
-      ctx: this,
-      id: BEFORE_START
-    });
+    executeHooks({ ctx: this, id: BEFORE_START }, { ctx: this });
     executeHooks(
       {
         ctx: this,
@@ -52,10 +54,17 @@ export default class ReclareContext {
         out: nextInitialState => {
           // if a falsy value is returned from the hook, set initialState to its
           // previous value so middlewares can't accidentally break initial state
-          config.initialState = nextInitialState || config.initialState;
+          config.initialState = Object.assign(
+            {},
+            config.initialState,
+            nextInitialState
+          );
         }
       },
-      config.initialState
+      {
+        ctx: this,
+        initialState: config.initialState
+      }
     );
 
     this.started = true;

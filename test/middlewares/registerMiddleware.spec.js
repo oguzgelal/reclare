@@ -1,17 +1,17 @@
 import createContext from '../../src/ctx/createContext';
-import registerMiddleware from '../../src/middlewares/registerMiddleware';
+import registerMiddlewares from '../../src/middlewares/registerMiddlewares';
 import * as hookTypes from '../../src/middlewares/hookTypes';
 import { MISSING_MIDDLEWARE_CONFIG } from '../../src/utils/alert';
 
-describe('registerMiddleware', () => {
+describe('registerMiddlewares', () => {
   it('should fail when invalid middleware passed', () => {
     const ctx = createContext({});
-    expect(() => ctx.registerMiddleware()).toThrow(MISSING_MIDDLEWARE_CONFIG);
+    expect(() => ctx.registerMiddlewares()).toThrow(MISSING_MIDDLEWARE_CONFIG);
   });
 
   it('should register single function', () => {
     const ctx = createContext({});
-    ctx.registerMiddleware({
+    ctx.registerMiddlewares({
       [hookTypes.BEFORE_START]: () => {}
     });
 
@@ -21,7 +21,7 @@ describe('registerMiddleware', () => {
 
   it('should register multiple functions', () => {
     const ctx = createContext({});
-    ctx.registerMiddleware({
+    ctx.registerMiddlewares({
       [hookTypes.BEFORE_START]: [() => {}, () => {}]
     });
 
@@ -31,7 +31,7 @@ describe('registerMiddleware', () => {
 
   it('should detect active context', () => {
     const ctx = createContext({});
-    registerMiddleware({
+    registerMiddlewares({
       [hookTypes.BEFORE_START]: () => {}
     });
 
