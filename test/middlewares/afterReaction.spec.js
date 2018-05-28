@@ -1,22 +1,20 @@
 import createContext from '../../src/ctx/createContext';
 import * as hookTypes from '../../src/middlewares/hookTypes';
 
-describe('beforeReducer', () => {
+describe('afterReaction', () => {
   it('should run with correct parameters', () => {
     const mockFn = jest.fn();
     const ctx = createContext({
-      initialState: {
-        count: 0
-      },
+      initialState: { count: 0 },
       onEvent: [
         {
           on: 'increment',
-          reducer: ({ state }) => ({ ...state, count: state.count + 1 })
+          reaction: () => {}
         }
       ],
       middlewares: {
-        [hookTypes.BEFORE_REDUCER]: params => {
-          expect(params).toHaveProperty('ctx.state', { count: 0 });
+        [hookTypes.AFTER_REACTION]: params => {
+          expect(params).toHaveProperty('prevState', { count: 0 });
           expect(params).toHaveProperty('eventKey', 'increment');
           expect(params).toHaveProperty('payload', { dx: 1 });
           mockFn(params);
@@ -29,27 +27,22 @@ describe('beforeReducer', () => {
     expect(params).toHaveProperty('ctx.id', ctx.id);
   });
 
-  it('should run for every reducer', () => {
+  it('should run for every reaction', () => {
     const mockFn = jest.fn();
     const ctx = createContext({
-      initialState: {
-        count: 0
-      },
+      initialState: { count: 0 },
       onEvent: [
         {
           on: 'increment',
-          reducer: [
-            ({ state }) => ({ ...state, count: state.count + 1 }),
-            ({ state }) => ({ ...state, count: state.count + 1 })
-          ]
+          reaction: [() => {}, () => {}]
         },
         {
           on: 'increment',
-          reducer: ({ state }) => ({ ...state, count: state.count + 1 })
+          reaction: () => {}
         }
       ],
       middlewares: {
-        [hookTypes.BEFORE_REDUCER]: mockFn
+        [hookTypes.AFTER_REACTION]: mockFn
       }
     });
     ctx.broadcast('increment', { dx: 1 });

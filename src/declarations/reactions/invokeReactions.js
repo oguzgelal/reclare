@@ -17,8 +17,7 @@ const executeReaction = ({
 
   executeHooks(
     { ctx, id: BEFORE_REACTION },
-    eventKey,
-    payload,
+    { ctx, prevState, eventKey, payload },
   );
 
   validateReaction({ reaction });
@@ -32,8 +31,7 @@ const executeReaction = ({
 
   executeHooks(
     { ctx, id: AFTER_REACTION },
-    eventKey,
-    payload,
+    { ctx, prevState, eventKey, payload },
   );
 }
 
@@ -47,8 +45,7 @@ export default ({
 
   executeHooks(
     { ctx, id: BEFORE_REACTIONS },
-    eventKey,
-    payload,
+    { ctx, prevState, eventKey, payload },
   );
 
   reactions.map(r =>
@@ -63,7 +60,6 @@ export default ({
 
   executeHooks(
     { ctx, id: AFTER_REACTIONS },
-    eventKey,
-    payload,
+    { ctx, prevState, eventKey, payload },
   );
 }

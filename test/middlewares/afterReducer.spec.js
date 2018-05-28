@@ -28,4 +28,31 @@ describe('afterReducer', () => {
     const params = mockFn.mock.calls[0][0];
     expect(params).toHaveProperty('ctx.id', ctx.id);
   });
+
+  it('should run for every reducer', () => {
+    const mockFn = jest.fn();
+    const ctx = createContext({
+      initialState: {
+        count: 0
+      },
+      onEvent: [
+        {
+          on: 'increment',
+          reducer: [
+            ({ state }) => ({ ...state, count: state.count + 1 }),
+            ({ state }) => ({ ...state, count: state.count + 1 })
+          ]
+        },
+        {
+          on: 'increment',
+          reducer: ({ state }) => ({ ...state, count: state.count + 1 })
+        }
+      ],
+      middlewares: {
+        [hookTypes.AFTER_REDUCER]: mockFn
+      }
+    });
+    ctx.broadcast('increment', { dx: 1 });
+    expect(mockFn).toHaveBeenCalledTimes(3);
+  });
 });
