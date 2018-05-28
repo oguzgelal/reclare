@@ -4,7 +4,10 @@ import executeHooks from '../middlewares/executeHooks';
 import { GET_STATE } from '../middlewares/hookTypes';
 
 export const _getState = ctx => () => {
-  executeHooks({ ctx: ctx || global.ctx, id: GET_STATE }, ctx.state);
+  executeHooks(
+    { ctx: ctx || global.ctx, id: GET_STATE },
+    { ctx, state: ctx.state }
+  );
   return ctx.state;
 };
 

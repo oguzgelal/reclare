@@ -107,9 +107,6 @@ export default class ReclareContext {
         customValidate: config.mockValidate || validateSubscriptionDeclaration
       });
 
-    executeHooks({
-      ctx: this,
-      id: AFTER_START
-    });
+    executeHooks({ ctx: this, id: AFTER_START }, { ctx: this });
   }
 }
