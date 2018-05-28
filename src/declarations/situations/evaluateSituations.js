@@ -39,14 +39,12 @@ export default ({
   if (situationHolds) {
     executeHooks(
       { ctx, id: SITUATION_TRUE },
-      eventKey,
-      payload,
+      { ctx, eventKey, payload },
     );
   } else {
     executeHooks(
       { ctx, id: SITUATION_FALSE },
-      eventKey,
-      payload,
+      { ctx, eventKey, payload },
     );
   }
 
