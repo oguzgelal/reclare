@@ -6,7 +6,7 @@ import invokeDeclaration from '../declarations/invokeDeclaration';
 import { BEFORE_BROADCAST, AFTER_BROADCAST } from '../middlewares/hookTypes';
 
 const broadcast = ({ ctx, eventKey, payload }) => {
-  const declarations = ctx.onEvent[eventKey];
+  const declarations = (ctx.onEvent || {})[eventKey] || [];
   executeHooks({ ctx, id: BEFORE_BROADCAST }, { ctx, eventKey, payload });
   invokeDeclaration({ declarations, eventKey, payload, ctx });
   executeHooks({ ctx, id: AFTER_BROADCAST }, { ctx, eventKey, payload });

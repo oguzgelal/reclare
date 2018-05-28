@@ -9,6 +9,7 @@ export const INVALID_REACTION = 'invalid-reaction';
 export const INVALID_REDUCER = 'invalid-reducer';
 export const MISSING_PATH = 'missing-path';
 export const INVALID_PATH = 'invalid-path';
+export const CONTEXT_NOT_FOUND = 'context-not-found';
 
 export const fail = (m, c) => {
   throw new Error(`${m} (${c})`);

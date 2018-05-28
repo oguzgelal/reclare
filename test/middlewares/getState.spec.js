@@ -11,10 +11,8 @@ describe('getState', () => {
         }
       }
     });
-    const state = ctx.getState();
+    ctx.getState();
     const params = mockFn.mock.calls[0][0];
     expect(params).toHaveProperty('ctx.id', ctx.id);
-    expect(params).toHaveProperty('state', ctx.state);
-    expect(params).toHaveProperty('state', state);
   });
 });

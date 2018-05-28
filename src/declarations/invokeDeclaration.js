@@ -24,7 +24,7 @@ export default ({
   let reactionQueue = [];
 
   // run through the declarations on an event
-  (declarations || []).map(declarationObject => {
+  declarations.map(declarationObject => {
     // run a declaration - evaluate situations,
     // get reactions / reducers if it holds
     const { reducers, reactions } = invokeDeclarationObject({
@@ -37,8 +37,8 @@ export default ({
 
     // queue reducers / reactions to run after all
     // situations are evaluated
-    reducerQueue = reducerQueue.concat(reducers || []);
-    reactionQueue = reactionQueue.concat(reactions || []);
+    reducerQueue = reducerQueue.concat(reducers);
+    reactionQueue = reactionQueue.concat(reactions);
   });
 
   // keep the old state
