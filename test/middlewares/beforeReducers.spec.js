@@ -1,21 +1,24 @@
 import createContext from '../../src/ctx/createContext';
 import * as hookTypes from '../../src/middlewares/hookTypes';
 
-describe('declarationTriggered', () => {
+describe('afterReducers', () => {
   it('should run with correct parameters', () => {
     const mockFn = jest.fn();
-    const declaration = {
-      on: 'increment',
-      bar: 'foo',
-      myCustomFunc: () => {}
-    };
     const ctx = createContext({
-      onEvent: [declaration],
+      initialState: {
+        count: 0
+      },
+      onEvent: [
+        {
+          on: 'increment',
+          reducer: ({ state }) => ({ ...state, count: state.count + 1 })
+        }
+      ],
       middlewares: {
-        [hookTypes.DECLARATION_TRIGGERED]: params => {
+        [hookTypes.BEFORE_REDUCERS]: params => {
+          expect(params).toHaveProperty('ctx.state', { count: 0 });
           expect(params).toHaveProperty('eventKey', 'increment');
           expect(params).toHaveProperty('payload', { dx: 1 });
-          expect(params).toHaveProperty('unparsed', declaration);
           mockFn(params);
         }
       }

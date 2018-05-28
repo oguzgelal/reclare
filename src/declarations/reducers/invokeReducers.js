@@ -18,8 +18,7 @@ const executeReducer = ({
 
   executeHooks(
     { ctx, id: BEFORE_REDUCER },
-    eventKey,
-    payload,
+    { ctx, eventKey, payload },
   );
 
   validateReducer({ reducer });
@@ -35,8 +34,7 @@ const executeReducer = ({
 
   executeHooks(
     { ctx, id: AFTER_REDUCER },
-    eventKey,
-    payload,
+    { ctx, eventKey, payload },
   );
 }
 
@@ -49,8 +47,7 @@ export default ({
 
   executeHooks(
     { ctx, id: BEFORE_REDUCERS },
-    eventKey,
-    payload,
+    { ctx, eventKey, payload },
   );
 
   reducers.map(reducer => {
@@ -64,7 +61,6 @@ export default ({
 
   executeHooks(
     { ctx, id: AFTER_REDUCERS },
-    eventKey,
-    payload,
+    { ctx, eventKey, payload },
   );
 }

@@ -2,7 +2,7 @@ import createContext from '../../src/ctx/createContext';
 import * as hookTypes from '../../src/middlewares/hookTypes';
 
 describe('beforeState', () => {
-  it('should run with correct parameters', done => {
+  it('should run with correct parameters', () => {
     const mockFn = jest.fn();
     const ctx = createContext({
       initialState: { count: 0 },
@@ -10,13 +10,10 @@ describe('beforeState', () => {
         [hookTypes.BEFORE_STATE]: mockFn
       }
     });
-    setTimeout(() => {
-      expect(mockFn).toBeCalled();
-      const params = mockFn.mock.calls[0][0];
-      expect(params).toHaveProperty('ctx.id', ctx.id);
-      expect(params).toHaveProperty('initialState', { count: 0 });
-      done();
-    });
+    expect(mockFn).toBeCalled();
+    const params = mockFn.mock.calls[0][0];
+    expect(params).toHaveProperty('ctx.id', ctx.id);
+    expect(params).toHaveProperty('initialState', { count: 0 });
   });
 
   it('should modify the initial state', () => {

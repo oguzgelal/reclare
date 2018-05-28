@@ -14,7 +14,6 @@ describe('registerMiddlewares', () => {
     ctx.registerMiddlewares({
       [hookTypes.BEFORE_START]: () => {}
     });
-
     expect(ctx.hooks[hookTypes.BEFORE_START].length).toBe(1);
     expect(typeof ctx.hooks[hookTypes.BEFORE_START][0]).toBe('function');
   });
@@ -24,7 +23,6 @@ describe('registerMiddlewares', () => {
     ctx.registerMiddlewares({
       [hookTypes.BEFORE_START]: [() => {}, () => {}]
     });
-
     expect(ctx.hooks[hookTypes.BEFORE_START].length).toBe(2);
     expect(typeof ctx.hooks[hookTypes.BEFORE_START][0]).toBe('function');
   });
@@ -34,7 +32,6 @@ describe('registerMiddlewares', () => {
     registerMiddlewares({
       [hookTypes.BEFORE_START]: () => {}
     });
-
     expect(ctx.hooks[hookTypes.BEFORE_START].length).toBe(1);
     expect(typeof ctx.hooks[hookTypes.BEFORE_START][0]).toBe('function');
   });
