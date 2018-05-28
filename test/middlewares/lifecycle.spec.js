@@ -42,4 +42,30 @@ describe('lifecycle', () => {
       done();
     });
   });
+
+  test('`broadcast` middlewares should run in correct order', done => {
+    let order = '';
+    const ctx = createContext({
+      middlewares: {
+        [hookTypes.BEFORE_BROADCAST]: () => {
+          order += 'a';
+        },
+        [hookTypes.AFTER_BROADCAST]: () => {
+          order += 'b';
+        }
+      },
+      onEvent: [
+        {
+          on: 'increment'
+        }
+      ]
+    });
+
+    ctx.broadcast('increment');
+
+    setTimeout(() => {
+      expect(order).toBe('ab');
+      done();
+    });
+  });
 });
