@@ -54,11 +54,7 @@ describe('lifecycle', () => {
           order += 'b';
         }
       },
-      onEvent: [
-        {
-          on: 'increment'
-        }
-      ]
+      onEvent: [{ on: 'increment' }]
     });
 
     ctx.broadcast('increment');

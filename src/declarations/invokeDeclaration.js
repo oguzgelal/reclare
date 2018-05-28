@@ -15,9 +15,9 @@ export default ({
   prevState
 }) => {
   if (declarations && declarations.length > 0) {
-    executeHooks({ ctx, id: DECLARATION_HIT }, eventKey, payload);
+    executeHooks({ ctx, id: DECLARATION_HIT }, { ctx, eventKey, payload });
   } else {
-    executeHooks({ ctx, id: DECLARATION_MISS }, eventKey, payload);
+    executeHooks({ ctx, id: DECLARATION_MISS }, { ctx, eventKey, payload });
   }
 
   let reducerQueue = [];

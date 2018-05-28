@@ -19,12 +19,9 @@ describe('afterSetState', () => {
     setTimeout(() => {
       expect(mockFn).toBeCalled();
       const params = mockFn.mock.calls[0][0];
-      expect(params).toHaveProperty('ctx');
-      expect(params).toHaveProperty('prevState');
-      expect(params).toHaveProperty('state');
-      expect(params.ctx.id).toBe(ctx.id);
-      expect(params.prevState).toEqual(initialState);
-      expect(params.state).toEqual(nextState);
+      expect(params).toHaveProperty('ctx.id', ctx.id);
+      expect(params).toHaveProperty('prevState', initialState);
+      expect(params).toHaveProperty('state', nextState);
       done();
     });
   });

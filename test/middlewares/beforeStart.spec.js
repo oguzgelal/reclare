@@ -12,8 +12,7 @@ describe('beforeStart', () => {
     setTimeout(() => {
       expect(mockFn).toBeCalled();
       const params = mockFn.mock.calls[0][0];
-      expect(params).toHaveProperty('ctx');
-      expect(params.ctx.id).toBe(ctx.id);
+      expect(params).toHaveProperty('ctx.id', ctx.id);
       done();
     });
   });

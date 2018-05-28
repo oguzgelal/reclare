@@ -15,7 +15,10 @@ export default ({ declarationObject, prevState, eventKey, payload, ctx }) => {
     reactionsElse
   } = declarationObject;
 
-  executeHooks({ ctx, id: DECLARATION_TRIGGERED }, eventKey, payload, unparsed);
+  executeHooks(
+    { ctx, id: DECLARATION_TRIGGERED },
+    { ctx, eventKey, payload, unparsed }
+  );
 
   const situationHolds = evaluateSituations({
     situations,

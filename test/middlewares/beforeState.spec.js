@@ -5,6 +5,7 @@ describe('beforeState', () => {
   it('should run with correct parameters', done => {
     const mockFn = jest.fn();
     const ctx = createContext({
+      initialState: { count: 0 },
       middlewares: {
         [hookTypes.BEFORE_STATE]: mockFn
       }
@@ -12,9 +13,8 @@ describe('beforeState', () => {
     setTimeout(() => {
       expect(mockFn).toBeCalled();
       const params = mockFn.mock.calls[0][0];
-      expect(params).toHaveProperty('ctx');
-      expect(params).toHaveProperty('initialState');
-      expect(params.ctx.id).toBe(ctx.id);
+      expect(params).toHaveProperty('ctx.id', ctx.id);
+      expect(params).toHaveProperty('initialState', { count: 0 });
       done();
     });
   });
