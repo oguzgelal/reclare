@@ -2,7 +2,9 @@ import createContext from '../../src/ctx/createContext';
 import {
   INVALID_DECLARATION_ARGUMENT,
   INVALID_DECLARATION,
-  INVALID_TRIGGER
+  INVALID_TRIGGER,
+  INVALID_REACTION,
+  INVALID_REDUCER
 } from '../../src/utils/alert';
 
 describe('parseDeclarations', () => {
@@ -133,5 +135,29 @@ describe('parseDeclarations', () => {
     expect(ctx.onEvent.b.length).toBe(2);
     expect(ctx.onEvent.c.length).toBe(4);
     expect(ctx.onEvent.d.length).toBe(2);
+  });
+
+  it('should throw error on invalid reducer', () => {
+    expect(() => {
+      createContext({
+        onEvent: [
+          {
+            reducer: 'not a func or func array'
+          }
+        ]
+      });
+    }).toThrow(INVALID_REDUCER);
+  });
+
+  it('should throw error on invalid reaction', () => {
+    expect(() => {
+      createContext({
+        onEvent: [
+          {
+            reaction: 'not a func or func array'
+          }
+        ]
+      });
+    }).toThrow(INVALID_REACTION);
   });
 });
