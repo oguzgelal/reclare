@@ -1,11 +1,13 @@
-<h1 align="center">
-  <a href="https://github.com/reclarejs/reclare"><img src="https://user-images.githubusercontent.com/2817993/40689568-07d04312-63a3-11e8-8795-5d83f162c9bd.png" alt="Reclare" width="200"></a>
-  <br>
-  Reclare
-  <br>
-</h1>
+<h2 align="center" style="font-size: 30px; font-weight: bolder;">
+  <a
+    href="https://github.com/reclarejs/reclare"><img src="https://user-images.githubusercontent.com/2817993/40689568-07d04312-63a3-11e8-8795-5d83f162c9bd.png" alt="Reclare" width="200">
+  </a>
+  <div>
+    Reclare
+  </div>
+</h2>
 
-<p align="center">
+<p align="center" style="margin-top: -10px;">
   <a href="https://travis-ci.org/reclarejs/reclare">
     <img src="https://travis-ci.org/reclarejs/reclare.svg?branch=master"
          alt="Travis">
@@ -18,8 +20,8 @@
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#basic-usage">Basic Usage</a> •
-  <a href="#download">Download</a> •
-  <a href="#credits">Credits</a> •
-  <a href="#related">Related</a> •
+  <a href="#download">Philosophy</a> •
+  <a href="#credits">Docs</a> •
+  <a href="#related">Contribution</a> •
   <a href="#license">License</a>
 </p>
