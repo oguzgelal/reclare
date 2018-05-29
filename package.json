@@ -1,6 +1,6 @@
 {
   "name": "reclare",
-  "description": "Declarative state and event management for modern Javascript applications",
+  "description": "Declarative state and logic management for modern Javascript applications",
   "author": "Oguz Gelal <o.gelal77@gmail.com> (https://oguzgelal.com/)",
   "license": "MIT",
   "version": "0.0.2",
