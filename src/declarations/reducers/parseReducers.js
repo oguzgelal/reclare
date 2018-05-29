@@ -4,8 +4,8 @@ export default ({
   reducer,
   reducerDeclared,
   reducerElse,
-  reducerElseDeclared,
+  reducerElseDeclared
 }) => ({
   reducers: reducerDeclared ? toArray(reducer) : [],
-  reducersElse: reducerElseDeclared ? toArray(reducerElse) : [],
+  reducersElse: reducerElseDeclared ? toArray(reducerElse) : []
 });

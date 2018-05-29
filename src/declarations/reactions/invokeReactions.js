@@ -4,20 +4,13 @@ import {
   BEFORE_REACTION,
   BEFORE_REACTIONS,
   AFTER_REACTION,
-  AFTER_REACTIONS,
+  AFTER_REACTIONS
 } from '../../middlewares/hookTypes';
 
-const executeReaction = ({
-  reaction,
-  eventKey,
-  payload,
-  prevState,
-  ctx,
-}) => {
-
+const executeReaction = ({ reaction, eventKey, payload, prevState, ctx }) => {
   executeHooks(
     { ctx, id: BEFORE_REACTION },
-    { ctx, prevState, eventKey, payload },
+    { ctx, prevState, eventKey, payload }
   );
 
   validateReaction({ reaction });
@@ -26,26 +19,19 @@ const executeReaction = ({
     state: ctx.state,
     prevState,
     event: payload,
-    eventKey,
+    eventKey
   });
 
   executeHooks(
     { ctx, id: AFTER_REACTION },
-    { ctx, prevState, eventKey, payload },
+    { ctx, prevState, eventKey, payload }
   );
-}
+};
 
-export default ({
-  reactions,
-  eventKey,
-  payload,
-  prevState,
-  ctx,
-}) => {
-
+export default ({ reactions, eventKey, payload, prevState, ctx }) => {
   executeHooks(
     { ctx, id: BEFORE_REACTIONS },
-    { ctx, prevState, eventKey, payload },
+    { ctx, prevState, eventKey, payload }
   );
 
   reactions.map(r =>
@@ -54,12 +40,12 @@ export default ({
       eventKey,
       payload,
       prevState,
-      ctx,
+      ctx
     })
   );
 
   executeHooks(
     { ctx, id: AFTER_REACTIONS },
-    { ctx, prevState, eventKey, payload },
+    { ctx, prevState, eventKey, payload }
   );
-}
+};

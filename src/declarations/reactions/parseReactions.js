@@ -4,8 +4,8 @@ export default ({
   reaction,
   reactionDeclared,
   reactionElse,
-  reactionElseDeclared,
+  reactionElseDeclared
 }) => ({
   reactions: reactionDeclared ? toArray(reaction) : [],
-  reactionsElse: reactionElseDeclared ? toArray(reactionElse) : [],
+  reactionsElse: reactionElseDeclared ? toArray(reactionElse) : []
 });
