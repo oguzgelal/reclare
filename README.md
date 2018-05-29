@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://github.com/reclarejs/reclare"><img src="https://user-images.githubusercontent.com/2817993/40688723-7070e4c0-639f-11e8-87e2-fcef2c002f4e.png" alt="Reclare" width="200"></a>
+  <a href="https://github.com/reclarejs/reclare"><img src="https://user-images.githubusercontent.com/2817993/40689568-07d04312-63a3-11e8-8795-5d83f162c9bd.png" alt="Reclare" width="200"></a>
   <br>
   Reclare
   <br>
