@@ -1,6 +1,7 @@
 import createContext from '../../src/ctx/createContext';
 import setState from '../../src/state/setState';
 import * as hookTypes from '../../src/middlewares/hookTypes';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('lifecycle', () => {
   test('`createContext` middlewares should run in correct order', done => {
@@ -54,7 +55,7 @@ describe('lifecycle', () => {
           order += 'b';
         }
       },
-      onEvent: [{ on: 'increment' }]
+      [ON_EVENT]: [{ on: 'increment' }]
     });
 
     ctx.broadcast('increment');

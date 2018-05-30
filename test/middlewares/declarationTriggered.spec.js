@@ -1,5 +1,6 @@
 import createContext from '../../src/ctx/createContext';
 import * as hookTypes from '../../src/middlewares/hookTypes';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('declarationTriggered', () => {
   it('should run with correct parameters', () => {
@@ -10,7 +11,7 @@ describe('declarationTriggered', () => {
       myCustomFunc: () => {}
     };
     const ctx = createContext({
-      onEvent: [declaration],
+      [ON_EVENT]: [declaration],
       middlewares: {
         [hookTypes.DECLARATION_TRIGGERED]: params => {
           expect(params).toHaveProperty('eventKey', 'increment');

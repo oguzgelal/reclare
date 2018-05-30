@@ -1,11 +1,12 @@
 import createContext from '../../src/ctx/createContext';
 import { INVALID_REACTION } from '../../src/utils/alert';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('invokeReactions', () => {
   it('should fail on invalid reaction', () => {
     const ctx = createContext({
       initialState: { count: 0 },
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'increment',
           reaction: ['not func or func array']
@@ -18,7 +19,7 @@ describe('invokeReactions', () => {
   test('reactions should receive current and previous state', done => {
     const ctx = createContext({
       initialState: { count: 0 },
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'increment',
           reducer: ({ state }) => ({ ...state, count: state.count + 1 }),

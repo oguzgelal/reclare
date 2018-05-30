@@ -1,11 +1,12 @@
 import createContext from '../../src/ctx/createContext';
 import * as hookTypes from '../../src/middlewares/hookTypes';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('situationFalse', () => {
   it('should run with correct parameters', () => {
     const mockFn = jest.fn();
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'increment',
           situation: false

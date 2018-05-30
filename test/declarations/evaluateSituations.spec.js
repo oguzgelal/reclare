@@ -1,12 +1,13 @@
 import createContext from '../../src/ctx/createContext';
 import { and, or, not } from '../../src/utils/operators';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('evaluateSituations', () => {
   test('situations should work with booleans', () => {
     const mockSitTrue = jest.fn();
     const mockSitFalse = jest.fn();
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'testTrue',
           situation: true,
@@ -29,7 +30,7 @@ describe('evaluateSituations', () => {
     const mockSitTrue = jest.fn();
     const mockSitFalse = jest.fn();
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'testTrue',
           situation: () => true,
@@ -52,7 +53,7 @@ describe('evaluateSituations', () => {
     const mockSitTrue = jest.fn();
     const mockSitFalse = jest.fn();
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'testTrue',
           situation: 'hey',
@@ -75,7 +76,7 @@ describe('evaluateSituations', () => {
     const mockSitTrue = jest.fn();
     const mockSitFalse = jest.fn();
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'testTrue',
           situation: and(true, true, or(true, false)),
@@ -97,7 +98,7 @@ describe('evaluateSituations', () => {
   test('omitting situation should evaluate to true', () => {
     const mock = jest.fn();
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'test',
           reaction: mock

@@ -1,11 +1,12 @@
 import createContext from '../../src/ctx/createContext';
 import { INVALID_REDUCER } from '../../src/utils/alert';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('invokeReducers', () => {
   it('should fail on invalid reducer', () => {
     const ctx = createContext({
       initialState: { count: 0 },
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'increment',
           reducer: ['not func or func array']
@@ -18,7 +19,7 @@ describe('invokeReducers', () => {
   test('reactions should receive current state', done => {
     const ctx = createContext({
       initialState: { count: 0 },
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'increment',
           reducer: ({ state }) => {

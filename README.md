@@ -7,7 +7,7 @@
   </div>
 </h2>
 
-<p align="center" style="margin-top: -10px;">
+<p align="center">
   <a href="https://travis-ci.org/reclarejs/reclare">
     <img src="https://travis-ci.org/reclarejs/reclare.svg?branch=master"
          alt="Travis">

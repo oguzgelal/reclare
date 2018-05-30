@@ -1,10 +1,11 @@
 import createContext from '../../src/ctx/createContext';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('declarationLifecycle', () => {
   test('all situations should receive the same state', () => {
     const ctx = createContext({
       initialState: { count: 1 },
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'decrement',
           situation: ({ state }) => state.count > 0,
@@ -27,7 +28,7 @@ describe('declarationLifecycle', () => {
   test('reducers should run before reactions', () => {
     let order = '';
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'increment',
           reducer: ({ state }) => {

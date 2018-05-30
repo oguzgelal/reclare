@@ -1,11 +1,12 @@
 import createContext from '../../src/ctx/createContext';
 import broadcast from '../../src/broadcasts/broadcast';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('broadcast', () => {
   it('broadcast should invoke declaration', () => {
     const mock = jest.fn();
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'test',
           reaction: mock
@@ -19,7 +20,7 @@ describe('broadcast', () => {
   it('should pick up global context', () => {
     const mock = jest.fn();
     createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'test',
           reaction: mock
@@ -33,7 +34,7 @@ describe('broadcast', () => {
   it('should defer broadcast', done => {
     const mock = jest.fn();
     createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'test',
           reaction: mock
@@ -50,7 +51,7 @@ describe('broadcast', () => {
 
   it('should not fail when there are no declarations', () => {
     const ctx1 = createContext({});
-    const ctx2 = createContext({ onEvent: [] });
+    const ctx2 = createContext({ [ON_EVENT]: [] });
     expect(() => ctx1.broadcast('test')).not.toThrow();
     expect(() => ctx2.broadcast('test')).not.toThrow();
   });

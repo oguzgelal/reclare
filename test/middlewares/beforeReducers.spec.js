@@ -1,5 +1,6 @@
 import createContext from '../../src/ctx/createContext';
 import * as hookTypes from '../../src/middlewares/hookTypes';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('afterReducers', () => {
   it('should run with correct parameters', () => {
@@ -8,7 +9,7 @@ describe('afterReducers', () => {
       initialState: {
         count: 0
       },
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'increment',
           reducer: ({ state }) => ({ ...state, count: state.count + 1 })

@@ -1,11 +1,12 @@
 import createContext from '../../src/ctx/createContext';
 import * as hookTypes from '../../src/middlewares/hookTypes';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('beforeBroadcast', () => {
   it('should run with correct parameters', () => {
     const mockFn = jest.fn();
     const ctx = createContext({
-      onEvent: [{ on: 'increment' }],
+      [ON_EVENT]: [{ on: 'increment' }],
       middlewares: {
         [hookTypes.BEFORE_BROADCAST]: params => {
           expect(params).toHaveProperty('eventKey', 'increment');

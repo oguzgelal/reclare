@@ -1,9 +1,10 @@
 import createContext from '../../src/ctx/createContext';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('parseSituation', () => {
   it('should parse situations on false / falsy', () => {
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         { on: 'test1', situation: false },
         { on: 'test2', situation: null },
         { on: 'test3', situation: '' },
@@ -12,11 +13,11 @@ describe('parseSituation', () => {
         { on: 'test6' }
       ]
     });
-    expect(ctx.onEvent['test1'][0].situations.length).toBe(1);
-    expect(ctx.onEvent['test2'][0].situations.length).toBe(1);
-    expect(ctx.onEvent['test3'][0].situations.length).toBe(1);
-    expect(ctx.onEvent['test4'][0].situations.length).toBe(1);
-    expect(ctx.onEvent['test5'][0].situations.length).toBe(1);
-    expect(ctx.onEvent['test6'][0].situations.length).toBe(0);
+    expect(ctx[ON_EVENT]['test1'][0].situations.length).toBe(1);
+    expect(ctx[ON_EVENT]['test2'][0].situations.length).toBe(1);
+    expect(ctx[ON_EVENT]['test3'][0].situations.length).toBe(1);
+    expect(ctx[ON_EVENT]['test4'][0].situations.length).toBe(1);
+    expect(ctx[ON_EVENT]['test5'][0].situations.length).toBe(1);
+    expect(ctx[ON_EVENT]['test6'][0].situations.length).toBe(0);
   });
 });

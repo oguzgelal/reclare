@@ -1,3 +1,4 @@
+import { DECLARATION_NO_KEY } from '../config/constants';
 import parseSituations from './situations/parseSituations';
 import parseReactions from './reactions/parseReactions';
 import parseReducers from './reducers/parseReducers';
@@ -39,7 +40,7 @@ export default ({ type, declarations, customValidate }) => {
     );
 
     // merge declarations by "on"
-    toArray(declaration.on).map(on => {
+    toArray(declaration.on || DECLARATION_NO_KEY).map(on => {
       acc[on] = acc[on] || [];
       acc[on].push(parsed);
     });

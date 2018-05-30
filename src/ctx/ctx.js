@@ -3,6 +3,7 @@ import parseDeclarations from '../declarations/parseDeclarations';
 import executeHooks from '../middlewares/executeHooks';
 import { validateConfiguration } from './ctxHelpers';
 import { _broadcast } from '../broadcasts/broadcast';
+import { _subscribe } from '../subscriptions/subscribe';
 import { _getState } from '../state/getState';
 import { _registerMiddlewares } from '../middlewares/registerMiddlewares';
 import { _registerHooks } from '../middlewares/registerHooks';
@@ -10,13 +11,20 @@ import randomString from '../utils/randomString';
 
 import { validateBroadcastDeclaration } from '../broadcasts/broadcastHelpers';
 import { validateSubscriptionDeclaration } from '../subscriptions/subscriptionHelpers';
-import { DECLARATION_BROADCAST, DECLARATION_SUB } from '../config/constants';
 
 import {
   BEFORE_START,
   BEFORE_STATE,
   AFTER_START
 } from '../middlewares/hookTypes';
+
+import {
+  ON_EVENT,
+  ON_STATE_CHANGE,
+  ON_IMMEDIATE_STATE_CHANGE,
+  DECLARATION_BROADCAST,
+  DECLARATION_SUB
+} from '../config/constants';
 
 export default class ReclareContext {
   constructor(config) {
@@ -27,6 +35,10 @@ export default class ReclareContext {
 
   broadcast(...args) {
     return _broadcast(this)(...args);
+  }
+
+  subscribe(...args) {
+    return _subscribe(this)(...args);
   }
 
   getState(...args) {
@@ -52,8 +64,6 @@ export default class ReclareContext {
         ctx: this,
         id: BEFORE_STATE,
         out: nextInitialState => {
-          // if a falsy value is returned from the hook, set initialState to its
-          // previous value so middlewares can't accidentally break initial state
           config.initialState = Object.assign(
             {},
             config.initialState,
@@ -79,31 +89,31 @@ export default class ReclareContext {
     this.state = config.initialState || {};
 
     // Runs on broadcasts
-    this.onEvent =
-      config.onEvent &&
+    this[ON_EVENT] =
+      config[ON_EVENT] &&
       parseDeclarations({
         type: DECLARATION_BROADCAST,
-        declarations: config.onEvent,
+        declarations: config[ON_EVENT],
         customValidate: config.mockValidate || validateBroadcastDeclaration
       });
 
     // Run right after reducers changes
     // the state (before reactions)
-    this.onImmediateStateChange =
-      config.onImmediateStateChange &&
+    this[ON_IMMEDIATE_STATE_CHANGE] =
+      config[ON_IMMEDIATE_STATE_CHANGE] &&
       parseDeclarations({
         type: DECLARATION_SUB,
-        declarations: config.onStateChange,
+        declarations: config[ON_IMMEDIATE_STATE_CHANGE],
         customValidate: config.mockValidate || validateSubscriptionDeclaration
       });
 
     // Run when state changed and the declaration
     // finishes its execution (after reactions)
-    this.onStateChange =
-      config.onStateChange &&
+    this[ON_STATE_CHANGE] =
+      config[ON_STATE_CHANGE] &&
       parseDeclarations({
         type: DECLARATION_SUB,
-        declarations: config.onStateChange,
+        declarations: config[ON_STATE_CHANGE],
         customValidate: config.mockValidate || validateSubscriptionDeclaration
       });
 

@@ -1,11 +1,12 @@
 import createContext from '../../src/ctx/createContext';
 import { INVALID_REACTION } from '../../src/utils/alert';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('parseReaction', () => {
   it('should fail when invalid reaction passed', () => {
     expect(() =>
       createContext({
-        onEvent: [
+        [ON_EVENT]: [
           {
             on: 'test',
             reaction: 'not a func or func array'
@@ -18,7 +19,7 @@ describe('parseReaction', () => {
   it('should not fail when reaction is omitted', () => {
     expect(() =>
       createContext({
-        onEvent: [
+        [ON_EVENT]: [
           {
             on: 'test'
           }

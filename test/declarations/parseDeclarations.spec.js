@@ -1,5 +1,10 @@
 import createContext from '../../src/ctx/createContext';
 import {
+  ON_EVENT,
+  ON_STATE_CHANGE,
+  ON_IMMEDIATE_STATE_CHANGE
+} from '../../src/config/constants';
+import {
   INVALID_DECLARATION_ARGUMENT,
   INVALID_DECLARATION,
   INVALID_TRIGGER,
@@ -11,32 +16,32 @@ describe('parseDeclarations', () => {
   it('should throw error on invalid declaration array', () => {
     expect(() =>
       createContext({
-        onEvent: 'not an object array'
+        [ON_EVENT]: 'not an object array'
       })
     ).toThrow(INVALID_DECLARATION_ARGUMENT);
     expect(() =>
       createContext({
-        onEvent: {}
+        [ON_EVENT]: {}
       })
     ).toThrow(INVALID_DECLARATION_ARGUMENT);
     expect(() =>
       createContext({
-        onStateChange: 'not an object array'
+        [ON_STATE_CHANGE]: 'not an object array'
       })
     ).toThrow(INVALID_DECLARATION_ARGUMENT);
     expect(() =>
       createContext({
-        onStateChange: {}
+        [ON_STATE_CHANGE]: {}
       })
     ).toThrow(INVALID_DECLARATION_ARGUMENT);
     expect(() =>
       createContext({
-        onImmediateStateChange: 'not an object array'
+        [ON_IMMEDIATE_STATE_CHANGE]: 'not an object array'
       })
     ).toThrow(INVALID_DECLARATION_ARGUMENT);
     expect(() =>
       createContext({
-        onImmediateStateChange: {}
+        [ON_IMMEDIATE_STATE_CHANGE]: {}
       })
     ).toThrow(INVALID_DECLARATION_ARGUMENT);
   });
@@ -44,12 +49,12 @@ describe('parseDeclarations', () => {
   it('should fail on invalid declaration', () => {
     expect(() =>
       createContext({
-        onEvent: ['not an object']
+        [ON_EVENT]: ['not an object']
       })
     ).toThrow(INVALID_DECLARATION);
     expect(() =>
       createContext({
-        onEvent: [
+        [ON_EVENT]: [
           {
             on: () => alert('this is wrong')
           }
@@ -68,7 +73,7 @@ describe('parseDeclarations', () => {
 
     createContext({
       mockValidate,
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'page-load',
           situation: ({ state }) => state.started === false,
@@ -89,7 +94,7 @@ describe('parseDeclarations', () => {
 
   it('should parse single declaration', () => {
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         {
           on: 'page-load',
           situation: ({ state }) => state.started === false,
@@ -101,7 +106,7 @@ describe('parseDeclarations', () => {
       ]
     });
 
-    const declarations = ctx.onEvent['page-load'];
+    const declarations = ctx[ON_EVENT]['page-load'];
     const declaration = declarations[0];
 
     // declaration parsed correctly
@@ -121,7 +126,7 @@ describe('parseDeclarations', () => {
 
   it('should merge declarations by `on` key', () => {
     const ctx = createContext({
-      onEvent: [
+      [ON_EVENT]: [
         { on: ['a', 'b', 'c'] },
         { on: ['b', 'c', 'd'] },
         { on: 'a' },
@@ -131,16 +136,16 @@ describe('parseDeclarations', () => {
       ]
     });
 
-    expect(ctx.onEvent.a.length).toBe(3);
-    expect(ctx.onEvent.b.length).toBe(2);
-    expect(ctx.onEvent.c.length).toBe(4);
-    expect(ctx.onEvent.d.length).toBe(2);
+    expect(ctx[ON_EVENT].a.length).toBe(3);
+    expect(ctx[ON_EVENT].b.length).toBe(2);
+    expect(ctx[ON_EVENT].c.length).toBe(4);
+    expect(ctx[ON_EVENT].d.length).toBe(2);
   });
 
   it('should throw error on invalid reducer', () => {
     expect(() => {
       createContext({
-        onEvent: [
+        [ON_EVENT]: [
           {
             reducer: 'not a func or func array'
           }
@@ -152,7 +157,7 @@ describe('parseDeclarations', () => {
   it('should throw error on invalid reaction', () => {
     expect(() => {
       createContext({
-        onEvent: [
+        [ON_EVENT]: [
           {
             reaction: 'not a func or func array'
           }

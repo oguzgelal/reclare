@@ -1,11 +1,12 @@
 import createContext from '../../src/ctx/createContext';
 import { INVALID_REDUCER } from '../../src/utils/alert';
+import { ON_EVENT } from '../../src/config/constants';
 
 describe('parseReducer', () => {
   it('should fail when invalid reducer passed', () => {
     expect(() =>
       createContext({
-        onEvent: [
+        [ON_EVENT]: [
           {
             on: 'test',
             reducer: 'not a func or func array'
@@ -18,7 +19,7 @@ describe('parseReducer', () => {
   it('should not fail when reducer is omitted', () => {
     expect(() =>
       createContext({
-        onEvent: [
+        [ON_EVENT]: [
           {
             on: 'test'
           }
