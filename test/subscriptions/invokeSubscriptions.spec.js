@@ -17,4 +17,32 @@ describe('invokeSubscriptions', () => {
     ctx.broadcast('increment');
     expect(mock).toHaveBeenCalled();
   });
+
+  it('should not fail when no subscriptions are provided', () => {
+    const ctx = createContext({
+      initialState: { counter: 0 },
+      [ON_EVENT]: [
+        {
+          on: 'increment',
+          reducer: ({ state }) => ({ ...state, counter: state.counter + 1 })
+        }
+      ]
+    });
+    const ctx2 = createContext({
+      initialState: { counter: 0 },
+      [ON_STATE_CHANGE]: [],
+      [ON_EVENT]: [
+        {
+          on: 'increment',
+          reducer: ({ state }) => ({ ...state, counter: state.counter + 1 })
+        }
+      ]
+    });
+    expect(() => {
+      ctx.broadcast('increment');
+    }).not.toThrow();
+    expect(() => {
+      ctx2.broadcast('increment');
+    }).not.toThrow();
+  });
 });
