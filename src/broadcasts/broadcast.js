@@ -14,11 +14,12 @@ const broadcast = ({ ctx, eventKey, payload }) => {
 };
 
 export const _broadcast = ctx => (eventKey, payload, options = {}) => {
+  const useCtx = ctx || global.ctx;
   const opts = Object.assign(defaultOptions, options);
   if (opts.defer) {
     setTimeout(() =>
       broadcast({
-        ctx: ctx || global.ctx,
+        ctx: useCtx,
         options: opts,
         eventKey,
         payload
@@ -26,7 +27,7 @@ export const _broadcast = ctx => (eventKey, payload, options = {}) => {
     );
   } else {
     broadcast({
-      ctx: ctx || global.ctx,
+      ctx: useCtx,
       options: opts,
       eventKey,
       payload

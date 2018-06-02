@@ -1,9 +1,5 @@
 import createContext from '../../src/ctx/createContext';
-import {
-  ON_EVENT,
-  ON_STATE_CHANGE,
-  ON_IMMEDIATE_STATE_CHANGE
-} from '../../src/config/constants';
+import { ON_EVENT, ON_STATE_CHANGE } from '../../src/config/constants';
 import {
   INVALID_DECLARATION_ARGUMENT,
   INVALID_DECLARATION,
@@ -32,16 +28,6 @@ describe('parseDeclarations', () => {
     expect(() =>
       createContext({
         [ON_STATE_CHANGE]: {}
-      })
-    ).toThrow(INVALID_DECLARATION_ARGUMENT);
-    expect(() =>
-      createContext({
-        [ON_IMMEDIATE_STATE_CHANGE]: 'not an object array'
-      })
-    ).toThrow(INVALID_DECLARATION_ARGUMENT);
-    expect(() =>
-      createContext({
-        [ON_IMMEDIATE_STATE_CHANGE]: {}
       })
     ).toThrow(INVALID_DECLARATION_ARGUMENT);
   });

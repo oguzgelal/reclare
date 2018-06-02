@@ -21,7 +21,6 @@ import {
 import {
   ON_EVENT,
   ON_STATE_CHANGE,
-  ON_IMMEDIATE_STATE_CHANGE,
   DECLARATION_BROADCAST,
   DECLARATION_SUB
 } from '../config/constants';
@@ -97,18 +96,7 @@ export default class ReclareContext {
         customValidate: config.mockValidate || validateBroadcastDeclaration
       });
 
-    // Run right after reducers changes
-    // the state (before reactions)
-    this[ON_IMMEDIATE_STATE_CHANGE] =
-      config[ON_IMMEDIATE_STATE_CHANGE] &&
-      parseDeclarations({
-        type: DECLARATION_SUB,
-        declarations: config[ON_IMMEDIATE_STATE_CHANGE],
-        customValidate: config.mockValidate || validateSubscriptionDeclaration
-      });
-
-    // Run when state changed and the declaration
-    // finishes its execution (after reactions)
+    // Runs when state changed
     this[ON_STATE_CHANGE] =
       config[ON_STATE_CHANGE] &&
       parseDeclarations({

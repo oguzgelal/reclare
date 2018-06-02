@@ -1,13 +1,9 @@
 import global from '../ctx';
 import parseDeclarations from '../declarations/parseDeclarations';
 import { validateSubscriptionDeclaration } from '../subscriptions/subscriptionHelpers';
-import {
-  DECLARATION_SUB,
-  ON_STATE_CHANGE,
-  ON_IMMEDIATE_STATE_CHANGE
-} from '../config/constants';
+import { DECLARATION_SUB, ON_STATE_CHANGE } from '../config/constants';
 
-export const _subscribe = ctx => (declarations, options = {}) => {
+export const _subscribe = ctx => declarations => {
   const useCtx = ctx || global.ctx;
 
   const parsed = parseDeclarations({
@@ -16,14 +12,13 @@ export const _subscribe = ctx => (declarations, options = {}) => {
     customValidate: validateSubscriptionDeclaration
   });
 
-  const loc = options.immediate ? ON_IMMEDIATE_STATE_CHANGE : ON_STATE_CHANGE;
-
   Object.keys(parsed).map(declarationKey => {
-    useCtx[loc] = useCtx[loc] || {};
-    useCtx[loc][declarationKey] = useCtx[loc][declarationKey] || [];
-    useCtx[loc][declarationKey] = useCtx[loc][declarationKey].concat(
-      parsed[declarationKey]
-    );
+    useCtx[ON_STATE_CHANGE] = useCtx[ON_STATE_CHANGE] || {};
+    useCtx[ON_STATE_CHANGE][declarationKey] =
+      useCtx[ON_STATE_CHANGE][declarationKey] || [];
+    useCtx[ON_STATE_CHANGE][declarationKey] = useCtx[ON_STATE_CHANGE][
+      declarationKey
+    ].concat(parsed[declarationKey]);
   });
 };
 

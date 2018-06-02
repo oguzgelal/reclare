@@ -52,8 +52,6 @@ export default ({
     ctx
   });
 
-  // TODO: immediate subscriptions
-
   // execute reactions in the queue, pass also the old state
   invokeReactions({
     reactions: reactionQueue,
@@ -62,6 +60,4 @@ export default ({
     payload,
     ctx
   });
-
-  // TODO: subscriptions
 };
