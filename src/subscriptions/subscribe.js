@@ -13,7 +13,6 @@ export const _subscribe = ctx => declarations => {
   });
 
   Object.keys(parsed).map(declarationKey => {
-    useCtx[ON_STATE_CHANGE] = useCtx[ON_STATE_CHANGE] || {};
     useCtx[ON_STATE_CHANGE][declarationKey] =
       useCtx[ON_STATE_CHANGE][declarationKey] || [];
     useCtx[ON_STATE_CHANGE][declarationKey] = useCtx[ON_STATE_CHANGE][

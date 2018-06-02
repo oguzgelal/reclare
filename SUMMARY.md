@@ -8,7 +8,7 @@
     * [Reducers](/docs/concepts/declarations/Reducers.md)
   * [Broadcasts](/docs/concepts/Broadcasts.md)
   * [Subscriptions](/docs/concepts/Subscriptions.md)
-  * [Models](/docs/concepts/Models.md)
+  * [Duck Files](/docs/concepts/Ducks.md)
 * Topics
   * [DeclarationLifecycle](/docs/topics/DeclarationLifecycle.md)
 * Middlewares

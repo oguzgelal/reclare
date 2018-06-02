@@ -7,7 +7,7 @@ import { ON_EVENT } from '../config/constants';
 import { BEFORE_BROADCAST, AFTER_BROADCAST } from '../middlewares/hookTypes';
 
 const broadcast = ({ ctx, eventKey, payload }) => {
-  const declarations = (ctx[ON_EVENT] || {})[eventKey] || [];
+  const declarations = ctx[ON_EVENT][eventKey] || [];
   executeHooks({ ctx, id: BEFORE_BROADCAST }, { ctx, eventKey, payload });
   invokeDeclaration({ declarations, eventKey, payload, ctx });
   executeHooks({ ctx, id: AFTER_BROADCAST }, { ctx, eventKey, payload });

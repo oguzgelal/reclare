@@ -3,7 +3,7 @@ import { ON_STATE_CHANGE } from '../config/constants';
 import hasChange from '../utils/hasChange';
 
 export default ({ ctx, state, prevState }) => {
-  Object.keys(ctx[ON_STATE_CHANGE] || {}).forEach(declarationKey => {
+  Object.keys(ctx[ON_STATE_CHANGE]).forEach(declarationKey => {
     invokeDeclaration({
       hasChange: hasChange({ state, prevState }),
       declarations: ctx[ON_STATE_CHANGE][declarationKey],

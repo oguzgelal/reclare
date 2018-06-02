@@ -8,6 +8,8 @@ import { _getState } from '../state/getState';
 import { _registerMiddlewares } from '../middlewares/registerMiddlewares';
 import { _registerHooks } from '../middlewares/registerHooks';
 import randomString from '../utils/randomString';
+import appendArray from '../utils/appendArray';
+import parseDucks from '../ducks/parseDucks';
 
 import { validateBroadcastDeclaration } from '../broadcasts/broadcastHelpers';
 import { validateSubscriptionDeclaration } from '../subscriptions/subscriptionHelpers';
@@ -22,7 +24,8 @@ import {
   ON_EVENT,
   ON_STATE_CHANGE,
   DECLARATION_BROADCAST,
-  DECLARATION_SUB
+  DECLARATION_SUB,
+  DUCKS
 } from '../config/constants';
 
 export default class ReclareContext {
@@ -87,23 +90,25 @@ export default class ReclareContext {
     // Initialise the state
     this.state = config.initialState || {};
 
+    // Parse duckfiles and merge declarations
+    const ducksParsed = parseDucks(config[DUCKS] || []);
+    Object.keys(ducksParsed).forEach(key => {
+      config[key] = appendArray(config[key], ducksParsed[key]);
+    });
+
     // Runs on broadcasts
-    this[ON_EVENT] =
-      config[ON_EVENT] &&
-      parseDeclarations({
-        type: DECLARATION_BROADCAST,
-        declarations: config[ON_EVENT],
-        customValidate: config.mockValidate || validateBroadcastDeclaration
-      });
+    this[ON_EVENT] = parseDeclarations({
+      type: DECLARATION_BROADCAST,
+      declarations: config[ON_EVENT] || [],
+      customValidate: config.mockValidate || validateBroadcastDeclaration
+    });
 
     // Runs when state changed
-    this[ON_STATE_CHANGE] =
-      config[ON_STATE_CHANGE] &&
-      parseDeclarations({
-        type: DECLARATION_SUB,
-        declarations: config[ON_STATE_CHANGE],
-        customValidate: config.mockValidate || validateSubscriptionDeclaration
-      });
+    this[ON_STATE_CHANGE] = parseDeclarations({
+      type: DECLARATION_SUB,
+      declarations: config[ON_STATE_CHANGE] || [],
+      customValidate: config.mockValidate || validateSubscriptionDeclaration
+    });
 
     executeHooks({ ctx: this, id: AFTER_START }, { ctx: this });
   }
