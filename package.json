@@ -54,9 +54,10 @@
     "rollup-plugin-uglify": "^3.0.0"
   },
   "scripts": {
-    "check": "npm run jest:coveralls && npm run lint",
+    "check": "npm run jest:cover && npm run lint",
+    "check:local": "npm run jest && npm run lint",
     "jest": "./node_modules/.bin/jest --coverage",
-    "jest:coveralls": "./node_modules/.bin/jest --coverage --coverageReporters=text-lcov | ./node_modules/.bin/coveralls",
+    "jest:cover": "./node_modules/.bin/jest --coverage --coverageReporters=text-lcov | ./node_modules/.bin/coveralls",
     "lint": "./node_modules/.bin/eslint --fix '{src,test}/**/*'",
     "prettier": "./node_modules/.bin/prettier --config .prettierrc --write '{src,test}/**/*.js'",
     "add": "git add --all",
@@ -65,7 +66,8 @@
     "build:umd": "cross-env BABEL_ENV=rollup NODE_ENV=development rollup -c",
     "build:umd:min": "cross-env BABEL_ENV=rollup NODE_ENV=production rollup -c",
     "build": "npm run check && npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
-    "build:local": "npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "build:local": "npm run check:local && npm run clean && npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
+    "publish:patch": "npm run build:local && npm version patch && npm publish",
     "clean": "rimraf dist"
   },
   "pre-commit": [
