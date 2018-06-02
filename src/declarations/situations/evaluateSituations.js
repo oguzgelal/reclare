@@ -1,10 +1,17 @@
 import executeHooks from '../../middlewares/executeHooks';
 import { SITUATION_TRUE, SITUATION_FALSE } from '../../middlewares/hookTypes';
 
-const evaluateSituation = ({ prevState, situation, payload, ctx }) => {
+const evaluateSituation = ({
+  prevState,
+  hasChange,
+  situation,
+  payload,
+  ctx
+}) => {
   if (typeof situation === 'function') {
     return situation({
       prevState,
+      hasChange,
       state: ctx.state,
       event: payload
     });
@@ -13,11 +20,19 @@ const evaluateSituation = ({ prevState, situation, payload, ctx }) => {
   }
 };
 
-export default ({ prevState, situations, eventKey, payload, ctx }) => {
+export default ({
+  prevState,
+  hasChange,
+  situations,
+  eventKey,
+  payload,
+  ctx
+}) => {
   let situationHolds = situations.every(s =>
     evaluateSituation({
       situation: s,
       prevState,
+      hasChange,
       payload,
       ctx
     })

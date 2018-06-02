@@ -1,4 +1,5 @@
 import { VERBOSE } from '../middlewares/hookTypes';
+import defaultHooks from './defaultHooks';
 
 const executeHook = ({ ctx, id, out, fns, verbose }, params) => {
   fns &&
@@ -13,6 +14,9 @@ const executeHook = ({ ctx, id, out, fns, verbose }, params) => {
 };
 
 export default ({ ctx, id, out }, params) => {
+  // Execute default hooks
+  executeHook({ id, out, ctx, fns: defaultHooks[id] }, params);
+
   if (ctx.hooks) {
     // Execute registered hooks
     executeHook({ id, out, ctx, fns: ctx.hooks[id] }, params);

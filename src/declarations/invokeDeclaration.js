@@ -12,7 +12,8 @@ export default ({
   payload,
   eventKey,
   // populated when invoked from a subscription
-  prevState
+  prevState,
+  hasChange
 }) => {
   if (declarations && declarations.length > 0) {
     executeHooks({ ctx, id: DECLARATION_HIT }, { ctx, eventKey, payload });
@@ -30,6 +31,7 @@ export default ({
     const { reducers, reactions } = invokeDeclarationObject({
       declarationObject,
       prevState,
+      hasChange,
       eventKey,
       payload,
       ctx

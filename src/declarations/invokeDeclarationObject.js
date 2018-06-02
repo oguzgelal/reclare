@@ -5,7 +5,14 @@ import evaluateSituations from './situations/evaluateSituations';
 import executeHooks from '../middlewares/executeHooks';
 import { DECLARATION_TRIGGERED } from '../middlewares/hookTypes';
 
-export default ({ declarationObject, prevState, eventKey, payload, ctx }) => {
+export default ({
+  declarationObject,
+  prevState,
+  hasChange,
+  eventKey,
+  payload,
+  ctx
+}) => {
   const {
     unparsed,
     situations,
@@ -23,6 +30,7 @@ export default ({ declarationObject, prevState, eventKey, payload, ctx }) => {
   const situationHolds = evaluateSituations({
     situations,
     prevState,
+    hasChange,
     eventKey,
     payload,
     ctx
