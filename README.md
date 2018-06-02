@@ -1,11 +1,13 @@
-<h2 align="center" style="font-size: 30px; font-weight: bolder;">
+<h1 align="center" style="font-size: 45px; font-weight: bolder;
+color: #ED4136;
+background-color: #221F1F;">
   <a
     href="https://github.com/reclarejs/reclare"><img src="https://user-images.githubusercontent.com/2817993/40689568-07d04312-63a3-11e8-8795-5d83f162c9bd.png" alt="Reclare" width="200">
   </a>
   <div>
     Reclare
   </div>
-</h2>
+</h1>
 
 <p align="center">
   <a href="https://travis-ci.org/reclarejs/reclare">
