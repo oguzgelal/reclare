@@ -1,6 +1,4 @@
-<h1 align="center" style="font-size: 45px; font-weight: bolder;
-color: #ED4136;
-background-color: #221F1F;">
+<h1 align="center" style="font-size: 45px; font-weight: bolder;">
   <a
     href="https://github.com/reclarejs/reclare"><img src="https://user-images.githubusercontent.com/2817993/40689568-07d04312-63a3-11e8-8795-5d83f162c9bd.png" alt="Reclare" width="200">
   </a>
