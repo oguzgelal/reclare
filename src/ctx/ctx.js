@@ -7,6 +7,7 @@ import { _subscribe } from '../subscriptions/subscribe';
 import { _getState } from '../state/getState';
 import { _registerMiddlewares } from '../middlewares/registerMiddlewares';
 import { _registerHooks } from '../middlewares/registerHooks';
+import defaultHooks from '../middlewares/defaultHooks';
 import randomString from '../utils/randomString';
 import appendArray from '../utils/appendArray';
 import parseDucks from '../ducks/parseDucks';
@@ -56,7 +57,13 @@ export default class ReclareContext {
   }
 
   _preInit(config) {
+    // register middlewares
     config.middlewares && this.registerMiddlewares(config.middlewares);
+    // register default hooks
+    Object.keys(defaultHooks).forEach(h => {
+      this.defaultHooks = this.defaultHooks || {};
+      this.defaultHooks[h] = defaultHooks[h];
+    });
   }
 
   _init(config) {
