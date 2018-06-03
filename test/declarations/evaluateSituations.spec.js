@@ -60,6 +60,11 @@ describe('evaluateSituations', () => {
           reaction: mockSitTrue
         },
         {
+          on: 'testTrue',
+          situation: 1 === 1,
+          reaction: mockSitTrue
+        },
+        {
           on: 'testFalse',
           situation: 0,
           reaction: mockSitFalse
@@ -68,7 +73,7 @@ describe('evaluateSituations', () => {
     });
     ctx.broadcast('testTrue');
     ctx.broadcast('testFalse');
-    expect(mockSitTrue).toBeCalled();
+    expect(mockSitTrue).toHaveBeenCalledTimes(2);
     expect(mockSitFalse).not.toBeCalled();
   });
 

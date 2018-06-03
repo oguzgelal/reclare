@@ -1,19 +1,41 @@
 import React from 'react';
-import 'todomvc-app-css/index.css';
-import './App.css';
+import PropTypes from 'prop-types';
+import get from 'lodash/get';
 
-import Base from './view/Base';
+import { connect } from 'react-reclare';
+import { broadcast } from 'reclare';
+
+import TodoInput from './view/TodoInput';
+import TodoList from './view/TodoList';
+import TodoFooter from './view/TodoFooter';
 import Footer from './view/Footer';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Base />
-        <Footer />
-      </div>
-    );
-  }
+
+const App = props => (
+  <div>
+    <section className="todoapp">
+      <header className="header">
+        <h1>todos</h1>
+        <TodoInput />
+      </header>
+      {
+        get(props, 'todos', []).length > 0 &&
+        <section className="main">
+          <TodoList />
+          <TodoFooter />
+        </section>
+      }
+    </section>
+    <Footer />
+  </div>
+);
+
+App.propTypes = {
+  todos: PropTypes.array,
 }
 
-export default App;
+const mapStateToProps = state => ({
+  todos: state.todos
+})
+
+export default connect(mapStateToProps)(App);

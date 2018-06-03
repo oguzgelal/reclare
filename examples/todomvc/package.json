@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
+    "lodash": "^4.17.10",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-reclare": "^0.0.4",
     "react-scripts": "1.1.4",
     "reclare": "0.0.3",
+    "reselect": "^3.0.1",
     "todomvc-app-css": "^2.1.2",
     "todomvc-common": "^1.0.5"
   },
