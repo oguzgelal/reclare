@@ -31,7 +31,9 @@
 
 ## Introduction
 
-Reclare is a lightweight library to help you manage your application state alongside your application logic, without comprimising from immutability and predictability of your state. Your reducers and logical implementations resides side by side under what we call "declarations", and they get invoked over the same event broadcast channel. Reclare is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/), and includes many of the familiar concepts.
+Reclare is a lightweight library to help you manage your application state alongside your business logic, without comprimising from immutability and predictability of your state. It is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/), and includes many of the familiar concepts.
+
+With Reclare, your **reducers** (state updater functions) and **reactions** (logic implementations) resides side by side under **declarations**, which gets invoked on one or many events that can be **broadcast**ed from anywhere in your application. They are **situation aware**, and will only be invoked if the situation at the time of the event holds the given criteria. Declarations allows a functionality-first organisation of logic and state management; and within the **ducks files**, they can easily be splitted into logical units.
 
 ## Key Features
 
@@ -39,9 +41,10 @@ Reclare is a lightweight library to help you manage your application state along
 * Predictable state management
 * Ability to handle effects without needing a middleware
 * Built-in way to divide your code into logical units
-* Works with all modern front-end libraries - offical middleware for React
-* Dead simple to build and use custom middlewares
-* Gradual learning curve - super easy to grasp concepts
+* Works with all modern front-end libraries, and an [offical middleware for React](https://github.com/reclarejs/react-reclare)
+* Simple to create and use custom middlewares
+* Gradual learning curve, easy-to-grasp concepts
+* Easy to install, minimal configuration
 
 ## Design Goals
 
