@@ -7,8 +7,6 @@
   </div>
 </h1>
 
-<h4 align="center">Declarative state and logic management for modern Javascript applications</h4>
-
 <p align="center">
   <a href="https://travis-ci.org/reclarejs/reclare">
     <img src="https://travis-ci.org/reclarejs/reclare.svg?branch=master"
@@ -18,6 +16,8 @@
     <img src="https://coveralls.io/repos/github/reclarejs/reclare/badge.svg?branch=master">
   </a>
 </p>
+
+<h4 align="center">Declarative state and logic management for modern Javascript applications</h4>
 
 <p align="center">
   <a href="#introduction">Introduction</a> •
