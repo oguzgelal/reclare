@@ -7,6 +7,8 @@
   </div>
 </h1>
 
+<h4 align="center">Declarative state and logic management for modern Javascript applications</h4>
+
 <p align="center">
   <a href="https://travis-ci.org/reclarejs/reclare">
     <img src="https://travis-ci.org/reclarejs/reclare.svg?branch=master"
@@ -19,9 +21,27 @@
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
+  <a href="#design-goals">Design Goals</a> •
   <a href="#basic-usage">Basic Usage</a> •
-  <a href="#download">Philosophy</a> •
   <a href="#credits">Docs</a> •
   <a href="#related">Contribution</a> •
   <a href="#license">License</a>
 </p>
+
+Reclare is a lightweight library to help you manage your application state alongside your application logic, without comprimising from immutability and predictability of your state. Your reducers and logical implementations resides side by side under what we call "declarations", and they get invoked over the same event broadcast channel. Reclare is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/), and includes many of the familiar concepts.
+
+## Key Features
+
+* A powerful multi-purpose Declarations Api to manage your state and logic
+* Predictable state management
+* Ability to handle effects without needing a middleware
+* Built-in way to divide your code into logical units
+* Works with all modern front-end libraries - offical middleware for React
+* Dead simple to build and use custom middlewares
+* Gradual learning curve - super easy to grasp concepts
+
+## Design Goals
+
+* Strictly decoupling business logic from the views
+* Making views stateless pure functions
+* Refraining from imperativeness whenever possible
