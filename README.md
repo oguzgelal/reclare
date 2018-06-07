@@ -20,6 +20,7 @@
 </p>
 
 <p align="center">
+  <a href="#introduction">Introduction</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#design-goals">Design Goals</a> •
   <a href="#basic-usage">Basic Usage</a> •
@@ -27,6 +28,8 @@
   <a href="#related">Contribution</a> •
   <a href="#license">License</a>
 </p>
+
+## Introduction
 
 Reclare is a lightweight library to help you manage your application state alongside your application logic, without comprimising from immutability and predictability of your state. Your reducers and logical implementations resides side by side under what we call "declarations", and they get invoked over the same event broadcast channel. Reclare is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/), and includes many of the familiar concepts.
 
