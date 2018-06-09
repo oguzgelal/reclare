@@ -28,11 +28,13 @@
   <a href="#contribution">Contribution</a> •
 </p>
 
+
 ## Introduction
 
 Reclare is a lightweight library to manage the application state alongside business logic, without comprimising from predictability of the state. It is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/), and includes many of the familiar concepts.
 
 With Reclare, your **reducers** (state updater functions) and **reactions** (logic implementations) reside side by side under **declarations**, which gets invoked on one or many events that can be **broadcasted** from anywhere in your application. They are **situation aware**, and will only be invoked if the situation at the time of the event holds the given criteria. Declarations allows a functionality-first organisation of logic and state management; and with the **ducks files**, they can be grouped into logical units.
+
 
 ## Basic Example
 
@@ -81,9 +83,11 @@ And broadcasting these events would look something like this:
 * Gradual learning curve, easy-to-grasp concepts
 * Easy to install, minimal configuration
 
+
 ## Feedback
 
-What do you think about Reclare ? Do you have any ideas ? I would love to hear them, and kind of feedback is much appreciated. You can [email me](mailto:o.gelal77@gmail.com) or [contact me](https://oguzgelal.com) some other way.
+What do you think about Reclare ? Do you have any ideas ? I would love to hear them, and kind of feedback would be much appreciated. You can [email me](mailto:o.gelal77@gmail.com) or [contact me](https://oguzgelal.com) some other way.
+
 
 ## Contribution
 
