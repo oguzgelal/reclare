@@ -9,13 +9,22 @@ Modern front-end frameworks [solved this problem](https://medium.com/dailyjs/the
 
 #### Logic in State Management
 
-Modern state management libraries focuses on one thing and one thing only, managing the application state; the logic behind the scenes is [usually overlooked](http://krasimirtsonev.com/blog/article/managing-state-in-javascript-with-state-machines-stent). It makes sense in the context of state management as it is today, because libraries tends to solve one problem at a time; however, **state management and business logic should not be seen as two different entities**. Granted there needs to be a separation between the two, as the impurities and effects of logic should be kept away from the management of the state. But they functionally belong to each other, so they should coexist and be operated under the same command channel. **This approach brings the same predictability to the logic that it does to the state**, making it easier to reason with, follow, understand and test the code. There was a need for a library that will dictate this lifecycle; handle logic and manage the state together but separately, maintaining all the best practices of state management that we've all seen by now. This is where Reclare steps in.
+Modern state management libraries focuses on one thing and one thing only, managing the application state; the logic behind the scenes is [usually overlooked](http://krasimirtsonev.com/blog/article/managing-state-in-javascript-with-state-machines-stent). It makes sense in the context of state management as it is today, because libraries tends to solve one problem at a time; however, **state management and business logic should not be seen as two different entities**. Granted there needs to be a separation between the two, as the impurities and effects of logic should be kept away from the management of the state. But functionally, they belong to each other, so they should coexist and be operated under the same command channel. **This approach brings a similar predictability to the logic that it does to the state**, making it easier to reason with, follow, understand and test the code. There was a need for a library that will dictate this lifecycle; handle logic and manage the state together but separately, maintaining all the best practices of state management that we've all seen by now. This is where Reclare steps in.
 
 
-#### Code fragmentation
+#### Code Structure and Fragmentation
 
-> There's no single clear answer to exactly what pieces of logic should go in a reducer or an action creator.
+On a typical front-end codebase, there are many different types of "entities" that needs to be organised. For instance, in a typical react + redux + redux-saga codebase you would probably have `containers`, `components`, `actions`, `reducers`, `types`, `selectors`, `sagas`, `services` and possibly others depending on the selection of libraries. [Dan Abramov](https://github.com/gaearon) mentions in his article [You might not need Redux](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367):
 
-As mentioned in Redux documentation, there is no straight away answer to where business logic should reside within the application. But I believe there is more to the question of "where should it go". 
+> People often choose Redux before they need it. “What if our app doesn’t scale without it?” Later, developers frown at the indirection Redux introduced to their code. “Why do I have to touch three files to get a simple feature working?” Why indeed!
+
+And he is right, you shouldn't have to touch three different files to work on a single functionality. In fact, things that functionally belong together should not be fragmented into different entities, and should be grouped together. 
+
+Reclare has a two-step solution attempt to solve the code fragmentation issue. First step is the declarations: declarations are bundles that holds state updater functions and logic together. Given that they are organised under events, it is ensured that the a reducer and its reaction will functionally be relevant. For example, a declarations for the event `login_response_success` would have a reducer that saves user data to the state, and a reaction that triggers a success message and changes the route. Both the reducer and reaction belongs to the login process, thus they reside together and work together. 
+
+Second step is the **duck file** approach. [Ducks](https://github.com/erikras/ducks-modular-redux) is a proposal by [Erik Rasmussen](https://github.com/erikras) to bundle the shattered pieces of redux together into a single file as an isolated module. Reclare follows this approach in its own way, and allows you to bundle your declarations together into a single file. More over, it allows you to compose these files so that you can have a parent-child relationship between modules. 
+
+
 
 #### Declarativeness
+
