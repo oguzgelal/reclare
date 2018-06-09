@@ -20,11 +20,12 @@ On a typical front-end codebase, there are many different types of "entities" th
 
 And he is right, you shouldn't have to touch three different files to work on a single functionality. In fact, **codes that functionally belong together should not be fragmented into different entities, and should be grouped together**. 
 
-Reclare has a two-step solution attempt to solve the code fragmentation issue. First step is the declarations: **declarations are bundles that holds state updater functions and logic together**. Given that they are organised under events, it is ensured that the a reducer and its reaction will functionally be relevant. For example, a declarations for the event `login_response_success` would have a reducer that saves user data to the state, and a reaction that triggers a success message and changes the route. Both the reducer and reaction belongs to the login process, thus they reside and work together. 
+Reclare has a two-step solution attempt to solve the code fragmentation issue. First step is the declarations: **declarations are bundles that holds state updater functions and logic together**. Given that they are organised under events, it is ensured that a reducer and a reaction will functionally be relevant. For example, a declarations for the event `login_response_success` would have a reducer that saves user data to the state, and a reaction that triggers a success message and changes the route. Both the reducer and reaction belongs to the login process, thus they reside and work together. 
 
-Second step is the **duck file** approach. [Ducks](https://github.com/erikras/ducks-modular-redux) is a proposal by [Erik Rasmussen](https://github.com/erikras) to bundle the shattered pieces of redux together into a single file as an isolated module. Reclare follows this approach in its own way, allows you to bundle your declarations together into a single file. More over, it supports composition of ducks, so you can have a logical parent-child relationship between modules. Duck files can contain other types of things such as selectors, types etc. It is a simple yet handy way to divide your code into logical units. 
+Second step is the **duck file** approach. [Ducks](https://github.com/erikras/ducks-modular-redux) is a proposal by [Erik Rasmussen](https://github.com/erikras) to bundle the shattered pieces of redux together into a single file as an isolated module. Reclare follows this approach in its own way, allows you to bundle your declarations together into a single file. More over, it supports composition of ducks, so you can have logical parent-child relationships between modules. Duck files can contain other types of things such as selectors, types etc. It is a simple yet handy way to divide and group your code into logical units. 
 
 
 
 #### Declarativeness
 
+It is mentioned a couple of times already that Reclare orchestrates your business logic and state updaters together.
