@@ -1,5 +1,7 @@
 ## Motivation
 
-Early in the days of modern front-end development, before the frameworks got popular, people were building user interfaces by manipulating the DOM manipulation, using either vanilla javascript or the all-famous jQuery. It was reasonable then - as front-end applications were simple and not as data-driven. 
+Early in the days of modern front-end development, people were building user interfaces with plain HTML and CSS, and manipulation the DOM with either vanilla javascript or the all-famous jQuery. It was reasonable back then - as front-end applications were simple and not as data-driven. But the requirements for front-end applications grew over the years; they became responsible for more than displaying the data and handling basic interactions, they were given the responsibility of requesting and handling the data itself. Therefor, this approach quickly lost its feasibility.
 
-[Redux](https://redux.js.org) pioneered the way of making immutability and predictability in state management a standard in modern front-end applications. It restricted how and when an application state can update, making bugs visible and reproducible regardless of the complexity of the application.  
+Modern front-end frameworks solved this problem by abstracting away the DOM manipulation. They handled it with data bindings or by virtualising the DOM, and with a complimentary change detection mechanism, they had the UI reflect the underlying data automatically, so developers didn't have to worry about how DOM should be updated.
+
+[Redux](https://redux.js.org) pioneered the way of making immutability and predictability in state management a standard in modern front-end applications. It restricted how and when an application state can update, making bugs visible and reproducible regardless of the complexity of the application.
