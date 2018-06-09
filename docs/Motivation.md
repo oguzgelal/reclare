@@ -7,12 +7,12 @@ Modern front-end frameworks [solved this problem](https://medium.com/dailyjs/the
 [Redux](https://redux.js.org) pioneered the way of standardizing [event-sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) like transactional state management in front-end application development; with an immutable, read-only, single-source-of-truth style store. It restricted how and when the application state can update, which improved maintainabililty and robustness of applications as they scale. However, there are a few things where Redux falls short. [Reclare](https://github.com/reclarejs/reclare) is a Redux-inspired library that attempts to fill these gaps. 
 
 
-#### Logic in State Management
+### Logic in State Management
 
 Modern state management libraries focuses on one thing and one thing only, managing the application state; the logic behind the scenes is [usually overlooked](http://krasimirtsonev.com/blog/article/managing-state-in-javascript-with-state-machines-stent). It makes sense in the context of state management as it is today, because libraries tends to solve one problem at a time; however, **state management and business logic should not be seen as two different entities**. Granted there needs to be a separation between the two, as the impurities and effects of logic should be kept away from the management of the state. But functionally, they belong to each other, so they should coexist and be operated under the same command channel. **This approach brings a similar predictability to the logic that it does to the state**, making it easier to reason with, follow, understand and test the code. There was a need for a library that will dictate this lifecycle; handle logic and manage the state together but separately, maintaining all the best practices of state management that we've all seen by now. This is where Reclare steps in.
 
 
-#### Code Structure and Fragmentation
+### Code Structure and Fragmentation
 
 On a typical front-end codebase, there are many different types of "entities" that needs to be organised. For instance, in a typical react + redux + redux-saga codebase you would probably have `containers`, `components`, `actions`, `reducers`, `types`, `selectors`, `sagas`, `services` and possibly others depending on the selection of libraries. [Dan Abramov](https://github.com/gaearon) mentions in his article [You might not need Redux](https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367):
 
@@ -26,6 +26,6 @@ Second step is the **duck file** approach. [Ducks](https://github.com/erikras/du
 
 
 
-#### Declarativeness
+### Declarativeness
 
 It is mentioned a couple of times already that Reclare orchestrates your business logic and state updaters together.
