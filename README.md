@@ -33,6 +33,8 @@
 
 Reclare is a lightweight library to manage the application state alongside business logic, without comprimising from predictability of the state. It is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/), and includes many of the familiar concepts.
 
+![declaration](https://user-images.githubusercontent.com/2817993/41202804-f811c83c-6cd6-11e8-8e40-07fdda252c0a.png)
+
 With Reclare, your **reducers** (state updater functions) and **reactions** (logic implementations) reside side by side under **declarations**, which gets invoked on one or many events that can be **broadcasted** from anywhere in your application. They are **situation aware**, and will only be invoked if the situation at the time of the event holds the given criteria. Declarations allows a functionality-first organisation of logic and state management; and with the **ducks files**, they can be grouped into logical units.
 
 
