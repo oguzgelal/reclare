@@ -39,7 +39,6 @@ The login form:
 </form>
 ```
 
-
 Ducks file for login:
 
 ```javascript
@@ -74,12 +73,10 @@ Duck files for request:
     ...state,
     loading: { [event.type]: true }
   }),
-  reaction: ({ event }) => {
-    api(event.path, event.params)
-      .then(res) => broadcast('request_success', res)
-      .catch(err) => broadcast('request_fail', err)
-      .finally() => broadcast('request_resolved', event)
-  }
+  reaction: ({ event }) => api(event.path, event.params)
+    .then(res) => broadcast('request_success', res)
+    .catch(err) => broadcast('request_fail', err)
+    .finally() => broadcast('request_resolved', event)
 },
 {
   on: 'request_resolved',
