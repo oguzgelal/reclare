@@ -1,7 +1,7 @@
-* [Read Me](/README.md)
+* [Reclare](/README.md)
+* [Motivation](/docs/Motivation.md)
 * [Getting Started](/docs/GettingStarted.md)
 * [Basic Usage](/docs/BasicUsage.md)
-* [Motivation](/docs/Motivation.md)
 * Concepts
   * [Context](/docs/concepts/Context.md)
   * [Declarations](/docs/concepts/Declarations.md)
