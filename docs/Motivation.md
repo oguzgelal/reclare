@@ -39,7 +39,7 @@ The login form:
 </form>
 ```
 
-Ducks file for login:
+Duck file for login:
 
 ```javascript
 {
@@ -69,10 +69,7 @@ Duck files for request:
 ```javascript
 {
   on: 'on_request',
-  reducer: ({ state, event }) => ({
-    ...state,
-    loading: { [event.type]: true }
-  }),
+  reducer: ({ state, event }) => ({ ...state, loading: { [event.type]: true } }),
   reaction: ({ event }) => api(event.path, event.params)
     .then(res) => broadcast('request_success', res)
     .catch(err) => broadcast('request_fail', err)
@@ -80,12 +77,11 @@ Duck files for request:
 },
 {
   on: 'request_resolved',
-  reducer: ({ state, event }) => ({
-    ...state,
-    loading: { [event.type]: false }
-  }),
+  reducer: ({ state, event }) => ({ ...state, loading: { [event.type]: false } }),
 }
 ```
+
+As you can see from the example, there is full declarativeness over event management. Every declaration is an isolated piece of code that gets invoked by a particular event, receives the event payload, and does its thing: performs a set of actions and / or updates the state. They are unaware and unaffected by of other parts of the code
 
 ### Flexibility
 
