@@ -30,12 +30,12 @@ The login form:
 
 ```javascript
 <form onSubmit={() => broadcast('login_submitted', {
-		email: this.state.email,
-		password: this.state.password
-	})}
+    email: this.state.email,
+    password: this.state.password
+  })}
 >
- ...
- <Button ... isLoading={this.props.loading.login} />
+  ...
+  <Button ... isLoading={this.props.loading.login} />
 </form>
 ```
 
