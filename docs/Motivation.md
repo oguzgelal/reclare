@@ -26,7 +26,7 @@ Second step is the **duck file** approach. [Ducks](https://github.com/erikras/du
 
 Reclare orchestrates your logic and state together under the same command channel. This opens doors to a wide range of possibilities, such as modularity and declarativeness in your code. I will explain over a simple login scenario:
 
-`login.js`
+`login.js`:
 
 The login form component simply broadcasts the event `login_submitted` with email and password input when form is submitted. It also receives the loading status for the login request in the props declaratively.
 
@@ -47,9 +47,9 @@ The login form component simply broadcasts the event `login_submitted` with emai
 </form>
 ```
 
-`login.ducks.js`
+`login.duck.js`:
 
-The module that manages the login process. The first declaration awaits the `login_submitted` event, which validates the user input in its situation. If the user input is valid, it simply broadcasts the `on_request` event. Notice how it doesn't care about anything request related ? It is only interested in the outcome of the requests of type `login` via the `request_success` and `request_fail` events. Upon those events, it will either save user to the state and trigger a route change, or it will show an error message.
+This module that manages the login process. The first declaration awaits the `login_submitted` event, which validates the user input in its situation. If the user input is valid, it simply broadcasts the `on_request` event. Notice how it doesn't care about anything request related ? It is only interested in the outcome of the requests of type `login` via the `request_success` and `request_fail` events. Upon those events, it will either save user to the state and trigger a route change, or it will show an error message.
 
 ```javascript
 {
@@ -75,7 +75,7 @@ The module that manages the login process. The first declaration awaits the `log
 }
 ```
 
-`request.duck.js`
+`request.duck.js`:
 
 This is an example of a general purpose module which is responsible for handling everything request related - including the loading states. It awaits the `on_request` event to initiate a request, and once invoked, it will set the loading state of the request type on the reducer, and initiate the request on the reaction. It will then trigger the `request_success` or `request_fail` event based on the outcome, and a `request_resolved` event so it can terminate the loading state.
 
