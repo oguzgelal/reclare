@@ -22,24 +22,34 @@ Reclare has a two-step solution attempt to solve this issue. First step is the d
 
 Second step is the **duck file** approach. [Ducks](https://github.com/erikras/ducks-modular-redux) is a proposal by [Erik Rasmussen](https://github.com/erikras) to bundle the shattered pieces of redux together into a single file as an isolated module. Reclare follows this pattern in its own way, allows you to bundle your declarations together into a single file. More over, it supports composition of ducks, so you can have logical parent-child relationships between modules. Duck files can contain, and even export other things such as constants, selectors etc. It is a simple yet handy way to divide and group your code into logical units.
 
-### Declarativeness
+### Modularity and Declarativeness
 
-Reclare orchestrates your logic and state together under the same command channel. This opens doors to a wide range of possibilities, such as the ability to take make use of the declarativeness when implementing your logic. The benefits of this is the ease of testing and reasoning with the code. I will try to explain this better with a simple login scenario:
+Reclare orchestrates your logic and state together under the same command channel. This opens doors to a wide range of possibilities, such as modularity and declarativeness in your code. I will explain over a simple login scenario:
 
-The login form:
+`login.js`
+
+The login form component simply broadcasts the event `login_submitted` with email and password input when form is submitted. It also receives the loading status for the login request in the props declaratively.
 
 ```javascript
-<form onSubmit={() => broadcast('login_submitted', {
-    email: this.state.email,
-    password: this.state.password
-  })}
+<form
+  onSubmit={() =>
+    broadcast('login_submitted', {
+      email: this.state.email,
+      password: this.state.password
+    })
+  }
 >
   ...
-  <Button ... isLoading={this.props.loading.login} />
+  <Button
+    text={this.props.loading.login ? 'Loading...' : 'Login'}
+    isLoading={this.props.loading.login}
+  />
 </form>
 ```
 
-Duck file for login:
+`login.ducks.js`
+
+The module that manages the login process. The first declaration awaits the `login_submitted` event, which validates the user input in its situation. If the user input is valid, it simply broadcasts the `on_request` event. Notice how it doesn't care about anything request related ? It is only interested in the outcome of the requests of type `login` via the `request_success` and `request_fail` events. Upon those events, it will either save user to the state and trigger a route change, or it will show an error message.
 
 ```javascript
 {
@@ -49,7 +59,8 @@ Duck file for login:
     type: 'login',
     path: '/login',
     params: { ...event }
-  })
+  }),
+  reactionElse: () => alert('Invalid parameters'),
 },
 {
   on: 'request_success',
@@ -64,7 +75,9 @@ Duck file for login:
 }
 ```
 
-Duck files for request:
+`request.duck.js`
+
+This is an example of a general purpose module which is responsible for handling everything request related - including the loading states. It awaits the `on_request` event to initiate a request, and once invoked, it will set the loading state of the request type on the reducer, and initiate the request on the reaction. It will then trigger the `request_success` or `request_fail` event based on the outcome, and a `request_resolved` event so it can terminate the loading state.
 
 ```javascript
 {
@@ -81,7 +94,7 @@ Duck files for request:
 }
 ```
 
-As you can see from the example, there is full declarativeness over event management. Every declaration is an isolated piece of code that gets invoked by a particular event, receives the event payload, and does its thing: performs a set of actions and / or updates the state. They are unaware and unaffected by of other parts of the code
+As you can see, there is a full modularity and declarativeness on managing the logic and the state. This will help you to never lose the mental mapping of your code regardless of how much it scales. You can implement general purpose modules that awaits certain events and performs certain tasks, and broadcasts events out if necessary. This also brings advantages in testing your code. Every declaration is an isolated piece of code that gets invoked by a particular event, receives a payload and does its thing: performs a set of actions and / or updates the state. They are unaware and unaffected by of other parts of the code. It is simple to test a single declaration, just by broadcasting the event it awaits with a payload, and expecting it to functions as intended.
 
 ### Flexibility
 
