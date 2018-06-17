@@ -26,12 +26,12 @@ createContext({
   // Object array
   // Use to pass duck file configurations.
   // See ducks section for more details.
-  ducks: [],
+  ducks: [...],
 
   // Object
   // Use to pass middleware hooks.
   // See middlewares section for more details.
-  middlewares: {},
+  middlewares: {...},
 
   // Boolean
   // Create the context but do not set it as the global context (default: false)
@@ -45,6 +45,21 @@ When you call `createContext`, the created context will be set as the **global c
 ```javascript
 import { createContext, broadcast } from 'reclare';
 
+// createContext method sets the created context as the global context
+createContext({
+  onEvent: [{
+    on: 'a',
+    reaction: () => console.log('a')
+  }]
+})
+
+// We can import & use api methods directly, which will refer to the global context
+broadcast('a'); // prints: a
+```
+
+```javascript
+import { createContext, broadcast } from 'reclare';
+
 // createContext method returns the context 
 const ctx = createContext({
   onEvent: [{
@@ -53,11 +68,10 @@ const ctx = createContext({
   }]
 })
 
+broadcast('a'); // prints: a
+
 // We can access api methods directly from the context object
 ctx.broadcast('a'); // prints: a
-
-// We can also import & use them directly, which will then refer to the global context
-broadcast('a'); // prints: a
 ```
 
 `createContext` overwrites the previous global context when its called more than once: 
@@ -84,4 +98,28 @@ const ctx2 = createContext({
 ctx1.broadcast('a') // prints: a1
 ctx2.broadcast('a') // prints: a2
 broadcast('a') // prints: a2
+```
+
+`createOnly` option will avoid `createContext` to set the created context as global. 
+
+```javascript
+import { createContext, broadcast } from 'reclare';
+
+const ctx1 = createContext({
+  onEvent: [{
+    on: 'a',
+    reaction: () => console.log('a1')
+  }]
+})
+
+const ctx2 = createContext({
+  createOnly: true,
+  onEvent: [{
+    on: 'a',
+    reaction: () => console.log('a2')
+  }]
+})
+
+// This targets the first context created, because the second one is created with `createOnly: true` thus it isn't set as the global context
+broadcast('a') // prints: a1
 ```
