@@ -1,6 +1,6 @@
 ## Context
 
-[Reclare context](https://github.com/reclarejs/reclare/blob/master/src/ctx/ctx.js) is an enclosed object that holds everything together, including the state and the declarations. It also exposes the api; allowing access to `broadcast`, `subscribe`, `getState`, `registerMiddlewares` and `registerHooks` methods.
+[Reclare context](https://github.com/reclarejs/reclare/blob/master/src/ctx/ctx.js) is an enclosed object that holds the state and the declarations, and exposes the api; allowing access to `broadcast`, `subscribe`, `getState`, `registerMiddlewares` and `registerHooks` methods.
 
 The context must be created using the `createContext` method. It takes an object for configuration options, and returns the context object.
 
