@@ -1,6 +1,6 @@
 * [Reclare](/README.md)
+* [Motivation](https://medium.com/@oguzgelal/the-logic-in-state-management-2820d0353fed)
 * [Getting Started](/docs/GettingStarted.md)
-* [Basic Usage](/docs/BasicUsage.md)
 * Concepts
   * [Context](/docs/concepts/Context.md)
   * [Declarations](/docs/concepts/Declarations.md)
