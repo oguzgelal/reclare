@@ -1,5 +1,4 @@
 * [Reclare](/README.md)
-* [Motivation](/docs/Motivation.md)
 * [Getting Started](/docs/GettingStarted.md)
 * [Basic Usage](/docs/BasicUsage.md)
 * Concepts

@@ -12,25 +12,27 @@ export const REQUEST_STOP = 'REQUEST_STOP';
 export const onEvent = [
   {
     on: REQUEST,
-    reducer: ({ state, event }) =>
-      set(`loading.${event.key}`, true, state),
+    reducer: ({ state, event }) => set(`loading.${event.key}`, true, state),
     reaction: ({ event }) =>
       axios(event)
-        .then(res => broadcast(REQUEST_RESOLVE, {
-          ...res,
-          e: REQUEST_SUCCESS,
-          key: event.key,
-        }))
-        .catch(err => broadcast(REQUEST_RESOLVE, {
-          ...err,
-          e: REQUEST_FAIL,
-          key: event.key,
-        }))
+        .then(res =>
+          broadcast(REQUEST_RESOLVE, {
+            ...res,
+            e: REQUEST_SUCCESS,
+            key: event.key
+          })
+        )
+        .catch(err =>
+          broadcast(REQUEST_RESOLVE, {
+            ...err,
+            e: REQUEST_FAIL,
+            key: event.key
+          })
+        )
   },
   {
     on: REQUEST_RESOLVE,
-    situation: ({ state, event }) =>
-      get(state, `loading.${event.key}`),
+    situation: ({ state, event }) => get(state, `loading.${event.key}`),
     reaction: [
       ({ event: { e, ...rest } }) => broadcast(e, rest),
       ({ event }) => broadcast(REQUEST_STOP, event)
@@ -38,7 +40,6 @@ export const onEvent = [
   },
   {
     on: REQUEST_STOP,
-    reducer: ({ state, event }) =>
-      set(`loading.${event.key}`, false, state)
-  },
+    reducer: ({ state, event }) => set(`loading.${event.key}`, false, state)
+  }
 ];

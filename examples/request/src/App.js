@@ -33,11 +33,11 @@ class App extends React.Component {
           type="text"
           name="query"
           className="search-input"
-          disabled={get(this.props, 'loading.SEARCH')}
+          disabled={get(this.props, `loading.${SEARCH}`)}
           value={this.state.query}
           onChange={this.handleChange}
         />
-        {!get(this.props, 'loading.SEARCH') && (
+        {!get(this.props, `loading.${SEARCH}`) && (
           <input
             type="button"
             value="Search"
@@ -45,7 +45,7 @@ class App extends React.Component {
             onClick={() => broadcast(SEARCH, { query: this.state.query })}
           />
         )}
-        {get(this.props, 'loading.SEARCH') && (
+        {get(this.props, `loading.${SEARCH}`) && (
           <input
             type="button"
             value="Cancel"
