@@ -31,16 +31,16 @@
 
 ## Introduction
 
-Reclare is a lightweight library to manage the application state alongside business logic, without comprimising from predictability of the state. It is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/), and includes many of the familiar concepts.
+Reclare is a lightweight library to manage the application state alongside business logic, without compromising from the predictability of the state. It is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/) and includes many of the familiar concepts.
 
 ![declaration](https://user-images.githubusercontent.com/2817993/41203066-ebb68c22-6cda-11e8-9e52-da18f253c1be.png)
 
-With Reclare, your **reducers** (state updater functions) and **reactions** (logic implementations) reside side by side under **declarations**, which gets invoked by events which can be **broadcasted** from anywhere within your application. They are **situation aware**, and will only be invoked if the situation at the time of the event holds the given criteria. Declarations allows a functionality-first organisation of logic and state management, and **ducks files** allows modularity so that your code can be grouped into logical units.
+With Reclare, your **reducers** (state updater functions) and **reactions** (logic implementations) reside side by side under **declarations**, which gets invoked by events which can be **broadcasted** from anywhere within your application. They are **situation aware**, and will only be invoked if the situation at the time of the event holds the given criteria. Declarations allow a functionality-first organization of logic and state management, and **ducks files** allows modularity so that your code can be grouped into logical units.
 
 
 ## Basic Example
 
-Below is an example of what declarations would look like in the context of a simple counter implementation with one simple rule: the counter cannot go below zero: 
+Below is an example of what declarations would look like in the context of a simple counter implementation with one simple rule: the counter cannot go below zero:
 
 ```javascript
 {
@@ -76,19 +76,19 @@ And broadcasting these events would look something like this:
 
 ## Key Features
 
-* A powerful declaration api to manage your state and business logic
+* A powerful declaration API to manage your state and business logic
 * Predictable, immutable state management
 * Built-in ability to handle effects
 * Built-in way to divide your code into logical units
 * Works with all modern front-end libraries - an [offical middleware for React](https://github.com/reclarejs/react-reclare)
 * Simple to create and use custom middlewares
-* Gradual learning curve, easy-to-grasp concepts
+* A gradual learning curve, easy-to-grasp concepts
 * Easy to install, minimal configuration
 
 
 ## Feedback
 
-What do you think about Reclare ? Do you have any ideas ? I would love to hear them, and kind of feedback would be much appreciated. You can [email me](mailto:o.gelal77@gmail.com) or [contact me](https://oguzgelal.com) some other way.
+What do you think about Reclare? Do you have any ideas? I would love to hear them, and kind of feedback would be much appreciated. You can [email me](mailto:o.gelal77@gmail.com) or [contact me](https://oguzgelal.com) some other way.
 
 
 ## Contribution
