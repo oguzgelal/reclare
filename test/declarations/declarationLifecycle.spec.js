@@ -26,22 +26,23 @@ describe('declarationLifecycle', () => {
   });
 
   test('reducers should run before reactions', () => {
-    let order = '';
+    const mockFn = jest.fn();
     const ctx = createContext({
       [ON_EVENT]: [
         {
           on: 'increment',
           reducer: ({ state }) => {
-            order += 'a';
+            mockFn('reducer');
             return { ...state, count: state.count + 1 };
           },
           reaction: () => {
-            order += 'b';
+            mockFn('reaction');
           }
         }
       ]
     });
     ctx.broadcast('increment');
-    expect(order).toBe('ab');
+    expect(mockFn.mock.calls[0][0]).toBe('reducer');
+    expect(mockFn.mock.calls[1][0]).toBe('reaction');
   });
 });
