@@ -1,6 +1,9 @@
 ## Declarations
 
-A declaration defines how to react to a certain event under the conditions at the time of the event. They can be seen as 4-tuples that holds together an event key, a situation function, state updaters and business logic. When the specified event key is broadcasted and the situation function evaluates to true, the declaration gets invoked and its reducers and reactions are executed. A declaration is a simple object that looks like this:
+A declaration is an invokable object by Reclare, that describes **under what condition** should it respond to its invocation and **what to do** if the condition holds. It's reaction could be updating the state, executing logic / side-effects, or both. 
+
+Here is what it looks like:
+
 
 ```javascript
 {
@@ -13,19 +16,21 @@ A declaration defines how to react to a certain event under the conditions at th
 }
 ```
 
-`on`  -  The event key that declaration is invoked upon. If an array of keys are provided, the declaration will be invoked upon all.
+`on`  -  The event key that declaration is invoked upon (see below).
 
-[situation](/docs/concepts/Situations.md)  -  Declaration is invoked only when the situation evaluates to true or a truthy value. If a function or an array of functions are provided, their return value will be evaluated. If anything else is provided, their truthy / falsy values will be considered. Omitting it is equivalent to setting it to true.
+[situation](/docs/concepts/Situations.md)  -  Declaration is invoked only when the situation evaluates to true or a truthy value.
 
-[reducer](/docs/concepts/Reducers.md)  - State updater function, takes in the current state and specifies how the state will change by returning the new state. It can take a function or an array of functions, executed when situation is true.
+[reducer](/docs/concepts/Reducers.md)  - State updater function, takes in the current state and specifies how the state will change by returning the new state.
 
-[reducerElse](/docs/concepts/Reducers.md)  -  Same with reducer, executed when situation is false.
+[reducerElse](/docs/concepts/Reducers.md)  -  Same with reducer, executed when situation evaluates to false.
 
-[reaction](/docs/concepts/Reactions.md)  -  This is where the logic should go. It can take a function or an array of functions, executed when situation is true.
+[reaction](/docs/concepts/Reactions.md)  -  Function that holds the logic.
 
-[reactionElse](/docs/concepts/Reactions.md)  -  Same as reaction, executed when situation is false.
+[reactionElse](/docs/concepts/Reactions.md)  -  Same as reaction, executed when situation evaluates to false.
 
-As for broadcasting events: it is as simple as it sounds - you just use the broadcast method. First parameter of broadcast is the event key, followed by the event payload - which will be passed on to the declaration functions.
+It is a general purpose api that could be invoked in different ways. Currently there are two: they either listen to the event channel and subscribe to specific events (event declarations), or they get invoked upon every state change (subscription declarations). Depending on their invocation context, their functions may receive different parameters, but their structure do not change.
+
+Subscription declarations gets invoked automatically when the state is updated through the reducers. To use the event declarations, you simply broadcast events. It is as simple as it sounds - you just use the broadcast method. First parameter of broadcast is the event key, followed by the event payload - which will be passed on to the declaration functions.
 
 ```javascript
 broadcast("event_key", { bar: 'foo' })

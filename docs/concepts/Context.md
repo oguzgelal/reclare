@@ -14,27 +14,28 @@ createContext({
   initialState: {...},
 
   // Object array
-  // Use to pass declarations for events
+  // To pass declarations for events
   // See broadcasts section for more details
   onEvent: [...],
 
   // Object array
-  // Use to pass declarations for subscriptions
+  // To pass declarations for subscriptions
   // See subscriptions section for more details.
   onStateChange: [...],
 
   // Object array
-  // Use to pass duck file configurations.
+  // To pass duck file configurations.
   // See ducks section for more details.
   ducks: [...],
 
   // Object
-  // Use to pass middleware hooks.
+  // To pass the middleware hooks.
   // See middlewares section for more details.
   middlewares: {...},
 
   // Boolean
-  // Create the context but do not set it as the global context (default: false)
+  // Create the context but do not set it
+  // as the global context (default: false)
   createOnly: false,
 })
 ```
@@ -45,7 +46,8 @@ When you call `createContext`, the created context will be set as the **global c
 ```javascript
 import { createContext, broadcast } from 'reclare';
 
-// createContext method sets the created context as the global context
+// createContext method sets the created
+// context as the global context
 createContext({
   onEvent: [{
     on: 'a',
@@ -53,7 +55,8 @@ createContext({
   }]
 })
 
-// We can import & use api methods directly, which will refer to the global context
+// We can import & use api methods directly,
+// which will refer to the global context
 broadcast('a'); // prints: a
 ```
 
@@ -70,11 +73,12 @@ const ctx = createContext({
 
 broadcast('a'); // prints: a
 
-// We can access api methods directly from the context object
+// We can access api methods directly from
+// the context object
 ctx.broadcast('a'); // prints: a
 ```
 
-`createContext` overwrites the previous global context when its called more than once: 
+`createContext` overwrites the existing global context: 
 
 ```javascript
 import { createContext, broadcast } from 'reclare';
@@ -120,6 +124,9 @@ const ctx2 = createContext({
   }]
 })
 
-// This targets the first context created, because the second one is created with `createOnly: true` thus it isn't set as the global context
+// This targets the first context created,
+// because the second one is created with 
+// `createOnly: true` thus it isn't set as 
+// the global context
 broadcast('a') // prints: a1
 ```
