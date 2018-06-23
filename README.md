@@ -40,6 +40,8 @@ With Reclare, your **reducers** (state updater functions) and **reactions** (log
 
 ## Basic Example
 
+[View example on JSFiddle](https://jsfiddle.net/oguzgelal/r89vzhuq/)
+
 Below is an example of what declarations would look like in the context of a simple counter implementation with one simple rule: the counter cannot go below zero:
 
 ```javascript
