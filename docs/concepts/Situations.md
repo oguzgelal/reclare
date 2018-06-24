@@ -156,7 +156,7 @@ Let's say `decrement` event is broadcasted when the state is `{ counter: 1 }`. T
 
 Again, lets consider the `decrement` event getting broadcasted when the state is `{ counter: 1 }`. Since the declaration doesn't have a situation, it will be invoked. Its reducer and reaction will both be queued. First the queued reducer will execute. The condition check will not hold, so it will transform the state into `{ counter: 0 }`. Then, the queued reaction will execute, it will receive the updated state of `{ counter: 0 }`. It's condition will hold, so the error message will be shown. We broadcasted `decrement` when the counter is `1`, and we ended up getting the error message.
 
-The lesser important reasons why situations should exists is declarativity and convenience. Describing the situation in which a declaration should invoke is the declarative way. Using an if / else or a switch / case statement is the imperative way. Declarative approach should be preferrable when possible, it will make the code cleaner and more descriptive. Also, if you did it imperatively, you would have to duplicate your condition checks on all reactions / reducers. The imperative example above can be implemented like this:
+Other reasons on why situations should exists are convenience and declarativeness. Describing the situational condition is the declarative approach. Using an if / else or a switch / case statements is the imperative approach. Declarative approach should be preferrable when possible, because it makes the code cleaner and more descriptive. Also, if you used imperative logic, you would have to duplicate your condition checks on all reactions / reducers. The imperative example above can be implemented like this:
 
 ```javascript
 {
