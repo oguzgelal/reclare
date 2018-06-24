@@ -1,17 +1,19 @@
 ## Situations
 
-Situations (situational conditions) are functions that can be used to describe the situation in which the declaration should invoke. It looks like this:
+Situations (situational conditions) are functions that can be used to describe the situation in which the declaration should invoke. 
+
+For example, the situation function below describes a situation where the counter is greater than zero, so the declaration will only be invoked if that situational condition holds.
 
 ```javascript
 {
   on: 'decrement',
-  situation: ({ state }) => state.count > 0,
+  situation: ({ state }) => state.counter > 0,
   reducer: ({ ... }) => /* return new state */
   reaction: ({ ... }) => /* do something */
 }
 ```
 
-They receive an object as a parameter that holds the current state (`state`) and the event payload (`event`). On subscription declarations, they also receive the previous state (`prevState`), and an utility function (`hasChange`). See [declarations](./Declarations.md) for more details.
+They receive an object as a parameter that holds the current state (`state`) and the event payload (`event`). On subscription declarations, they also receive the previous state (`prevState`), and the has change utility function (`hasChange`). See [declarations](./Declarations.md) for more details.
 
 ```javascript
 createContext({
