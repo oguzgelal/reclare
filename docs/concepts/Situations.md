@@ -1,8 +1,6 @@
 ## Situations
 
-Situations (situational conditions) are functions that can be used to describe the situation in which the declaration should invoke. 
-
-For example, the situation function below describes a situation where the counter is greater than zero, so the declaration will only be invoked if that situational condition holds.
+Situations (situational conditions) are functions that can be used to describe the situation in which the declaration should invoke. For example, the situation function below describes a situation where the counter is greater than zero, so the declaration will only be invoked if that situational condition holds.
 
 ```javascript
 {
@@ -28,12 +26,8 @@ createContext({
   // and the current versions of the state. hasChange 
   // function is also accessible like so
   onStateChange: [{
-    situation: ({
-      state,
-      prevState,
-      event,
-      hasChange,
-    }) => hasChange('a.b.c')
+    situation: ({ state, prevState, event, hasChange, }) =>
+      hasChange('a.b.c')
   }]
 })
 ```
