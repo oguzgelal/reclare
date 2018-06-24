@@ -1,8 +1,42 @@
 ## Situations
 
-Situations (situational conditions) are functions that can be used to describe the situation in which the declaration should invoke.
+Situations (situational conditions) are functions that can be used to describe the situation in which the declaration should invoke. It looks like this:
 
-They receive an object as a parameter that holds the current state (`state`) and the event payload (`event`). On subscription declarations, they also receive the previous state (`prevState`), and an utility function (`hasChange`). The condition holds when situation function returns true or a truthy value. If the situation is not a function, its truthy / falsy value will dictate if the condition holds or not. Omitting situation is equivalent to setting it to true, it will hold every time.
+```javascript
+{
+  on: 'decrement',
+  situation: ({ state }) => state.count > 0,
+  reducer: ({ ... }) => /* return new state */
+  reaction: ({ ... }) => /* do something */
+}
+```
+
+They receive an object as a parameter that holds the current state (`state`) and the event payload (`event`). On subscription declarations, they also receive the previous state (`prevState`), and an utility function (`hasChange`). See [declarations](./Declarations.md) for more details.
+
+```javascript
+createContext({
+  
+  // you can access to the state and the event payload 
+  onEvent: [{
+    on: 'event',
+    situation: ({ state, event }) => something(state)
+  }],
+
+  // you can access the event payload, previous version 
+  // and the current versions of the state. hasChange 
+  // function is also accessible like so
+  onStateChange: [{
+    situation: ({
+      state,
+      prevState,
+      event,
+      hasChange,
+    }) => hasChange('a.b.c')
+  }]
+})
+```
+
+The condition holds when situation function returns true or a truthy value. If the situation is not a function, its truthy / falsy value will dictate if the condition holds or not. Omitting situation is equivalent to setting it to true, it will hold every time.
 
 ```javascript
 {
@@ -90,7 +124,6 @@ There have been some discussions on whether situations are necessary or not. One
 
 The reason why situations must exist is related to the way Reclare orchestrates the declaration functions. When an event is broadcasted, Reclare makes sure that all the situation functions of all triggered declarations are evaluated against the same situation, that is, the situation at the exact moment of the broadcast. In another word, all situation functions will certainly receive the state at the time of the broadcast. This is only possible when situation function are not embedded inside reactions / reducers and are provided separately to the declaration. Consider the decrement counter example that the counter can't go below zero:
 
-
 ```javascript
 {
   on: 'decrement',
@@ -138,6 +171,3 @@ The lesser important reasons why situations should exists is declarativity and c
 }
 ```
 
-### Why the funky name ?
-
-Lorem ipsum
