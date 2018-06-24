@@ -58,7 +58,7 @@ The condition holds when situation function returns true or a truthy value. If t
 
 ### Multiple situations
 
-You can define multiple situations for a declaration. There are two ways of doing this: you can either input an array of situations, or you can use the `and`, `or` and `not` logical operators to build up your own custom logic. Inputting a situation array is equivalent to combining them by and.
+You can define multiple situations for a declaration. There are two ways of doing this: you can either input an array of situations, or you can use the `and`, `or` and `not` logical operators to build up your own custom logic. You can compose these operators and create your own logical flow. Inputting a situation array is equivalent to combining them by and.
 
 ```javascript
 import { and, or, not } from 'reclare';
