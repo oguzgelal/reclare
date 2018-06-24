@@ -11,7 +11,7 @@ Here is what it looks like:
   on: ...,
 
   // Situational condition that describes
-  // the situation the declaration
+  // the situation that the declaration
   // should be invoked upon.
   situation: ...,
 
@@ -59,7 +59,7 @@ broadcast('event_key', { bar: 'foo' });
 
 ### Subscription Declarations
 
-Subscription declarations gets invoked upon every state change. Therefor, the `on` key should be omitted. They receive the previous state (`prevState`) and the current state (`state`) as an argument to the situation functions, so you can do an identity check to see if there is a change. This allows you to create declarations that subscribes to a particular node in the state tree. Their situation function also receives an utility function `hasChange`, which takes in an object path and returns true only if there is a change at the given path. They are provided to the context by the field `onStateChange` like so:
+Subscription declarations gets invoked upon every state change, therefor the `on` key should be omitted. They receive the previous state (`prevState`) and the current state (`state`) as an argument to the situation functions, so you can do an identity check to see if there is a change. This allows you to create declarations that subscribes to a particular node in the state tree. Their situation function also receives an utility function `hasChange`, which takes in an object path and returns true only if there is a change at a given path. They are provided to the context (or the duck files) by the field `onStateChange` like so:
 
 ```javascript
 createContext({
