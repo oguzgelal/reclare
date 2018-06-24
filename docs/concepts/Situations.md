@@ -90,6 +90,7 @@ There have been some discussions on whether situations are necessary or not. One
 
 The reason why situations must exist is related to the way Reclare orchestrates the declaration functions. When an event is broadcasted, Reclare makes sure that all the situation functions of all triggered declarations are evaluated against the same situation, that is, the situation at the exact moment of the broadcast. In another word, all situation functions will certainly receive the state at the time of the broadcast. This is only possible when situation function are not embedded inside reactions / reducers and are provided separately to the declaration. Consider the decrement counter example that the counter can't go below zero:
 
+
 ```javascript
 {
   on: 'decrement',
