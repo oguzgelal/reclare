@@ -118,7 +118,7 @@ If you declare an asynchronous situation function, it will not be awaited during
 
 There have been some discussions on whether situations are necessary or not. One might argue that it adds some complexity to declarations, and it would be simpler to check the condition in the reducers / reactions. However, situations are more than just syntactic sugars.
 
-The reason why situations must exist is related to the way Reclare orchestrates the declaration functions. When an event is broadcasted, Reclare makes sure that all the situation functions of all triggered declarations are evaluated against the same situation, that is, the situation at the exact moment of the broadcast. In another word, all situation functions will certainly receive the state at the time of the broadcast. This is only possible when situation function are not embedded inside reactions / reducers and are provided separately to the declaration. Consider the decrement counter example that the counter can't go below zero:
+The reason why situations must exist is related to the way Reclare orchestrates the declaration functions. When an event is broadcasted, Reclare makes sure that all the situation functions of all triggered declarations are evaluated against the same situation, that is, the situation at the exact moment of the broadcast. In other words, all situation functions will certainly receive the state at the time of the broadcast. This is only possible when situation function are not embedded inside reactions / reducers and are provided separately to the declaration. Consider the decrement counter example where the counter can't go below zero:
 
 ```javascript
 {
@@ -156,7 +156,7 @@ Let's say `decrement` event is broadcasted when the state is `{ counter: 1 }`. T
 
 Again, lets consider the `decrement` event getting broadcasted when the state is `{ counter: 1 }`. Since the declaration doesn't have a situation, it will be invoked. Its reducer and reaction will both be queued. First the queued reducer will execute. The condition check will not hold, so it will transform the state into `{ counter: 0 }`. Then, the queued reaction will execute, it will receive the updated state of `{ counter: 0 }`. It's condition will hold, so the error message will be shown. We broadcasted `decrement` when the counter is `1`, and we ended up getting the error message.
 
-Other reasons on why situations should exists are convenience and declarativeness. Describing the situational condition is the declarative approach. Using an if / else or a switch / case statements is the imperative approach. Declarative approach should be preferrable when possible, because it makes the code cleaner and more descriptive. Also, if you used imperative logic, you would have to duplicate your condition checks on all reactions / reducers. The imperative example above can be implemented like this:
+Another reasons on why situations should exists is convenience and declarativeness. Describing the situational condition is the declarative approach. Using if/else or a switch/case statement is the imperative approach. Declarative approach should be preferrable when possible, because it makes the code cleaner and more descriptive. Also, if you used imperative approach, you would have to duplicate your condition checks on all reactions / reducers. The imperative example above can be written like this:
 
 ```javascript
 {
