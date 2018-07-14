@@ -17,7 +17,7 @@
   </a>
 </p>
 
-<h4 align="center">Declarative state and logic management for modern Javascript applications</h4>
+<h4 align="center">Declarative State and Logic Management</h4>
 
 <p align="center">
   <a href="#introduction">Introduction</a> •
@@ -29,16 +29,12 @@
 </p>
 
 
-## Introduction
 
 Reclare is a lightweight library to manage the application state alongside business logic, without compromising from the predictability of the state. It is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/) and includes many of the familiar concepts.
 
-With Reclare, your **reducers** (state updater functions) and **reactions** (logic) reside side by side under **declarations**, which gets invoked by events **broadcasted** from anywhere in your application. They are **situation aware**, they will only invoke if the their situation function evalutes to true. Declarations allow a functionality-first organization of logic and state management, and **ducks files** allows your code to be grouped into logical units.
+### Basic Example
 
-
-## Basic Example
-
-[View example on JSFiddle](https://jsfiddle.net/oguzgelal/r89vzhuq/)
+[View on JSFiddle](https://jsfiddle.net/oguzgelal/r89vzhuq/)
 
 Below is an example of what declarations would look like in the context of a simple counter implementation with one simple rule: the counter cannot go below zero:
 
@@ -62,11 +58,9 @@ Below is an example of what declarations would look like in the context of a sim
 
 ```
 
-Upon the broadcast of `increment`, the first declaration will be invoked, which will increment the counter on the reducer, and log the updated number on the reaction.
+Upon the broadcast of `increment`, the first declaration will be invoked. It will increment the counter and log the updated number. `decrement` event hits two declarations. First one only invokes when the counter is greater than zero and decrements the counter. Second one invokes when counter is zero, and alerts the error message.
 
-The `decrement` event hits two declarations, first one requires the counter to be greater than zero. It will only be invoked if the situation function returns a true (or a truthy) value, or is true / truthy itself; otherwise, its reaction and reducer will not be executed. If it is the case that the counter is at zero, the second declaration will be invoked, which will fire an alert.
-
-And broadcasting these events would look something like this:
+Broadcasting these events would look something like this:
 
 ```javascript
 <Button value="+" onClick={() => broadcast('increment')} />
@@ -76,14 +70,14 @@ And broadcasting these events would look something like this:
 
 ## Key Features
 
-* A powerful declaration API to manage your state and business logic
+* Manage **state** and **logic** together
 * Predictable, immutable state management
-* Built-in ability to handle effects
-* Built-in way to divide your code into logical units
-* Works with all modern front-end libraries - an [offical middleware for React](https://github.com/reclarejs/react-reclare)
+* Handle requests / effects
+* Modularise your code
+* For all frameworks - [offical middleware for React](https://github.com/reclarejs/react-reclare)
 * Simple to create and use custom middlewares
-* A gradual learning curve, easy-to-grasp concepts
 * Easy to install, minimal configuration
+* Easy-to-grasp concepts
 
 
 ## Feedback
