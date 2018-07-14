@@ -20,7 +20,7 @@
 <h4 align="center">Declarative State and Logic Management</h4>
 
 <p align="center">
-  <a href="#introduction">Introduction</a> •
+  <a href="#what-is-reclare">Introduction</a> •
   <a href="#basic-example">Basic Example</a> •
   <a href="#key-features">Key Features</a> •
   <a href="https://docs.reclare.io">Documentation</a> •
