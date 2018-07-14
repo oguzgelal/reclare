@@ -25,7 +25,7 @@
   <a href="#basic-example">Basic Example</a> •
   <a href="#basic-example">Documentation</a> •
   <a href="#contribution">Feedback</a> •
-  <a href="#contribution">Contribution</a> •
+  <a href="#contribution">Contribution</a>
 </p>
 
 
