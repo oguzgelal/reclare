@@ -84,7 +84,7 @@ Broadcasting these events would look something like this:
 
 ### Documentation
 
-The documentation is still under construction, my apologies for that. I will try to complete it as soon as possible.
+The documentation is still under construction, it still has some missing parts. My apologies for that. I will try to complete it as soon as possible.
 
 [Click here for the documentation](https://docs.reclare.io)
 
