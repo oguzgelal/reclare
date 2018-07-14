@@ -73,11 +73,10 @@ export default class ReclareContext {
         ctx: this,
         id: BEFORE_STATE,
         out: nextInitialState => {
-          config.initialState = Object.assign(
-            {},
-            config.initialState,
-            nextInitialState
-          );
+          config.initialState = {
+            ...config.initialState,
+            ...nextInitialState
+          };
         }
       },
       {
