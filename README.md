@@ -29,6 +29,7 @@
 </p>
 
 
+### What is Reclare ?
 
 Reclare is a lightweight library to manage the application state alongside business logic, without compromising from the predictability of the state. It is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/) and includes many of the familiar concepts.
 
