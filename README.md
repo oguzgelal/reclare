@@ -21,9 +21,9 @@
 
 <p align="center">
   <a href="#what-is-reclare">Introduction</a> •
-  <a href="#basic-example">Basic Example</a> •
   <a href="#key-features">Key Features</a> •
-  <a href="https://docs.reclare.io">Documentation</a> •
+  <a href="#basic-example">Basic Example</a> •
+  <a href="#basic-example">Documentation</a> •
   <a href="#contribution">Feedback</a> •
   <a href="#contribution">Contribution</a> •
 </p>
@@ -32,6 +32,19 @@
 ### What is Reclare ?
 
 Reclare is a lightweight library to manage the application state alongside business logic, without compromising from the predictability of the state. It is inspired by [Redux](https://redux.js.org/) and [the Elm architecture](https://guide.elm-lang.org/architecture/) and includes many of the familiar concepts.
+
+
+### Key Features
+
+* Manage **state** and **logic** together
+* Predictable, immutable state management
+* Handle requests / side effects
+* Built-in way to modularise your code
+* For all frameworks - [offical middleware for React](https://github.com/reclarejs/react-reclare)
+* Simple to create and use custom middlewares
+* Easy to install, minimal configuration
+* Easy-to-grasp concepts
+
 
 ### Basic Example
 
@@ -69,23 +82,18 @@ Broadcasting these events would look something like this:
 ```
 
 
-## Key Features
+### Documentation
 
-* Manage **state** and **logic** together
-* Predictable, immutable state management
-* Handle requests / effects
-* Modularise your code
-* For all frameworks - [offical middleware for React](https://github.com/reclarejs/react-reclare)
-* Simple to create and use custom middlewares
-* Easy to install, minimal configuration
-* Easy-to-grasp concepts
+The documentation is still under construction, my apologies for that. I will try to complete it as soon as possible.
+
+[Click here for the documentation](https://docs.reclare.io)
 
 
-## Feedback
+### Feedback
 
 What do you think about Reclare? Do you have any ideas? I would love to hear them, and kind of feedback would be much appreciated. You can [email me](mailto:o.gelal77@gmail.com) or [contact me](https://oguzgelal.com) some other way.
 
 
-## Contribution
+### Contribution
 
 The contribution guideline for Reclare is not ready at the time being, but if you love this project and want to help, please [contact me](mailto:o.gelal77@gmail.com).
