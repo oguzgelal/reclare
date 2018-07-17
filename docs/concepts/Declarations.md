@@ -13,7 +13,7 @@ Here is what it looks like:
   // Situational condition that describes
   // the situation that the declaration
   // should be invoked upon.
-  situation: ...,
+  when: ...,
 
   // State updater function, takes in the
   // current state and returns a new state.
@@ -64,7 +64,7 @@ Subscription declarations gets invoked upon every state change, therefor the `on
 ```javascript
 createContext({
   onStateChange: [{
-    situation: ({ hasChange }) => hasChange('user.email')
+    when: ({ hasChange }) => hasChange('user.email')
     reaction: () => alert('email address changed')
   }]
 })
@@ -76,7 +76,7 @@ createContext({
 // This will create an infinite loop
 createContext({
   onStateChange: [{
-    situation: ({ hasChange }) => hasChange('count')
+    when: ({ hasChange }) => hasChange('count')
     reducer: ({ state }) => ({ ...state, count: state.count + 1 })
   }]
 })

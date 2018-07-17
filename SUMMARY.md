@@ -4,7 +4,7 @@
 * Concepts
   * [Context](/docs/concepts/Context.md)
   * [Declarations](/docs/concepts/Declarations.md)
-  * [Situations](/docs/concepts/Situations.md)
+  * [Situations (when)](/docs/concepts/Situations.md)
   * [Reactions](/docs/concepts/Reactions.md)
   * [Reducers](/docs/concepts/Reducers.md)
   * [Broadcasts](/docs/concepts/Broadcasts.md)

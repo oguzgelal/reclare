@@ -60,13 +60,13 @@ Below is an example of what declarations would look like in the context of a sim
 },
 {
   on: 'decrement',
-  situation: ({ state }) => state.counter > 0,
+  when: ({ state }) => state.counter > 0,
   reducer: ({ state }) => ({ ...state, counter: state.counter - 1 }),
   reaction: ({ state }) => console.log(`Decremented to ${state.counter}`)
 },
 {
   on: 'decrement',
-  situation: ({ state }) => state.counter <= 0,
+  when: ({ state }) => state.counter <= 0,
   reaction: () => alert('Counter already at zero')
 }
 

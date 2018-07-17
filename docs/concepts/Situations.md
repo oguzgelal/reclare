@@ -1,11 +1,11 @@
-## Situations
+## Situations (when)
 
-Situations (situational conditions) are functions that can be used to describe the situation in which the declaration should invoke. For example, the situation function below describes a situation where the counter is greater than zero, so the declaration will only be invoked if that situational condition holds.
+Situations (situational conditions) (aka. `when`) are functions that can be used to describe the situation in which the declaration should invoke. For example, the situation function below describes a situation where the counter is greater than zero, so the declaration will only be invoked if that situational condition holds.
 
 ```javascript
 {
   on: 'decrement',
-  situation: ({ state }) => state.counter > 0,
+  when: ({ state }) => state.counter > 0,
   reducer: ({ ... }) => /* return new state */
   reaction: ({ ... }) => /* do something */
 }
@@ -19,14 +19,14 @@ createContext({
   // you can access to the state and the event payload 
   onEvent: [{
     on: 'event',
-    situation: ({ state, event }) => something(state)
+    when: ({ state, event }) => something(state)
   }],
 
   // you can access the event payload, previous version 
   // and the current versions of the state. hasChange 
   // function is also accessible like so
   onStateChange: [{
-    situation: ({ state, prevState, event, hasChange, }) =>
+    when: ({ state, prevState, event, hasChange, }) =>
       hasChange('a.b.c')
   }]
 })
@@ -37,22 +37,22 @@ The condition holds when situation function returns true or a truthy value. If t
 ```javascript
 {
   // doesn't hold: falsy value
-  situation: null;
+  when: null;
 
   // doesn't hold: falsy value
-  situation: '';
+  when: '';
 
   // holds: truthy value
-  situation: 'a';
+  when: 'a';
 
   // holds: true
-  situation: true;
+  when: true;
 
   // holds: returns true
-  situation: ({ state, event }) => true;
+  when: ({ state, event }) => true;
 
   // holds if x is 3
-  situation: ({ state, event }) => state.x === 3;
+  when: ({ state, event }) => state.x === 3;
 }
 ```
 
@@ -66,21 +66,21 @@ import { and, or, not } from 'reclare';
 ...
 
 // below two are equivalent
-situation: [fn1, fn2, fn3],
-situation: () => fn1() && fn2() && fn3()
+when: [fn1, fn2, fn3],
+when: () => fn1() && fn2() && fn3()
 
 // below two are equivalent
-situation: and(fn1, or(fn2, not(fn3)))
-situation: () => fn1() && (fn2() || !fn3())
+when: and(fn1, or(fn2, not(fn3)))
+when: () => fn1() && (fn2() || !fn3())
 
 // example
-situation: [
+when: [
   ({ state }) => state.count >= 0,
   ({ event }) => !event.preventDecrement
 ]
 
 // example
-situation:
+when:
   and(
     ({ event }) => event.isValid,
     not(
@@ -102,12 +102,12 @@ If you declare an asynchronous situation function, it will not be awaited during
 // THESE ARE WRONG
 {
   // doesn't hold: returns undefined, evaluates to false
-  situation: () => {
+  when: () => {
     fetch('/api').then(res => true);
   };
 
   // holds: returns a promise, evaluates to a true
-  situation: () =>
+  when: () =>
     new Promise(resolve => {
       setTimeout(() => resolve(false), 1000);
     });
@@ -123,12 +123,12 @@ The reason why situations must exist is related to the way Reclare orchestrates 
 ```javascript
 {
   on: 'decrement',
-  situation: ({ state }) => state.counter > 0,
+  when: ({ state }) => state.counter > 0,
   reducer: ({ state }) => ({ ...state, counter: state.counter - 1 })
 },
 {
   on: 'decrement',
-  situation: ({ state }) => state.counter === 0,
+  when: ({ state }) => state.counter === 0,
   reaction: () => alert('counter at zero')
 }
 ```
@@ -161,7 +161,7 @@ Other reasons on why situations should exists is convenience and declarativeness
 ```javascript
 {
   on: 'decrement',
-  situation: ({ state }) => state.counter > 0,
+  when: ({ state }) => state.counter > 0,
   reducer: ({ state }) => ({ ...state, counter: state.counter - 1 }),
   reactionElse: () => alert('counter at zero')
 }
