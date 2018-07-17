@@ -37,11 +37,11 @@ Reclare is a lightweight library to manage the application state alongside busin
 ### Key Features
 
 * Manage **state** and **logic** together
-* Predictable, immutable state management
+* Unidirectional data flows
+* Predictable, immutable state
 * Handle requests / side effects
 * Built-in way to modularise your code
 * For all frameworks - [offical middleware for React](https://github.com/reclarejs/react-reclare)
-* Simple to create and use custom middlewares
 * Easy to install, minimal configuration
 * Easy-to-grasp concepts
 
