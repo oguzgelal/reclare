@@ -56,13 +56,13 @@ Below is an example of what declarations would look like in the context of a sim
 {
   on: 'increment',
   reducer: ({ state }) => ({ ...state, counter: state.counter + 1 })
-  reaction: ({ state }) => console.log(`++ ${state.counter}`)
+  reaction: ({ state }) => console.log(`Incremented to ${state.counter}`)
 },
 {
   on: 'decrement',
   when: ({ state }) => state.counter > 0,
   reducer: ({ state }) => ({ ...state, counter: state.counter - 1 }),
-  reaction: ({ state }) => console.log(`-- ${state.counter}`)
+  reaction: ({ state }) => console.log(`Decremented to ${state.counter}`)
 },
 {
   on: 'decrement',
