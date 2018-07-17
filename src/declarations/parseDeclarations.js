@@ -1,4 +1,4 @@
-import { DECLARATION_NO_KEY } from '../config/constants';
+import { DECLARATION_NO_KEY, SITUATION_ALIAS } from '../config/constants';
 import parseSituations from './situations/parseSituations';
 import parseReactions from './reactions/parseReactions';
 import parseReducers from './reducers/parseReducers';
@@ -18,6 +18,12 @@ export default ({ type, declarations, customValidate }) => {
       declaration,
       customValidate
     });
+
+    // apply situation alias
+    if (declaration.hasOwnProperty(SITUATION_ALIAS)) {
+      declaration.situation = declaration[SITUATION_ALIAS];
+      delete declaration[SITUATION_ALIAS];
+    }
 
     const parsed = Object.assign(
       { type, unparsed: declaration },

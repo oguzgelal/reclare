@@ -20,4 +20,10 @@ describe('parseSituation', () => {
     expect(ctx[ON_EVENT]['test5'][0].situations.length).toBe(1);
     expect(ctx[ON_EVENT]['test6'][0].situations.length).toBe(0);
   });
+  it('should parse situation alias', () => {
+    const ctx = createContext({
+      [ON_EVENT]: [{ on: 'test1', when: false }]
+    });
+    expect(ctx[ON_EVENT]['test1'][0].situations.length).toBe(1);
+  });
 });
